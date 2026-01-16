@@ -1,12 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/15 10:44:12 by mamaratr         ###   ########.fr       */
+/*   Created: 2026/01/15 12:30:46 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/01/15 14:43:15 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub.h"
+
+int	parse(char **map)
+{
+	if (!check_chars(map))
+	{
+		printf("Error: Invalid characters in the map.\n");
+		return (0);
+	}
+	return (1);
+}
