@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 12:30:46 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/16 12:38:26 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2026/01/16 12:14:35 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/01/16 12:14:55 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "libft.h"
 
-int	parse(char **map)
+int	ft_strcmp(char *str1, char *str2)
 {
-	if (!check_chars(map))
+	while (*str1 && *str2)
 	{
-		printf("Error: Invalid characters in the map.\n");
-		return (0);
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+		str1++;
+		str2++;
 	}
-	else
-		return (1);
+	return (*str1 - *str2);
 }

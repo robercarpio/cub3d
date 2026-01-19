@@ -13,9 +13,13 @@ SRCS =		main.c \
 			./src/play.c \
 			./src/parse/parse.c \
 			./src/parse/checker_chars.c \
+			./src/parse/cub_file.c \
 			./src/gnl/get_next_line.c \
 			./src/gnl/get_next_line_utils.c \
 			./src/inputs/inputs.c \
+			./src/aux/map_dimmenssions.c \
+			./src/aux/file_to_arr.c \
+			./src/process_map/process_map.c \
 
 INCLUD = ./inc/cube.h
 

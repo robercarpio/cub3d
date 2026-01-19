@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   allocate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 12:30:46 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/16 12:38:26 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2026/01/16 17:30:39 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/01/16 17:38:29 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	parse(char **map)
+char    **allocate_map(char **map)
 {
-	if (!check_chars(map))
-	{
-		printf("Error: Invalid characters in the map.\n");
-		return (0);
-	}
-	else
-		return (1);
+    char    **arr;
+    int     height;
+    int     i;
+
+    height = map_height(map);
+    arr = (char **)malloc((height+1)*sizeof(char *));
+    i = -1;
+    while(map[++i])
+        arr[i] = map[i];
+    arr[height] = NULL;
+    return (arr);
 }

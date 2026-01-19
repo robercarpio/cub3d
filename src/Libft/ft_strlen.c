@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:13:56 by mamaratr          #+#    #+#             */
-/*   Updated: 2024/09/17 12:13:58 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/01/18 15:14:57 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int ft_strlen(const char *s)
 {
-	size_t	length;
-	int		x;
+	int	length;
+	int	x;
 
 	x = 0;
 	length = 0;

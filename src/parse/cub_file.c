@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   cub_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 12:30:46 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/16 12:38:26 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2026/01/16 12:04:43 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/01/16 12:15:59 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	parse(char **map)
+int	cub_file(char *str)
 {
-	if (!check_chars(map))
-	{
-		printf("Error: Invalid characters in the map.\n");
+	int	len;
+
+	if (!str)
 		return (0);
-	}
-	else
-		return (1);
+	len = ft_strlen(str);
+	return ((ft_strcmp(str + len - 4, ".cub") == 0) && len > 4);
 }

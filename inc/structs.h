@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/16 10:58:41 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/01/16 14:42:22 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,19 @@
 # define LEFT -1
 # define RIGHT 1
 
+typedef struct s_texture
+{
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	char	*celling;
+	char	*floor;
+}	t_texture;
+
 typedef struct s_map
 {
 	char			**map;
-	unsigned int	floor_color;
-	unsigned int	ceiling_color;
 	int				m_width;
 	int				m_height;
 }	t_map;
@@ -60,6 +68,7 @@ typedef struct s_data
 	int			height;
 	t_map		*map;
 	t_player	player;
+	t_texture	textures;
 }	t_data;
 
 

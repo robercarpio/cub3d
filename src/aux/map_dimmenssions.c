@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   map_dimmenssions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 12:30:46 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/16 12:38:26 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2026/01/16 13:02:43 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/01/16 17:34:01 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	parse(char **map)
+
+
+int	map_height(char **map)
 {
-	if (!check_chars(map))
-	{
-		printf("Error: Invalid characters in the map.\n");
-		return (0);
-	}
-	else
-		return (1);
+	int	i;
+
+	i = -1;
+	while(map[++i])
+	;
+	return (i);
 }
+
