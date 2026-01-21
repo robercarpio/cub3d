@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/18 14:21:43 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/01/19 15:48:18 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,13 @@ int		parse(char **map);
 int     cub_file(char *str);
 
 //PROCESS MAP
+int  is_texture(char *str);
+void	skip_textures(char	***file);
 t_map   init_map(char **file);
 
 //AUX
 int     map_height(char **map);
+int     map_width (char **map);
 int	    file_height(char *route);
 char    **file_to_arr(char *route);
 char    **allocate_map(char **map);

@@ -1,49 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_dimmenssions.c                                 :+:      :+:    :+:   */
+/*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 13:02:43 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/19 14:51:59 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2026/01/19 15:47:00 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/01/19 16:50:22 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
-static	int line_len(char *str)
+t_texture init_textures(char **file)
 {
-	int i;
-	
+    t_texture	texture;
+    int			i;
+
 	i = 0;
-	while(str[i])
-		i++;
-	return(i);
-}
-int	map_height(char **map)
-{
-	int	i;
-
-	i = -1;
-	while(map[++i])
-	;
-	return (i);
-}
-
-int	map_width (char **map)
-{
-	int	i;
-	int	max_len;
-	
-	i = -1;
-	max_len = 0;
-	while (map[++i])
+	while (file[i])
 	{
-		if (line_len(map[i]) > max_len)
-			max_len = line_len(map[i]);
-	}
-	return (max_len);
-}
 
+		if (is_texture(file[i]) > 0)
+		{
+			if(is_texture(file[i]) == 1)
+				texture.north = file[i];
+			if(is_texture(file[i]) == 2)
+				texture.south = file[i];
+			if(is_texture(file[i]) == 3)
+				texture.west = file[i];
+			if(is_texture(file[i]) == 4)
+				texture.east = file[i];
+		}
+		i++;
+	}
+	return (texture);
+}

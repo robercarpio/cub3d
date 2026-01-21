@@ -6,13 +6,13 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:45:57 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/18 15:11:02 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/01/19 15:47:59 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static int  is_texture(char *str)
+int  is_texture(char *str)
 {
 	if (ft_strcmp(ft_substr(str,0,2),"NO")==0)
 		return (1);
@@ -26,18 +26,21 @@ static int  is_texture(char *str)
 		return (0);
 }
 
-static void	skip_textures(char	**file)
+void	skip_textures(char	***file)
 {
-	while (is_texture(*file))
-		file++;
-	while (*file[0] == '\n')
-		file++;
-	while (*file[0] == 'F' || *file[0] == 'C')
-		file++;
-	while (*file[0] == '\n')
-		file++;
+	while (is_texture(**file))
+		(*file)++;
+
+	while (**file[0] == '\n')
+		(*file)++;
+	while (**file[0] == 'F' || **file[0] == 'C')
+		(*file)++;
+	while (**file[0] == '\n')
+		(*file)++;
 	
 }
+
+
 
 t_map   init_map(char **file)
 {
@@ -47,7 +50,7 @@ t_map   init_map(char **file)
 	tmp = file;
 	skip_textures(&tmp);
 	map.map = allocate_map(tmp);
-	map.m_width = 0;
-	map.m_height = 0;
+	map.m_width = map_width(map.map);
+	map.m_height = map_height(map.map);
 	return (map);
 }

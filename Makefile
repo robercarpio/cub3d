@@ -19,7 +19,9 @@ SRCS =		main.c \
 			./src/inputs/inputs.c \
 			./src/aux/map_dimmenssions.c \
 			./src/aux/file_to_arr.c \
+			./src/aux/allocate_map.c \
 			./src/process_map/process_map.c \
+			./src/process_map/init_map.c \
 
 INCLUD = ./inc/cube.h
 

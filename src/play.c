@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/01/18 15:13:32 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/01/20 17:56:46 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ static void print_map(t_map map)
 		i++;
 	}
 }
+
 int	play (char *route)
 {
 	char	**arr;
@@ -112,5 +113,9 @@ int	play (char *route)
 		return (0);
 	t_map map = init_map(arr);
 	print_map(map);
+	// print_map(map);
+	// printf("\n");
+	// printf("HEIGHT %d \n",map.m_height);
+	// printf("WIDTH %d \n",map.m_width);
 	return (1);	
 }
