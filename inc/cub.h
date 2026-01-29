@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/19 15:48:18 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/01/21 14:57:57 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		only_chars_allow(char *str, char *allow);
 int		check_chars(char **map);
 int		parse(char **map);
 int     cub_file(char *str);
+char	**expand_map(t_map map);
 
 //PROCESS MAP
 int  is_texture(char *str);
@@ -47,5 +48,22 @@ int     map_width (char **map);
 int	    file_height(char *route);
 char    **file_to_arr(char *route);
 char    **allocate_map(char **map);
+
+//INPUTS
+int	ft_exit(t_data *data);
+int	key_press(int key, t_data *data);
+int	key_release(int key, t_data *data);
+
+//MOVEMENT
+void	init_player(t_data *data);
+void	move_forward(t_data *data, int dir);
+void	move_strafe(t_data *data, int dir);
+void	rotate_player(t_data *data, double angle);
+
+void	my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color);
+void	draw_square(t_data *data, int start_x, int start_y, int size,  int color);
+void	draw_player(t_data *data);
+void	draw_map(t_data *data);
+void	clear_image(t_data *data);
 
 #endif

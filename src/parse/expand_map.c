@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:27:54 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/20 17:20:20 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/01/21 15:09:00 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*expand_line(char *line, int new_width)
 	}
 	while (i < new_width)
 	{
-		new_line[i] = ' ';
+		new_line[i] = '*';
 		i++;
 	}
 	new_line[i] = '\0';

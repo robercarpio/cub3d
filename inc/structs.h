@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/16 14:42:22 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/01/22 12:37:42 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # include <sys/time.h>
 # include <math.h>
 
+# define DEBUG_MODE 1
+# define SCREEN_WIDTH 1200
+# define SCREEN_HEIGHT 800
+# define TILE_SIZE 10
 # define MAX_KEYCODE 65536
 # define ESC 65307
 # define W 119
@@ -31,6 +35,17 @@
 # define DOWN -1
 # define LEFT -1
 # define RIGHT 1
+# define MOVE_SPEED 0.01
+# define ROT_SPEED 0.01
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_img;
 
 typedef struct s_texture
 {
@@ -68,12 +83,13 @@ typedef struct s_data
 	int			height;
 	t_map		*map;
 	t_player	player;
+	t_img		img;
 	t_texture	textures;
 }	t_data;
 
 
-int	ft_exit(t_data *data);
-int	key_press(int key, t_data *data);
-int	key_release(int key, t_data *data);
+// int	ft_exit(t_data *data);
+// int	key_press(int key, t_data *data);
+// int	key_release(int key, t_data *data);
 
 #endif

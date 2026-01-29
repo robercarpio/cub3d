@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:49:21 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/15 13:04:58 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:35:48 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	key_press(int key, t_data *data)
 	if (key == ESC)
 		ft_exit(data);
 	if (key >= 0 && key < MAX_KEYCODE)
+	{
+		printf("key press \n");
 		data->keys[key] = 1;
+	}
 	return (0);
 }
 

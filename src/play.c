@@ -6,116 +6,165 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/01/20 17:56:46 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/01/21 17:37:53 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-// static char	*dup_line(char *s)
-// {
-// 	char	*str;
-// 	int		i;
-// 	int		len;
 
-// 	if (!s)
-// 		return (NULL);
-// 	len = 0;
-// 	while (s[len] != '\0')
-// 		len++;
-// 	str = malloc(len + 1);
-// 	if (!str)
-// 		return (NULL);
-// 	i = 0;
-// 	while (i < len)
+
+
+// int	ft_exit(t_data *data)
+// {
+// 	if (data)
 // 	{
-// 		str[i] = s[i];
-// 		i++;
+// 		if (data->mlx && data->win)
+// 			mlx_destroy_window(data->mlx, data->win);
 // 	}
-// 	str[i] = '\0';
-// 	return (str);
+// 	exit(EXIT_SUCCESS);
+// 	return (0);
 // }
 
-// static int	files_map(char *route)
+// int	ft_alloc_data(t_data *data, t_map *map)
 // {
-// 	int		fd;
-// 	char	*line;
-// 	int		rows;
-
-// 	rows = 0;
-// 	fd = open(route, O_RDONLY);
-// 	if (fd == -1)
-// 	{
-// 		perror("Error al abrir el archivo");
-// 		return (-1);
-// 	}
-// 	line = get_next_line(fd);
-// 	while (line != NULL)
-// 	{
-// 		if (line[0] != '\0')
-// 		{
-// 			rows++;
-// 			free (line);
-// 			line = get_next_line(fd);
-// 		}
-// 	}
-// 	close(fd);
-// 	return (rows);
+// 	ft_bzero(data, sizeof(t_data));
+// 	ft_bzero(map, sizeof(t_map));
+// 	data->map = map;
+// 	return (1);
 // }
 
-// static char	**allocate_file(char *route)
+// int	ft_init(t_data *data)
 // {
-// 	int		fd;
-// 	char	*line;
-// 	int		height;
-// 	char	**map;
-// 	int		i;
-
-// 	fd = open(route, O_RDONLY);
-// 	if (fd == -1)
-// 		return (perror("Error al abrir el archivo"), NULL);
-// 	height = files_map(route);
-// 	map = (char **)malloc((height + 1) * sizeof(char *));
-// 	if (!map)
-// 		return (NULL);
-// 	i = 0;
-// 	line = get_next_line(fd);
-// 	while (line != NULL)
-// 	{
-// 		map[i] = dup_line(line);
-// 		i++;
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// 	map[i] = NULL;
-// 	close(fd);
-// 	return (map);
+// 	data->mlx = mlx_init();
+// 	if (!data->mlx)
+// 		return (0);
+// 	data->keys = ft_calloc(MAX_KEYCODE, sizeof(int));
+// 	if (!data->keys)
+// 		return (0);
+// 	return (1);
 // }
 
-static void print_map(t_map map)
-{
-	int i;
+// int	game_loop(t_data *data)
+// {
+// 	if (data->keys[W])
+// 		move_forward(data, UP);
+// 	if (data->keys[S])
+// 		move_forward(data, DOWN);
+// 	if (data->keys[A])
+// 		move_strafe(data, LEFT);
+// 	if (data->keys[D])
+// 		move_strafe(data, RIGHT);
+// 	if (data->keys[KEY_LEFT])
+// 		rotate_player(data, -ROT_SPEED);
+// 	if (data->keys[KEY_RIGHT])
+// 		rotate_player(data, ROT_SPEED);
+
+// 	clear_image(data);
+// 	draw_map(data);
+// 	draw_player(data);
+// 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+
+// 	return (0);
+// }
+
+// int	load_test_map(t_data *data)
+// {
+// 	data->map->m_height = 5;
+// 	data->map->m_width = 10;
+
+// 	data->map->map = malloc(sizeof(char *) * 6);
+// 	if (!data->map->map)
+// 		return (0);
+
+// 	data->map->map[0] = ft_strdup("1111111111");
+// 	data->map->map[1] = ft_strdup("1000000001");
+// 	data->map->map[2] = ft_strdup("10P0000001");
+// 	data->map->map[3] = ft_strdup("1000000001");
+// 	data->map->map[4] = ft_strdup("1111111111");
+// 	data->map->map[5] = NULL;
+
+// 	data->map->m_height = 5;
+// 	data->map->m_width = 10;
+// 	data->textures.floor = "0x00AAAAAA";
+// 	data->textures.celling = "0x005555FF";
+
+// 	return (1);
+// }
+
+// int	main(int argc, char **argv)
+// {
+// 	t_data	data;
+// 	t_map	map;
 	
-	i = 0;
-	while (map.map[i])
-	{
-		printf("%s", map.map[i]);
-		i++;
-	}
-}
+// 	(void)argv;
+// 	if (argc != 2)
+// 	{
+// 		printf("Error!\nUsage: ./cub3d <map.cub>\n");
+// 		return (0);
+// 	}
+// 	if (!ft_alloc_data(&data, &map))
+// 		return (0);
+// 	if (!ft_init(&data))
+// 		return (0);
+// 	if (!load_test_map(&data))
+// 		return (0);
+// 	init_player(&data);
+// 	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
+// 	if (!data.win)
+// 		return (0);
+// 	data.img.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+// 	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bpp,
+// 			&data.img.line_length, &data.img.endian);
+// 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
+// 	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
+// 	mlx_hook(data.win, 17, 0, ft_exit, &data);
+// 	mlx_loop_hook(data.mlx, game_loop, &data);
+// 	mlx_loop(data.mlx);
+// 	return (0);
+// }
 
-int	play (char *route)
-{
-	char	**arr;
 
-	arr = file_to_arr(route);
-	if (!arr)
-		return (0);
-	t_map map = init_map(arr);
-	print_map(map);
-	// print_map(map);
-	// printf("\n");
-	// printf("HEIGHT %d \n",map.m_height);
-	// printf("WIDTH %d \n",map.m_width);
-	return (1);	
-}
+
+
+
+// -------------------------------------------------------------------------------------------
+// static void print_map(t_map map)
+// {
+// 	int i;
+	
+// 	i = 0;
+// 	while (map.map[i])
+// 	{
+// 		printf("%s", map.map[i]);
+// 		i++;
+// 	}
+// }
+
+// static	void	print_arr(char **arr)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (arr[i])
+// 	{
+// 		printf("%s",arr[i]);
+// 		i++;
+// 	}
+// }
+
+// int	play (char *route)
+// {
+// 	char	**arr;
+
+// 	arr = file_to_arr(route);
+// 	if (!arr)
+// 		return (0);
+// 	t_map map = init_map(arr);
+// 	print_arr(expand_map(map));
+// 	// print_map(map);
+// 	// printf("\n");
+// 	// printf("HEIGHT %d \n",map.m_height);
+// 	// printf("WIDTH %d \n",map.m_width);
+// 	return (1);	
+// }

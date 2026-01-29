@@ -22,6 +22,9 @@ SRCS =		main.c \
 			./src/aux/allocate_map.c \
 			./src/process_map/process_map.c \
 			./src/process_map/init_map.c \
+			./src/movement/minimap.c \
+			./src/movement/player.c \
+			./src/parse/expand_map.c \
 
 INCLUD = ./inc/cube.h
 
