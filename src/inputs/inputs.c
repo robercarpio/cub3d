@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:49:21 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/21 17:35:48 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/03 16:50:36 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	key_press(int key, t_data *data)
 		ft_exit(data);
 	if (key >= 0 && key < MAX_KEYCODE)
 	{
-		printf("key press \n");
+		raycast_dda(data);
 		data->keys[key] = 1;
 	}
 	return (0);

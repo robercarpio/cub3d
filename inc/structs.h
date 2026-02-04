@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/22 12:37:42 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/03 16:40:04 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,16 @@
 # include <sys/time.h>
 # include <math.h>
 
-# define DEBUG_MODE 1
+//COLORES
+#define RESET   "\033[0m"
+#define BLUE    "\033[34m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define MAGENTA "\033[35m"
+#define RED     "\033[31m"
+#define CYAN    "\033[36m"
+
+# define DEBUG_MODE 0
 # define SCREEN_WIDTH 1200
 # define SCREEN_HEIGHT 800
 # define TILE_SIZE 10
@@ -37,6 +46,22 @@
 # define RIGHT 1
 # define MOVE_SPEED 0.01
 # define ROT_SPEED 0.01
+
+typedef struct s_dda_data
+{
+	double	rayDirX;      // Dirección X del rayo individual (dir + plano * cameraX).
+	double	rayDirY;      // Dirección Y del rayo individual.
+	int		mapX;         // Coordenada X entera de la celda actual en el mapa.
+	int		mapY;         // Coordenada Y entera de la celda actual en el mapa.
+	double	sideDistX;    // Distancia acumulada hasta el próximo borde vertical (X).
+	double	sideDistY;    // Distancia acumulada hasta el próximo borde horizontal (Y).
+	double	deltaDistX;   // Distancia que el rayo debe recorrer para cruzar una celda en X.
+	double	deltaDistY;   // Distancia que el rayo debe recorrer para cruzar una celda en Y.
+	int		stepX;        // Dirección del salto en el mapa (-1 o 1) para el eje X.
+	int		stepY;        // Dirección del salto en el mapa (-1 o 1) para el eje Y.
+	int		side;         // Indica si se chocó con un muro en X (0) o en Y (1).
+	double	perpWallDist; // Distancia final proyectada para evitar el efecto ojo de pez.
+}	t_dda_data;
 
 typedef struct s_img
 {
@@ -85,6 +110,7 @@ typedef struct s_data
 	t_player	player;
 	t_img		img;
 	t_texture	textures;
+	t_dda_data	dda;
 }	t_data;
 
 

@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/21 14:57:57 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/03 11:53:16 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,9 @@ void	draw_square(t_data *data, int start_x, int start_y, int size,  int color);
 void	draw_player(t_data *data);
 void	draw_map(t_data *data);
 void	clear_image(t_data *data);
+
+//RAYCASTING
+void    raycast_dda(t_data *data);
+void	show_dda_data(t_dda_data *d);
 
 #endif

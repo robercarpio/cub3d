@@ -25,13 +25,14 @@ SRCS =		main.c \
 			./src/movement/minimap.c \
 			./src/movement/player.c \
 			./src/parse/expand_map.c \
+			./src/raycast/dda.c \
 
 INCLUD = ./inc/cube.h
 
 # ================= COMPILER ================= #
 CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -MMD -I./inc -I./src/Libft -I./mlx -std=gnu89
+CFLAGS = -Wall -Wextra -Werror -MMD -I./inc -I./src/Libft -I./mlx
 
 # ================= LIBRARIES ================= #
 LIB = -L./mlx -lmlx -lXext -lX11 -lm -L./src/Libft -lft
