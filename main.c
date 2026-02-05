@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/03 10:18:31 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/05 14:09:15 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,17 +108,19 @@ int	main(int argc, char **argv)
 	// 	return (0);
 	map = init_map(file_to_arr(argv[1]));
 	init_player(&data);
-	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
-	if (!data.win)
-		return (0);
-	data.img.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bpp,
-			&data.img.line_length, &data.img.endian);
-	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
-	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
-	mlx_hook(data.win, 17, 0, ft_exit, &data);
-	mlx_loop_hook(data.mlx, game_loop, &data);
-	mlx_loop(data.mlx);
+	char **map_expand = expand_map(map);
+	print_arr(map_expand);
+	// data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
+	// if (!data.win)
+	// 	return (0);
+	// data.img.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	// data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bpp,
+	// 		&data.img.line_length, &data.img.endian);
+	// mlx_hook(data.win, 2, 1L << 0, key_press, &data);
+	// mlx_hook(data.win, 3, 1L << 1, key_release, &data);
+	// mlx_hook(data.win, 17, 0, ft_exit, &data);
+	// mlx_loop_hook(data.mlx, game_loop, &data);
+	// mlx_loop(data.mlx);
 	return (0);
 }
 
