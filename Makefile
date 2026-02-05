@@ -37,7 +37,7 @@ DEPS = $(OBJS:.o=.d)
 # ================= COMPILER ================= #
 CC = gcc
 RM = rm -rf
-CFLAGS = -Wall -Wextra -Werror -MMD -I./inc -I./src/Libft -I./mlx
+CFLAGS = -Wall -Wextra -Werror -MMD -I./inc -I./src/Libft -I./mlx -std=gnu89
 
 # ================= LIBRARIES ================= #
 LIB = -L./mlx -lmlx -lXext -lX11 -lm -L./src/Libft -lft
