@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:45:57 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/21 15:00:09 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/05 13:58:54 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	skip_textures(char	***file)
 
 
 
-t_map   init_map(char **file)
+t_map	init_map(char **file)
 {
-    t_map	map;
+	t_map	map;
 	char	**tmp;
 
 	tmp = file;
