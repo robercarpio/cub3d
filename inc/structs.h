@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/03 16:40:04 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/06 11:07:33 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@
 # define MOVE_SPEED 0.01
 # define ROT_SPEED 0.01
 
+typedef enum e_tex_id
+{
+	TEX_NORTH = 0,
+	TEX_SOUTH,
+	TEX_WEST,
+	TEX_EAST,
+	TEX_COUNT
+}	t_tex_id;
+
 typedef struct s_dda_data
 {
 	double	rayDirX;      // Dirección X del rayo individual (dir + plano * cameraX).
@@ -67,6 +76,8 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
+	int		width;
+	int		height;
 	int		bpp;
 	int		line_length;
 	int		endian;
@@ -74,10 +85,8 @@ typedef struct s_img
 
 typedef struct s_texture
 {
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
+	char	*paths[TEX_COUNT];
+	t_img	images[TEX_COUNT];
 	char	*celling;
 	char	*floor;
 }	t_texture;
@@ -85,6 +94,8 @@ typedef struct s_texture
 typedef struct s_map
 {
 	char			**map;
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
 	int				m_width;
 	int				m_height;
 }	t_map;

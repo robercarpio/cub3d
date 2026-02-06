@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/03 11:53:16 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/06 12:06:38 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
-//
+
 # include "structs.h"
 # include "../mlx/mlx.h"
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-
 
 
 int		play (char *route);
@@ -38,7 +37,8 @@ int     cub_file(char *str);
 char	**expand_map(t_map map);
 
 //PROCESS MAP
-int  is_texture(char *str);
+int	get_texture_id(char *str);
+//int  is_texture(char *str);
 void	skip_textures(char	***file);
 t_map   init_map(char **file);
 

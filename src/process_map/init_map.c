@@ -3,34 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:45:57 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/05 13:58:54 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:04:53 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int  is_texture(char *str)
+int	get_texture_id(char *str)
 {
-	if (ft_strcmp(ft_substr(str,0,2),"NO")==0)
-		return (1);
-	else if (ft_strcmp(ft_substr(str,0,2),"SO")==0)
-		return (2);
-	else if(ft_strcmp(ft_substr(str,0,2),"WE")==0)
-		return (3);
-	else if (ft_strcmp(ft_substr(str,0,2),"EA")==0)
-		return (4);
-	else
-		return (0);
+	if (!ft_strncmp(str, "NO", 3))
+		return (TEX_NORTH);
+	if (!ft_strncmp(str, "SO", 3))
+		return (TEX_SOUTH);
+	if (!ft_strncmp(str, "WE", 3))
+		return (TEX_WEST);
+	if (!ft_strncmp(str, "EA", 3))
+		return (TEX_EAST);
+	return (-1);
 }
 
 void	skip_textures(char	***file)
 {
 	while (is_texture(**file))
 		(*file)++;
-
 	while (**file[0] == '\n')
 		(*file)++;
 	while (**file[0] == 'F' || **file[0] == 'C')
@@ -39,7 +37,6 @@ void	skip_textures(char	***file)
 		(*file)++;
 	
 }
-
 
 
 t_map	init_map(char **file)
