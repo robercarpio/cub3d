@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/03 16:40:04 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/06 11:30:20 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ typedef struct s_dda_data
 	double	perpWallDist; // Distancia final proyectada para evitar el efecto ojo de pez.
 }	t_dda_data;
 
+typedef	struct	s_coords
+{
+	int	x;
+	int	y;
+}	t_coords;
 typedef struct s_img
 {
 	void	*img;

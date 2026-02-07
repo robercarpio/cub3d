@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/05 14:09:15 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/07 11:53:16 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,12 @@ int	main(int argc, char **argv)
 	// 	return (0);
 	map = init_map(file_to_arr(argv[1]));
 	init_player(&data);
-	char **map_expand = expand_map(map);
-	print_arr(map_expand);
+	if (closed_map(data))
+		printf("bien\n");
+	else
+		printf("mal\n");
+	// char **map_expand = expand_map(map);
+	// print_arr(map_expand);
 	// data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
 	// if (!data.win)
 	// 	return (0);

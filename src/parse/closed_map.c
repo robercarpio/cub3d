@@ -6,33 +6,13 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:03:31 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/05 18:04:05 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/07 12:39:27 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static char	**dup_map(char **map)
-{
-	int		height;
-	char	*dup_line;
-	int		i;
-	char	**dup_map;
-	
-	height = map_height(map);
-	dup_map = (char **)malloc(sizeof(char *)* height) + 1;
-	if (!dup_map)
-		return (NULL);
-	i = -1;
-	while (map[++i])
-	{
-		dup_line = ft_strdup(map[i]);
-		dup_map[i] = dup_line;
-	}
-	dup_map[i] = NULL;
-}
-
-static int	flood_fill_closed(char **map, int x, int y, int *i)
+static int	flood_fill_closed(char **map, int y, int x)
 {
 	int	width;
 	int	height;
@@ -40,26 +20,70 @@ static int	flood_fill_closed(char **map, int x, int y, int *i)
 	width = line_len(map[0]);
 	height = map_height(map);
 	if (x < 0 || y < 0 || x >= width || y >= height
-		|| map[y][x] == '1')
-		return (0);
-	if (map[y][x] == 'C')
-		(*i)++;
-	if (map[y][x] == 'V')
-		return (0);
+		|| map[y][x] == '1' || map[y][x] == 'V' || map[y][x] == '\n' || map[y][x] == '\t' )
+		return (0);	
+	if (map[y][x] == '0')
+	{
+		printf("\n**************************************************************************\n");
+		printf("FALLO X: %d \n",x);
+		printf("FALLO Y: %d \n",y);
+		printf("\n**************************************************************************\n");
+		map[y][x] = '-';
+		return (1);
+	}
 	map[y][x] = 'V';
-	return (flood_fill_closed(map, y, x + 1, i)
-		|| flood_fill_closed(map, y, x - 1, i)
-		|| flood_fill_closed(map, y + 1, x, i)
-		|| flood_fill_closed(map, y - 1, x, i));
+	return (flood_fill_closed(map, y, x + 1) 
+		|| flood_fill_closed(map, y, x - 1)
+		|| flood_fill_closed(map, y + 1, x)
+		|| flood_fill_closed(map, y - 1, x));
 }
+
+static t_coords sea_coords(char **map)
+{
+	int			x;
+	int			y;
+	t_coords	coords;
+
+	y = -1;
+	while(map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] == ' ')
+			{
+				coords.y = y;
+				coords.x = x;
+				return (coords);
+			}
+		}
+	}
+	coords.y = -1;
+	// coords.x = -1;
+	return (coords);
+}
+
+
 
 int	closed_map(t_data data)
 {
-    int i;
-
-    i = 0;
-    if (flood_fill_closed(data.map->map, data.player.x, data.player.y, &i))
-        return (1);
-    else
-        return (0);
+	t_coords	coords;
+	char		**map_expand;
+	int			r_ff;
+	map_expand = expand_map(*data.map);
+	coords = sea_coords(expand_map(*data.map));
+	r_ff = 0;
+	while (coords.y > -1 && r_ff == 0)
+	{
+		r_ff = flood_fill_closed(map_expand,coords.y, coords.x);
+		print_arr(map_expand);
+		coords = sea_coords(map_expand);
+		printf("\ny:%d\n",coords.y);
+		printf("x:%d\n",coords.x);
+		printf("r_ff:%d\n",r_ff);
+	}
+	if (r_ff == 1)
+		return (0);
+	else
+		return (1);
 }
