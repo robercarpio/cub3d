@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/03 11:53:16 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/10 13:28:50 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-
 
 
 int		play (char *route);
@@ -38,7 +37,8 @@ int     cub_file(char *str);
 char	**expand_map(t_map map);
 
 //PROCESS MAP
-int  is_texture(char *str);
+int	get_texture_id(char *str);
+//int  is_texture(char *str);
 void	skip_textures(char	***file);
 t_map   init_map(char **file);
 
@@ -69,5 +69,10 @@ void	clear_image(t_data *data);
 //RAYCASTING
 void    raycast_dda(t_data *data);
 void	show_dda_data(t_dda_data *d);
+
+//TEXTURES
+void	init_textures(t_texture *tex);
+void	parse_textures(char **file, t_texture *tex);
+void	load_textures(t_data *data, t_texture *tex);
 
 #endif

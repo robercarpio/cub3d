@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/03 10:18:31 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/10 13:41:08 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,38 +61,14 @@ int	game_loop(t_data *data)
 	draw_map(data);
 	draw_player(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-
 	return (0);
 }
-
-// int	load_test_map(t_data *data)
-// {
-// 	data->map->m_height = 5;
-// 	data->map->m_width = 10;
-
-// 	data->map->map = malloc(sizeof(char *) * 6);
-// 	if (!data->map->map)
-// 		return (0);
-
-// 	data->map->map[0] = ft_strdup("1111111111");
-// 	data->map->map[1] = ft_strdup("1000000001");
-// 	data->map->map[2] = ft_strdup("10P0000001");
-// 	data->map->map[3] = ft_strdup("1000000001");
-// 	data->map->map[4] = ft_strdup("1111111111");
-// 	data->map->map[5] = NULL;
-
-// 	data->map->m_height = 5;
-// 	data->map->m_width = 10;
-// 	data->textures.floor = "0x00AAAAAA";
-// 	data->textures.celling = "0x005555FF";
-
-// 	return (1);
-// }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
 	t_map	map;
+	char	**file;
 	
 	(void)argv;
 	if (argc != 2)
@@ -104,9 +80,11 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!ft_init(&data))
 		return (0);
-	// if (!load_test_map(&data))
-	// 	return (0);
-	map = init_map(file_to_arr(argv[1]));
+	file = file_to_arr(argv[1]);
+	map = init_map(file);
+	init_textures(&data.textures);
+	parse_textures(file, &data.textures);
+	load_textures(&data, &data.textures);
 	init_player(&data);
 	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
 	if (!data.win)
@@ -121,7 +99,6 @@ int	main(int argc, char **argv)
 	mlx_loop(data.mlx);
 	return (0);
 }
-
 
 // int	main (int argc, char *argv[])
 // {

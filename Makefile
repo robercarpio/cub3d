@@ -22,10 +22,11 @@ SRCS =		main.c  \
 			./src/aux/allocate_map.c \
 			./src/process_map/process_map.c \
 			./src/process_map/init_map.c \
+			./src/process_map/textures.c \
 			./src/movement/minimap.c \
 			./src/movement/player.c \
 			./src/parse/expand_map.c \
-			./src/raycast/dda.c
+			./src/raycast/dda.c \
 
 # ================= DIRECTORIES ================= #
 OBJ_DIR = objects
