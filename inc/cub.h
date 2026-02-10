@@ -6,13 +6,13 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/10 13:28:50 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/10 13:51:30 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
-//
+
 # include "structs.h"
 # include "../mlx/mlx.h"
 
