@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:27:54 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/06 11:11:16 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/10 15:15:22 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,11 @@ char **expand_map(t_map map)
 
     if (map.m_height <= 0 || map.m_width <= 0)
         return NULL;
-
     new_map = malloc((map.m_height + 1) * sizeof(char *));
-    //vacia
     if (!new_map)
         return NULL;
-    i = -1;
-    while(++i < map.m_height - 1)
+    i = 0;
+    while(i < map.m_height)
     {
         new_map[i] = ft_strjoin(" ",expand_line(map.map[i], map.m_width, ' '));
         // new_map[i] = expand_line(map.map[i], map.m_width, ' ');
@@ -70,6 +68,7 @@ char **expand_map(t_map map)
             free(new_map);
             return NULL;
         }
+        i++;
     }
     new_map[i] = fill_str(' ', map.m_width + 1);
     new_map[++i] = NULL;

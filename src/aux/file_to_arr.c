@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:27:41 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/16 17:30:14 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/10 13:06:02 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	file_height(char *route)
 			free (line);
 			line = get_next_line(fd);
 		}
+		else
+			break;
 	}
 	close(fd);
 	return (rows);
@@ -47,13 +49,17 @@ char    **file_to_arr(char *route)
     int     fd;
     
     height = file_height(route);
+	printf("file h:_%d \n",height);
     arr = (char **)malloc((height + 1) * sizeof(char *));
     if (!arr)
         return(NULL);
     i = -1;
     fd = open(route, O_RDONLY);
     if (fd == -1)
+	{
         printf("Error: Failed to open the map file.\n");
+	}
+	printf("ENTRA WHILE FILE2ARR \n");
     while (++i < height)
     {
         arr[i] = get_next_line(fd);

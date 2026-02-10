@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/07 12:22:24 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/10 15:57:57 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,11 @@ void	print_arr(char **arr)
 	}
 }
 
-int	play (char *route)
+void	play (char *route)
 {
-	char	**arr;
-
-	arr = file_to_arr(route);
-	if (!arr)
-		return (0);
-	t_map map = init_map(arr);
-	print_arr(expand_map(map));
-	// print_map(map);
-	// printf("\n");
-	// printf("HEIGHT %d \n",map.m_height);
-	// printf("WIDTH %d \n",map.m_width);
-	return (1);	
+	if (!cub_file(route))
+		printf("Error!\nInvalid map file\nUsage: ./cub3d <map.cub>\n");	
+	else
+		parse(file_to_arr(route));
 }
+

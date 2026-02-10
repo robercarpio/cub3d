@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/06 12:30:41 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/10 16:49:47 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 
 
-int		play (char *route);
+void	play (char *route);
 void	print_arr(char **arr);
 void    print_map(t_map map);
 

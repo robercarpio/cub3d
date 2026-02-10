@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:30:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/06 11:02:45 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/10 14:05:32 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char **allocate_map(char **map)
 	int		i;
 
 	height = map_height(map);
+	printf("map h:%d\n",height);
 	arr = malloc((height + 2) * sizeof(char *));
 	if (!arr)
 		return (NULL);
