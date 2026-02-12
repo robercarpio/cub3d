@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:30:46 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/10 15:58:34 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/11 13:26:38 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	parse(char **map)
 {
 	if (!check_chars(map))
 	{
-		printf("Error: Invalid characters in the map.\n");
+		printf("Error: Invalid characters in the map.\n");	
 		return (0);
 	}
 	else

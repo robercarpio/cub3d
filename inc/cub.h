@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/10 16:49:47 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/11 14:01:35 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 
 
-
+int	ft_init(t_data *data , char *route);
 void	play (char *route);
 void	print_arr(char **arr);
 void    print_map(t_map map);
@@ -44,6 +44,7 @@ int     closed_map(t_data data);
 int  is_texture(char *str);
 void	skip_textures(char	***file);
 t_map   init_map(char **file);
+t_texture init_textures(char **file);
 
 //AUX
 int     map_height(char **map);
