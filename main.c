@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/12 11:36:12 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/12 12:06:15 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,28 @@ int	ft_alloc_data(t_data *data, t_map *map)
 	return (1);
 }
 
-int	ft_init(t_data *data , char *route)
+int	ft_init(t_data *data, char *route)
 {
 	char	**file;
 	
-	file = file_to_arr(route);
-	data->textures = init_textures(file);
-	//MAP
-	*data->map = init_map(file);
-	//PLAYER
-	init_player(data);
-	//DDA
-	raycast_dda(data);
-	//MLX
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (0);
 	data->keys = ft_calloc(MAX_KEYCODE, sizeof(int));
 	if (!data->keys)
 		return (0);
+	file = file_to_arr(route);
+	init_textures(&data->textures);
+	parse_textures(file, &data->textures);
+	load_textures(data, &data->textures);
+	//MAP
+	*data->map = init_map(file);
+	printf("Entra \n");
+	//PLAYER
+	init_player(data);
+	//DDA
+	raycast_dda(data);
+	//MLX
 	return (1);
 }
 
@@ -75,38 +78,47 @@ int	game_loop(t_data *data)
 	return (0);
 }
 
-int	main(int argc, char **argv)
-{
-	t_data	data;
-	t_map	map;
-	char	**file;
+// int	main(int argc, char **argv)
+// {
+// 	t_data	data;
+// 	t_map	map;
+// 	char	**file;
 	
-	(void)argv;
-	if (argc != 2)
-	{
-		printf("Error!\nUsage: ./cub3d <map.cub>\n");
-		return (0);
-	}
-	if (!ft_alloc_data(&data, &map))
-		return (0);
-	if (!ft_init(&data))
-		return (0);
-	file = file_to_arr(argv[1]);
-	map = init_map(file);
-	init_textures(&data.textures);
-	parse_textures(file, &data.textures);
-	load_textures(&data, &data.textures);
-	init_player(&data);
-	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
-	if (!data.win)
-		return (0);
-	data.img.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bpp,
-			&data.img.line_length, &data.img.endian);
-	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
-	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
-	mlx_hook(data.win, 17, 0, ft_exit, &data);
-	mlx_loop_hook(data.mlx, game_loop, &data);
-	mlx_loop(data.mlx);
+// 	(void)argv;
+// 	if (argc != 2)
+// 	{
+// 		printf("Error!\nUsage: ./cub3d <map.cub>\n");
+// 		return (0);
+// 	}
+// 	if (!ft_alloc_data(&data, &map))
+// 		return (0);
+// 	if (!ft_init(&data, ))
+// 		return (0);
+// 	file = file_to_arr(argv[1]);
+// 	map = init_map(file);
+// 	init_textures(&data.textures);
+// 	parse_textures(file, &data.textures);
+// 	load_textures(&data, &data.textures);
+// 	init_player(&data);
+// 	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
+// 	if (!data.win)
+// 		return (0);
+// 	data.img.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+// 	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bpp,
+// 			&data.img.line_length, &data.img.endian);
+// 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
+// 	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
+// 	mlx_hook(data.win, 17, 0, ft_exit, &data);
+// 	mlx_loop_hook(data.mlx, game_loop, &data);
+// 	mlx_loop(data.mlx);
+// 	return (0);
+// }
+
+int	main(int argc, char *argv[])
+{
+	if (argc == 2)
+		play(argv[1]);
+	else
+		printf("Error!\nInvalid map file\nUsage: ./cub3d <map.cub>\n");
 	return (0);
 }

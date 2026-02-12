@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/12 11:37:53 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/12 12:10:48 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*fbreturn(char *buffer, int rd, char **stg);
 //PARSE
 int		only_chars_allow(char *str, char *allow);
 int		check_chars(char **map);
-int		parse(char **map);
+int	    parse(t_data data);
 int     cub_file(char *str);
 char	**expand_map(t_map map);
 int     closed_map(t_data data);
@@ -45,7 +45,7 @@ int	get_texture_id(char *str);
 //int  is_texture(char *str);
 void	skip_textures(char	***file);
 t_map   init_map(char **file);
-t_texture init_textures(char **file);
+//t_texture init_textures(char **file);
 
 //AUX
 int     map_height(char **map);
@@ -81,5 +81,8 @@ void	show_dda_data(t_dda_data *d);
 void	init_textures(t_texture *tex);
 void	parse_textures(char **file, t_texture *tex);
 void	load_textures(t_data *data, t_texture *tex);
+
+
+int	ft_alloc_data(t_data *data, t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:45:57 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/12 11:37:25 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/12 12:00:20 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ t_map	init_map(char **file)
 	map.map = allocate_map(tmp);
 	map.m_width = map_width(map.map);
 	map.m_height = map_height(map.map);
+	printf("Sale \n");
 	return (map);
 }

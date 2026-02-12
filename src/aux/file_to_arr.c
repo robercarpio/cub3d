@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_to_arr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:27:41 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/10 13:06:02 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/12 11:54:27 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,30 @@ int	file_height(char *route)
 	return (rows);
 }
 
-char    **file_to_arr(char *route)
+char	**file_to_arr(char *route)
 {
-    int     height;
-    int     i;
-    char    **arr;
-    int     fd;
-    
-    height = file_height(route);
+	int     height;
+	int     i;
+	char    **arr;
+	int     fd;
+	
+	height = file_height(route);
 	printf("file h:_%d \n",height);
-    arr = (char **)malloc((height + 1) * sizeof(char *));
-    if (!arr)
-        return(NULL);
-    i = -1;
-    fd = open(route, O_RDONLY);
-    if (fd == -1)
+	arr = (char **)malloc((height + 1) * sizeof(char *));
+	if (!arr)
+		return(NULL);
+	i = -1;
+	fd = open(route, O_RDONLY);
+	if (fd == -1)
 	{
-        printf("Error: Failed to open the map file.\n");
+		printf("Error: Failed to open the map file.\n");
 	}
 	printf("ENTRA WHILE FILE2ARR \n");
-    while (++i < height)
-    {
-        arr[i] = get_next_line(fd);
-    }
-    arr[height] = NULL;
-    close(fd);
-    return (arr);
+	while (++i < height)
+	{
+		arr[i] = get_next_line(fd);
+	}
+	arr[height] = NULL;
+	close(fd);
+	return (arr);
 }

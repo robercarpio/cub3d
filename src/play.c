@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/11 16:22:31 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/12 12:10:22 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,18 @@ void	print_arr(char **arr)
 
 void	play (char *route)
 {
-	char	**file;
+	//char	**file;
 	t_data	data;
+	t_map	map;
+	
 	if (!cub_file(route))
 		printf("Error!\nInvalid map file\nUsage: ./cub3d <map.cub>\n");
 	else
 	{
+		ft_alloc_data(&data, &map);
 		ft_init(&data, route);
 		// *data.map = init_map(file);
-		parse(file);
+		parse(data);
 	}
 }
 

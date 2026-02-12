@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:05:12 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/11 16:16:29 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/12 12:06:51 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,40 +29,40 @@ static void reset_dda_data (t_dda_data *dda)
 	dda->perpWallDist = 0;
 }
 
-void	show_dda_data(t_dda_data *d)
-{
-	printf(CYAN "\n========== DDA DATA ==========\n" RESET);
+// void	show_dda_data(t_dda_data *d)
+// {
+// 	printf(CYAN "\n========== DDA DATA ==========\n" RESET);
 
-	// Ray direction
-	printf(BLUE "--- Ray Direction ---\n" RESET);
-	printf(BLUE "rayDirX        : %f\n" RESET, d->rayDirX);
-	printf(BLUE "rayDirY        : %f\n" RESET, d->rayDirY);
+// 	// Ray direction
+// 	printf(BLUE "--- Ray Direction ---\n" RESET);
+// 	printf(BLUE "rayDirX        : %f\n" RESET, d->rayDirX);
+// 	printf(BLUE "rayDirY        : %f\n" RESET, d->rayDirY);
 
-	// Map position
-	printf(GREEN "\n--- Map Position ---\n" RESET);
-	printf(GREEN "mapX           : %d\n" RESET, d->mapX);
-	printf(GREEN "mapY           : %d\n" RESET, d->mapY);
+// 	// Map position
+// 	printf(GREEN "\n--- Map Position ---\n" RESET);
+// 	printf(GREEN "mapX           : %d\n" RESET, d->mapX);
+// 	printf(GREEN "mapY           : %d\n" RESET, d->mapY);
 
-	// Distances
-	printf(YELLOW "\n--- Distances ---\n" RESET);
-	printf(YELLOW "sideDistX      : %f\n" RESET, d->sideDistX);
-	printf(YELLOW "sideDistY      : %f\n" RESET, d->sideDistY);
-	printf(YELLOW "deltaDistX     : %f\n" RESET, d->deltaDistX);
-	printf(YELLOW "deltaDistY     : %f\n" RESET, d->deltaDistY);
+// 	// Distances
+// 	printf(YELLOW "\n--- Distances ---\n" RESET);
+// 	printf(YELLOW "sideDistX      : %f\n" RESET, d->sideDistX);
+// 	printf(YELLOW "sideDistY      : %f\n" RESET, d->sideDistY);
+// 	printf(YELLOW "deltaDistX     : %f\n" RESET, d->deltaDistX);
+// 	printf(YELLOW "deltaDistY     : %f\n" RESET, d->deltaDistY);
 
-	// Steps
-	printf(MAGENTA "\n--- Steps ---\n" RESET);
-	printf(MAGENTA "stepX          : %d\n" RESET, d->stepX);
-	printf(MAGENTA "stepY          : %d\n" RESET, d->stepY);
+// 	// Steps
+// 	printf(MAGENTA "\n--- Steps ---\n" RESET);
+// 	printf(MAGENTA "stepX          : %d\n" RESET, d->stepX);
+// 	printf(MAGENTA "stepY          : %d\n" RESET, d->stepY);
 
-	// Result
-	printf(RED "\n--- Result ---\n" RESET);
-	printf(RED "side           : %d (%s)\n" RESET,
-		d->side, d->side == 0 ? "X wall" : "Y wall");
-	printf(RED "perpWallDist   : %f\n" RESET, d->perpWallDist);
+// 	// Result
+// 	printf(RED "\n--- Result ---\n" RESET);
+// 	printf(RED "side           : %d (%s)\n" RESET,
+// 		d->side, d->side == 0 ? "X wall" : "Y wall");
+// 	printf(RED "perpWallDist   : %f\n" RESET, d->perpWallDist);
 
-	printf(CYAN "==============================\n\n" RESET);
-}
+// 	printf(CYAN "==============================\n\n" RESET);
+// }
 
 
 void    raycast_dda(t_data *data) 
@@ -136,7 +136,7 @@ void    raycast_dda(t_data *data)
         {
             data->dda.perpWallDist = data->dda.sideDistY - data->dda.deltaDistY;
         }
-        show_dda_data(&data->dda);
+        //show_dda_data(&data->dda);
     }
 }
 
