@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:05:12 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/04 12:21:35 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/11 16:16:29 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void    raycast_dda(t_data *data)
     double  cameraX;
     int     hit;
 
-    printf("raycast\n");
     i = -1;
     
     while (++i < data->map->m_width)
@@ -140,3 +139,4 @@ void    raycast_dda(t_data *data)
         show_dda_data(&data->dda);
     }
 }
+

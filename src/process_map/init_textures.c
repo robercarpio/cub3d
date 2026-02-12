@@ -1,52 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   play.c                                             :+:      :+:    :+:   */
+/*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/11 16:22:31 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2026/01/19 15:47:00 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/02/11 13:26:07 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void print_map(t_map map)
+t_texture init_textures(char **file)
 {
-	int i;
-	
-	i = 0;
-	while (map.map[i])
-	{
-		printf("%s", map.map[i]);
-		i++;
-	}
-}
-
-void	print_arr(char **arr)
-{
-	int	i;
+    t_texture	texture;
+    int			i;
 
 	i = 0;
-	while (arr[i])
+	while (file[i])
 	{
-		printf("%s",arr[i]);
+
+		if (is_texture(file[i]) > 0)
+		{
+			if(is_texture(file[i]) == 1)
+				texture.north = file[i];
+			if(is_texture(file[i]) == 2)
+				texture.south = file[i];
+			if(is_texture(file[i]) == 3)
+				texture.west = file[i];
+			if(is_texture(file[i]) == 4)
+				texture.east = file[i];
+		}
 		i++;
 	}
+	return (texture);
 }
-
-void	play (char *route)
-{
-	char	**file;
-	t_data	data;
-	if (!cub_file(route))
-		printf("Error!\nInvalid map file\nUsage: ./cub3d <map.cub>\n");
-	else
-	{
-		ft_init(&data, route);
-		// *data.map = init_map(file);
-		parse(file);
-	}
-}
-

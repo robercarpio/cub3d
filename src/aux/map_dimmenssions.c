@@ -6,14 +6,14 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:02:43 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/01/19 14:51:59 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/10 13:01:41 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 
-static	int line_len(char *str)
+int line_len(char *str)
 {
 	int i;
 	

@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/10 13:41:08 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/12 11:36:12 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,19 @@ int	ft_alloc_data(t_data *data, t_map *map)
 	return (1);
 }
 
-int	ft_init(t_data *data)
+int	ft_init(t_data *data , char *route)
 {
+	char	**file;
+	
+	file = file_to_arr(route);
+	data->textures = init_textures(file);
+	//MAP
+	*data->map = init_map(file);
+	//PLAYER
+	init_player(data);
+	//DDA
+	raycast_dda(data);
+	//MLX
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (0);
@@ -99,19 +110,3 @@ int	main(int argc, char **argv)
 	mlx_loop(data.mlx);
 	return (0);
 }
-
-// int	main (int argc, char *argv[])
-// {
-// 	if (argc == 2)
-// 	{
-// 		if (cub_file(argv[1]))
-// 			play(argv[1]);
-// 		else
-// 			printf("Error: Invalid file extension.\nUsage: %s <map_file.ber>\n", argv[0]);
-
-// 	}	
-
-// 	else
-// 		printf("Error: Invalid number of arguments.\nUsage: %s <map_file>\n", argv[0]);
-// 	return (0);
-// }

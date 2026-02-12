@@ -27,6 +27,7 @@ SRCS =		main.c  \
 			./src/movement/player.c \
 			./src/parse/expand_map.c \
 			./src/raycast/dda.c \
+			./src/parse/closed_map.c 
 
 # ================= DIRECTORIES ================= #
 OBJ_DIR = objects

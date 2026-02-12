@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/10 13:51:30 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/12 11:37:53 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 # include <fcntl.h>
 
 
-int		play (char *route);
+int	ft_init(t_data *data , char *route);
+void	play (char *route);
+void	print_arr(char **arr);
+void    print_map(t_map map);
 
 //GNL
 char	*get_next_line(int fd);
@@ -35,12 +38,14 @@ int		check_chars(char **map);
 int		parse(char **map);
 int     cub_file(char *str);
 char	**expand_map(t_map map);
+int     closed_map(t_data data);
 
 //PROCESS MAP
 int	get_texture_id(char *str);
 //int  is_texture(char *str);
 void	skip_textures(char	***file);
 t_map   init_map(char **file);
+t_texture init_textures(char **file);
 
 //AUX
 int     map_height(char **map);
@@ -48,6 +53,8 @@ int     map_width (char **map);
 int	    file_height(char *route);
 char    **file_to_arr(char *route);
 char    **allocate_map(char **map);
+char *fill_str(char c, int width);
+int line_len(char *str);
 
 //INPUTS
 int	ft_exit(t_data *data);
