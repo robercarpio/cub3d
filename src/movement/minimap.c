@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:27:53 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/21 16:54:24 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/13 12:53:46 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,50 +40,94 @@ void	draw_square(t_data *data, int start_x, int start_y, int size,  int color)
 	}
 }
 
-void	draw_player(t_data *data)
+void draw_minimap_player(t_data *data)
 {
-	int	player_x;
-	int	player_y;
-	int	r;
-	int	x;
-	int	y;
+	int center_x = MINIMAP_X + MINIMAP_SIZE / 2;
+	int center_y = MINIMAP_Y + MINIMAP_SIZE / 2;
 
-	r = 5;
-	player_x = data->player.x * TILE_SIZE;
-	player_y = data->player.y * TILE_SIZE;
+	int r = 4;
+	int x;
+	int y;
+
 	y = -r;
 	while (y <= r)
 	{
 		x = -r;
 		while (x <= r)
 		{
-			my_mlx_pixel_put(&data->img, player_x + x, player_y + y, 0xFF0000);
+			my_mlx_pixel_put(&data->img, center_x + x, center_y + y, 0xFF0000);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	draw_map(t_data *data)
+void draw_minimap_border(t_data *data)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while(data->map->map[y])
+	int i = 0;
+	while (i < MINIMAP_SIZE)
 	{
-		x = 0;
-		while(data->map->map[y][x])
-		{
-			if (data->map->map[y][x] == '1')
-				draw_square(data, x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, 0xFFFFFF);
-			else if (data->map->map[y][x] == '0')
-				draw_square(data, x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, 0x000000);
-			x++;
-		}
-		y++;
+		my_mlx_pixel_put(&data->img, MINIMAP_X + i, MINIMAP_Y, 0xAAAAAA);
+		my_mlx_pixel_put(&data->img, MINIMAP_X + i, MINIMAP_Y + MINIMAP_SIZE, 0xAAAAAA);
+		my_mlx_pixel_put(&data->img, MINIMAP_X, MINIMAP_Y + i, 0xAAAAAA);
+		my_mlx_pixel_put(&data->img, MINIMAP_X + MINIMAP_SIZE, MINIMAP_Y + i, 0xAAAAAA);
+		i++;
 	}
 }
+
+
+void draw_minimap(t_data *data)
+{
+	int mini_x;
+	int mini_y;
+	int map_x;
+	int map_y;
+
+	int player_tile_x = (int)(data->player.x);
+	int player_tile_y = (int)(data->player.y);
+	int half = MINIMAP_TILES / 2;
+
+	mini_y = 0;
+	while (mini_y < MINIMAP_TILES)
+	{
+		mini_x = 0;
+		while (mini_x < MINIMAP_TILES)
+		{
+			map_x = player_tile_x - half + mini_x;
+			map_y = player_tile_y - half + mini_y;
+
+			if (map_y >= 0 && map_x >= 0 &&
+				data->map->map[map_y] &&
+				map_x < (int)ft_strlen(data->map->map[map_y]))
+			{
+				if (data->map->map[map_y][map_x] == '1')
+					draw_square(data,
+						MINIMAP_X + mini_x * MINIMAP_TILE_SIZE,
+						MINIMAP_Y + mini_y * MINIMAP_TILE_SIZE,
+						MINIMAP_TILE_SIZE,
+						0xFFFFFF);
+				else
+					draw_square(data,
+						MINIMAP_X + mini_x * MINIMAP_TILE_SIZE,
+						MINIMAP_Y + mini_y * MINIMAP_TILE_SIZE,
+						MINIMAP_TILE_SIZE,
+						0x000000);
+			}
+			else
+			{
+				// Outside map → void
+				draw_square(data,
+					MINIMAP_X + mini_x * MINIMAP_TILE_SIZE,
+					MINIMAP_Y + mini_y * MINIMAP_TILE_SIZE,
+					MINIMAP_TILE_SIZE,
+					0x000000);
+			}
+			mini_x++;
+		}
+		mini_y++;
+	}
+}
+
 
 void	clear_image(t_data *data)
 {

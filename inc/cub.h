@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/12 12:25:37 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/13 12:41:43 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int     closed_map(t_data data);
 //PROCESS MAP
 int	get_texture_id(char *str);
 //int  is_texture(char *str);
-void	skip_textures(char	***file);
+void	skip_textures(char	***file, t_map *map);
 t_map   init_map(char **file);
 //t_texture init_textures(char **file);
 
@@ -69,8 +69,9 @@ void	rotate_player(t_data *data, double angle);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color);
 void	draw_square(t_data *data, int start_x, int start_y, int size,  int color);
-void	draw_player(t_data *data);
-void	draw_map(t_data *data);
+void	draw_minimap(t_data *data);
+void	draw_minimap_player(t_data *data);
+void	draw_minimap_border(t_data *data);
 void	clear_image(t_data *data);
 
 //RAYCASTING
@@ -84,5 +85,8 @@ void	load_textures(t_data *data, t_texture *tex);
 
 
 int	ft_alloc_data(t_data *data, t_map *map);
+
+void	draw_floor_ceiling(t_data *data);
+
 
 #endif

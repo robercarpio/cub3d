@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/12 12:32:41 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/13 12:47:58 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,27 @@ int	ft_alloc_data(t_data *data, t_map *map)
 }
 
 
-void	draw_texture_debug(t_data *data, t_img *tex, int off_x, int off_y)
-{
-	int	x;
-	int	y;
-	int	color;
+// void	draw_texture_debug(t_data *data, t_img *tex, int off_x, int off_y)
+// {
+// 	int	x;
+// 	int	y;
+// 	int	color;
 
-	y = 0;
-	while (y < tex->height && y + off_y < SCREEN_HEIGHT)
-	{
-		x = 0;
-		while (x < tex->width && x + off_x < SCREEN_WIDTH)
-		{
-			color = *(unsigned int *)(tex->addr
-				+ (y * tex->line_length)
-				+ (x * (tex->bpp / 8)));
-			my_mlx_pixel_put(&data->img, x + off_x, y + off_y, color);
-			x++;
-		}
-		y++;
-	}
-}
+// 	y = 0;
+// 	while (y < tex->height && y + off_y < SCREEN_HEIGHT)
+// 	{
+// 		x = 0;
+// 		while (x < tex->width && x + off_x < SCREEN_WIDTH)
+// 		{
+// 			color = *(unsigned int *)(tex->addr
+// 				+ (y * tex->line_length)
+// 				+ (x * (tex->bpp / 8)));
+// 			my_mlx_pixel_put(&data->img, x + off_x, y + off_y, color);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 int	game_loop(t_data *data)
 {
@@ -71,28 +71,29 @@ int	game_loop(t_data *data)
 
 	clear_image(data);
 	
-	draw_texture_debug(data, &data->textures.images[TEX_NORTH], 0, 0);
-	draw_texture_debug(data, &data->textures.images[TEX_SOUTH], 300, 0);
-	draw_texture_debug(data, &data->textures.images[TEX_EAST], 500, 0);
-	draw_texture_debug(data, &data->textures.images[TEX_WEST], 700, 0);
-	
-	draw_map(data);
-	draw_player(data);
+	// draw_texture_debug(data, &data->textures.images[TEX_NORTH], 0, 0);
+	// draw_texture_debug(data, &data->textures.images[TEX_SOUTH], 300, 0);
+	// draw_texture_debug(data, &data->textures.images[TEX_EAST], 500, 0);
+	// draw_texture_debug(data, &data->textures.images[TEX_WEST], 700, 0);
+	draw_floor_ceiling(data);
+	draw_minimap(data);
+	draw_minimap_border(data);
+	draw_minimap_player(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	return (0);
 }
 
-static void	start_window(t_data data)
+static void	start_window(t_data *data)
 {
-	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
-	data.img.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bpp,
-			&data.img.line_length, &data.img.endian);
-	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
-	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
-	mlx_hook(data.win, 17, 0, ft_exit, &data);
-	mlx_loop_hook(data.mlx, game_loop, &data);
-	mlx_loop(data.mlx);
+	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
+	data->img.img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
+			&data->img.line_length, &data->img.endian);
+	mlx_hook(data->win, 2, 1L << 0, key_press, data);
+	mlx_hook(data->win, 3, 1L << 1, key_release, data);
+	mlx_hook(data->win, 17, 0, ft_exit, data);
+	mlx_loop_hook(data->mlx, game_loop, data);
+	mlx_loop(data->mlx);
 }
 
 int	ft_init(t_data *data, char *route)
@@ -115,7 +116,7 @@ int	ft_init(t_data *data, char *route)
 	//PLAYER
 	
 	init_player(data);
-	start_window(*data);
+	start_window(data);
 	//DDA
 	raycast_dda(data);
 	//MLX
