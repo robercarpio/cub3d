@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/13 12:46:43 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:20:45 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define MINIMAP_SIZE 200
 # define MINIMAP_TILES 10
 # define MINIMAP_TILE_SIZE (MINIMAP_SIZE / MINIMAP_TILES)
-# define MINIMAP_X 10
-# define MINIMAP_Y 10
+# define MINIMAP_X 20
+# define MINIMAP_Y 20
 # define TILE_SIZE 32
 # define MAX_KEYCODE 65536
 # define ESC 65307
@@ -49,8 +49,9 @@
 # define DOWN -1
 # define LEFT -1
 # define RIGHT 1
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.01
 # define ROT_SPEED 0.01
+# define PLAYER_RADIUS 0.3
 
 typedef enum e_tex_id
 {

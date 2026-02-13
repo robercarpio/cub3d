@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/13 12:47:58 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:14:43 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_alloc_data(t_data *data, t_map *map)
 // 	int	x;
 // 	int	y;
 // 	int	color;
-
 // 	y = 0;
 // 	while (y < tex->height && y + off_y < SCREEN_HEIGHT)
 // 	{
@@ -70,12 +69,7 @@ int	game_loop(t_data *data)
 		rotate_player(data, ROT_SPEED);
 
 	clear_image(data);
-	
-	// draw_texture_debug(data, &data->textures.images[TEX_NORTH], 0, 0);
-	// draw_texture_debug(data, &data->textures.images[TEX_SOUTH], 300, 0);
-	// draw_texture_debug(data, &data->textures.images[TEX_EAST], 500, 0);
-	// draw_texture_debug(data, &data->textures.images[TEX_WEST], 700, 0);
-	draw_floor_ceiling(data);
+	//draw_floor_ceiling(data);
 	draw_minimap(data);
 	draw_minimap_border(data);
 	draw_minimap_player(data);
@@ -107,57 +101,13 @@ int	ft_init(t_data *data, char *route)
 	if (!data->keys)
 		return (0);
 	file = file_to_arr(route);
-	init_textures(&data->textures);
-	parse_textures(file, &data->textures);
-	load_textures(data, &data->textures);
-	//MAP
+	init_textures(file, data);
 	*data->map = init_map(file);
-	printf("Entra \n");
-	//PLAYER
-	
 	init_player(data);
 	start_window(data);
-	//DDA
 	raycast_dda(data);
-	//MLX
 	return (1);
 }
-
-
-// int	main(int argc, char **argv)
-// {
-// 	t_data	data;
-// 	t_map	map;
-// 	char	**file;
-// 	(void)argv;
-// 	if (argc != 2)
-// 	{
-// 		printf("Error!\nUsage: ./cub3d <map.cub>\n");
-// 		return (0);
-// 	}
-// 	if (!ft_alloc_data(&data, &map))
-// 		return (0);
-// 	if (!ft_init(&data, ))
-// 		return (0);
-// 	file = file_to_arr(argv[1]);
-// 	map = init_map(file);
-// 	init_textures(&data.textures);
-// 	parse_textures(file, &data.textures);
-// 	load_textures(&data, &data.textures);
-// 	init_player(&data);
-// 	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
-// 	if (!data.win)
-// 		return (0);
-// 	data.img.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-// 	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bpp,
-// 			&data.img.line_length, &data.img.endian);
-// 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
-// 	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
-// 	mlx_hook(data.win, 17, 0, ft_exit, &data);
-// 	mlx_loop_hook(data.mlx, game_loop, &data);
-// 	mlx_loop(data.mlx);
-// 	return (0);
-// }
 
 int	main(int argc, char *argv[])
 {

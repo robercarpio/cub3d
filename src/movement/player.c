@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/03 16:39:43 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/13 14:20:12 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ void	move_forward(t_data *data, int dir)
 	new_x = data->player.x + data->player.dir_x * MOVE_SPEED * dir;
 	new_y = data->player.y + data->player.dir_y * MOVE_SPEED * dir;
 	
-	if (data->map->map[(int)data->player.y][(int)new_x] == '0')
+	if (data->map->map[(int)data->player.y][(int)(new_x - PLAYER_RADIUS)] == '0' &&
+		data->map->map[(int)data->player.y][(int)(new_x + PLAYER_RADIUS)] == '0')
 		data->player.x = new_x;
-	if (data->map->map[(int)new_y][(int)data->player.x] == '0')
+	if (data->map->map[(int)(new_y - PLAYER_RADIUS)][(int)data->player.x] == '0' &&
+		data->map->map[(int)(new_y + PLAYER_RADIUS)][(int)data->player.x] == '0')
 		data->player.y = new_y;
 }
 
@@ -66,9 +68,11 @@ void	move_strafe(t_data *data, int dir)
 	new_x = data->player.x + perp_dir_x * MOVE_SPEED * dir;
 	new_y = data->player.y + perp_dir_y * MOVE_SPEED * dir;
 	
-	if (data->map->map[(int)data->player.y][(int)new_x] == '0')
+	if (data->map->map[(int)data->player.y][(int)(new_x - PLAYER_RADIUS)] == '0' &&
+		data->map->map[(int)data->player.y][(int)(new_x + PLAYER_RADIUS)] == '0')
 		data->player.x = new_x;
-	if (data->map->map[(int)new_y][(int)data->player.x] == '0')
+	if (data->map->map[(int)(new_y - PLAYER_RADIUS)][(int)data->player.x] == '0' &&
+		data->map->map[(int)(new_y + PLAYER_RADIUS)][(int)data->player.x] == '0')
 		data->player.y = new_y;
 }
 

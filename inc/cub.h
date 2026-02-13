@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/13 12:41:43 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/13 13:52:28 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void    raycast_dda(t_data *data);
 void	show_dda_data(t_dda_data *d);
 
 //TEXTURES
-void	init_textures(t_texture *tex);
-void	parse_textures(char **file, t_texture *tex);
-void	load_textures(t_data *data, t_texture *tex);
+void	init_textures(char **file, t_data *data);
+void	parse_textures(char **file, t_data *data);
+void	load_textures(t_data *data);
 
 
 int	ft_alloc_data(t_data *data, t_map *map);

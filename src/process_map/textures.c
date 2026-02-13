@@ -6,25 +6,27 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 15:47:00 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/10 13:53:13 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/13 13:51:19 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	init_textures(t_texture *tex)
+void	init_textures(char **file, t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (i < TEX_COUNT)
 	{
-		tex->paths[i] = NULL;
+		data->textures.paths[i] = NULL;
 		i++;
 	}
+	parse_textures(file, data);
+	load_textures(data);
 }
 
-void	parse_textures(char **file, t_texture *tex)
+void	parse_textures(char **file, t_data *data)
 {
 	int	id;
 
@@ -32,26 +34,24 @@ void	parse_textures(char **file, t_texture *tex)
 	{
 		id = get_texture_id(*file);
 		if (id != -1)
-		{
-			tex->paths[id] = ft_strtrim(*file + 2, " \n");
-		}
+			data->textures.paths[id] = ft_strtrim(*file + 2, " \n");
 		else
 			break;
 		file++;
 	}
 }
 
-void	load_textures(t_data *data, t_texture *tex)
+void	load_textures(t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (i < TEX_COUNT)
 	{
-		tex->images[i].img = mlx_xpm_file_to_image(data->mlx,
-			tex->paths[i], &tex->images[i].width, &tex->images[i].height);
-		tex->images[i].addr = mlx_get_data_addr(tex->images[i].img,
-			&tex->images[i].bpp, &tex->images[i].line_length, &tex->images[i].endian);
+		data->textures.images[i].img = mlx_xpm_file_to_image(data->mlx,
+			data->textures.paths[i], &data->textures.images[i].width, &data->textures.images[i].height);
+		data->textures.images[i].addr = mlx_get_data_addr(data->textures.images[i].img,
+			&data->textures.images[i].bpp, &data->textures.images[i].line_length, &data->textures.images[i].endian);
 		i++;
 	}
 }

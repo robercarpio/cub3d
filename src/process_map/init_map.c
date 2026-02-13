@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:45:57 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/13 12:15:51 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:14:34 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,8 @@ t_map	init_map(char **file)
 	ft_bzero(&map, sizeof(t_map));
 	tmp = file;
 	skip_textures(&tmp, &map);
-	printf("Floor color: %u\n", map.floor_color);
-	printf("Ceiling color: %u\n", map.ceiling_color);
 	map.map = allocate_map(tmp);
 	map.m_width = map_width(map.map);
 	map.m_height = map_height(map.map);
-	printf("Sale \n");
 	return (map);
 }

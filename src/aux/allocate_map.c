@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   allocate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:30:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/10 14:05:32 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/13 14:15:03 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char **allocate_map(char **map)
 	int		i;
 
 	height = map_height(map);
-	printf("map h:%d\n",height);
 	arr = malloc((height + 2) * sizeof(char *));
 	if (!arr)
 		return (NULL);
