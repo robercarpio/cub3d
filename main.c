@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/13 14:14:43 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:43:02 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	game_loop(t_data *data)
 		rotate_player(data, ROT_SPEED);
 
 	clear_image(data);
-	//draw_floor_ceiling(data);
+	draw_floor_ceiling(data);
 	draw_minimap(data);
 	draw_minimap_border(data);
 	draw_minimap_player(data);

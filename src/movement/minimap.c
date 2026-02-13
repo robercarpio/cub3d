@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:27:53 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/13 14:14:11 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:37:28 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	draw_square(t_data *data, int start_x, int start_y, int size,  int color)
 	}
 }
 
-
 void	draw_minimap_border(t_data *data)
 {
 	int	layer;
@@ -62,6 +61,7 @@ void	draw_minimap_border(t_data *data)
 		layer++;
 	}
 }
+
 void	draw_minimap(t_data *data)
 {
 	int mini_x, mini_y;
@@ -88,9 +88,8 @@ void	draw_minimap(t_data *data)
 				map_x < (int)ft_strlen(data->map->map[map_y]))
 			{
 				if (data->map->map[map_y][map_x] == '1')
-					color = 0xFFFFFF; // wall
+					color = 0xFFFFFF;
 			}
-
 			draw_square(data,
 				MINIMAP_X + mini_x * MINIMAP_TILE_SIZE,
 				MINIMAP_Y + mini_y * MINIMAP_TILE_SIZE,
@@ -129,8 +128,6 @@ void draw_minimap_player(t_data *data)
 		y++;
 	}
 }
-
-
 
 void	clear_image(t_data *data)
 {
