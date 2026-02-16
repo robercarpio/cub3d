@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/13 14:20:12 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/16 11:56:04 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,40 +40,60 @@ void	init_player(t_data *data)
 	}
 }
 
+static int is_walkable(t_data *data, double x, double y)
+{
+	int map_x = (int)x;
+	int map_y = (int)y;
+
+	if (map_y < 0 || map_y >= data->map->m_height)
+		return (0);
+	if (!data->map->map[map_y])
+		return (0);
+	if (map_x < 0 || map_x >= (int)ft_strlen(data->map->map[map_y]))
+		return (0);
+	if (data->map->map[map_y][map_x] == '1')
+		return (0);
+	return (1);
+}
+
+static void move_player(t_data *data, double move_x, double move_y)
+{
+	double new_x = data->player.x + move_x;
+	double new_y = data->player.y + move_y;
+	double r = PLAYER_RADIUS;
+
+	if (is_walkable(data, new_x - r, data->player.y - r) &&
+		is_walkable(data, new_x + r, data->player.y - r) &&
+		is_walkable(data, new_x - r, data->player.y + r) &&
+		is_walkable(data, new_x + r, data->player.y + r))
+	{
+		data->player.x = new_x;
+	}
+	if (is_walkable(data, data->player.x - r, new_y - r) &&
+		is_walkable(data, data->player.x + r, new_y - r) &&
+		is_walkable(data, data->player.x - r, new_y + r) &&
+		is_walkable(data, data->player.x + r, new_y + r))
+	{
+		data->player.y = new_y;
+	}
+}
+
+
 void	move_forward(t_data *data, int dir)
 {
-	double	new_x;
-	double	new_y;
-
-	new_x = data->player.x + data->player.dir_x * MOVE_SPEED * dir;
-	new_y = data->player.y + data->player.dir_y * MOVE_SPEED * dir;
-	
-	if (data->map->map[(int)data->player.y][(int)(new_x - PLAYER_RADIUS)] == '0' &&
-		data->map->map[(int)data->player.y][(int)(new_x + PLAYER_RADIUS)] == '0')
-		data->player.x = new_x;
-	if (data->map->map[(int)(new_y - PLAYER_RADIUS)][(int)data->player.x] == '0' &&
-		data->map->map[(int)(new_y + PLAYER_RADIUS)][(int)data->player.x] == '0')
-		data->player.y = new_y;
+	move_player(data,
+		data->player.dir_x * MOVE_SPEED * dir,
+		data->player.dir_y * MOVE_SPEED * dir);
 }
 
 void	move_strafe(t_data *data, int dir)
 {
-	double	new_x;
-	double	new_y;
-	double	perp_dir_x;
-	double	perp_dir_y;
+	double perp_x = -data->player.dir_y;
+	double perp_y = data->player.dir_x;
 
-	perp_dir_x = -data->player.dir_y;
-	perp_dir_y = data->player.dir_x;
-	new_x = data->player.x + perp_dir_x * MOVE_SPEED * dir;
-	new_y = data->player.y + perp_dir_y * MOVE_SPEED * dir;
-	
-	if (data->map->map[(int)data->player.y][(int)(new_x - PLAYER_RADIUS)] == '0' &&
-		data->map->map[(int)data->player.y][(int)(new_x + PLAYER_RADIUS)] == '0')
-		data->player.x = new_x;
-	if (data->map->map[(int)(new_y - PLAYER_RADIUS)][(int)data->player.x] == '0' &&
-		data->map->map[(int)(new_y + PLAYER_RADIUS)][(int)data->player.x] == '0')
-		data->player.y = new_y;
+	move_player(data,
+		perp_x * MOVE_SPEED * dir,
+		perp_y * MOVE_SPEED * dir);
 }
 
 void	rotate_player(t_data *data, double angle)
