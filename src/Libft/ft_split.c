@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:46:48 by mamaratr          #+#    #+#             */
-/*   Updated: 2024/09/24 09:40:04 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/01/18 15:19:34 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_count_words(char const *s, char c)
 {
-	size_t	x;
+	int		x;
 	int		count;
 
 	x = 0;
@@ -51,11 +51,11 @@ static size_t	ft_word_len(char const *s, char c)
 	return (x);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**strs;
-	size_t	x;
-	size_t	len;
+	int		x;
+	int		len;
 
 	x = 0;
 	strs = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1));

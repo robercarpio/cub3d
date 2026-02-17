@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 18:56:24 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:56:45 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2026/01/16 12:14:35 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/01/16 12:14:55 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char *s, int start, int len)
+int	ft_strcmp(char *str1, char *str2)
 {
-	char	*str;
-	int		x;
-
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) < start)
-		len = 0;
-	if (ft_strlen(s) - start < len)
-		len = ft_strlen(s + start);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	x = 0;
-	while (s[x] && x < len)
+	while (*str1 && *str2)
 	{
-		str[x] = s[start];
-		start++;
-		x++;
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+		str1++;
+		str2++;
 	}
-	str[x] = '\0';
-	return (str);
+	return (*str1 - *str2);
 }

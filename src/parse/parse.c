@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 18:56:24 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:56:45 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2026/01/15 12:30:46 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/02/12 15:38:15 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub.h"
 
-char	*ft_substr(char *s, int start, int len)
+int	parse(t_data data)
 {
-	char	*str;
-	int		x;
-
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) < start)
-		len = 0;
-	if (ft_strlen(s) - start < len)
-		len = ft_strlen(s + start);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	x = 0;
-	while (s[x] && x < len)
+	if (!check_chars(data.map->map))
 	{
-		str[x] = s[start];
-		start++;
-		x++;
+		printf("Error: Invalid characters in the map.\n");	
+		return (0);
 	}
-	str[x] = '\0';
-	return (str);
+	else
+	{
+		if (closed_map(data))
+			printf("bien\n");
+		else
+		{
+			printf("mal\n");
+			return (0);
+		}
+	}
+	return (1);
 }

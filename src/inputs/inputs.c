@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 18:56:24 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:56:45 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2026/01/15 12:49:21 by mamaratr          #+#    #+#             */
+/*   Updated: 2026/02/11 13:18:44 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/cub.h"
 
-char	*ft_substr(char *s, int start, int len)
+int	key_press(int key, t_data *data)
 {
-	char	*str;
-	int		x;
-
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) < start)
-		len = 0;
-	if (ft_strlen(s) - start < len)
-		len = ft_strlen(s + start);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	x = 0;
-	while (s[x] && x < len)
+	if (key == ESC)
+		ft_exit(data);
+	if (key >= 0 && key < MAX_KEYCODE)
 	{
-		str[x] = s[start];
-		start++;
-		x++;
+		raycast_dda(data);
+		data->keys[key] = 1;
 	}
-	str[x] = '\0';
-	return (str);
+	return (0);
+}
+
+int	key_release(int key, t_data *data)
+{
+	if (key >= 0 && key < MAX_KEYCODE)
+		data->keys[key] = 0;
+	return (0);
 }

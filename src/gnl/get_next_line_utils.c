@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 18:56:24 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:56:45 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2024/10/30 19:32:29 by rcarpio-          #+#    #+#             */
+/*   Updated: 2026/02/12 16:10:59 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub.h"
 
-char	*ft_substr(char *s, int start, int len)
+int	ft_indexof(char *str, char c)
 {
-	char	*str;
-	int		x;
+	int	i;
 
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) < start)
-		len = 0;
-	if (ft_strlen(s) - start < len)
-		len = ft_strlen(s + start);
-	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (NULL);
-	x = 0;
-	while (s[x] && x < len)
+		return (-1);
+	i = 0;
+	while (str[i])
 	{
-		str[x] = s[start];
-		start++;
-		x++;
+		if (str[i] == c)
+			return (i);
+		i++;
 	}
-	str[x] = '\0';
-	return (str);
+	return (-1);
 }

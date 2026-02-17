@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   cub_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 18:56:24 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:56:45 by rcarpio-mam      ###   ########.fr       */
+/*   Created: 2026/01/16 12:04:43 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/01/16 12:15:59 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub.h"
 
-char	*ft_substr(char *s, int start, int len)
+int	cub_file(char *str)
 {
-	char	*str;
-	int		x;
+	int	len;
 
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) < start)
-		len = 0;
-	if (ft_strlen(s) - start < len)
-		len = ft_strlen(s + start);
-	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (NULL);
-	x = 0;
-	while (s[x] && x < len)
-	{
-		str[x] = s[start];
-		start++;
-		x++;
-	}
-	str[x] = '\0';
-	return (str);
+		return (0);
+	len = ft_strlen(str);
+	return ((ft_strcmp(str + len - 4, ".cub") == 0) && len > 4);
 }
