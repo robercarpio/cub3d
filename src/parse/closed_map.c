@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   closed_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:03:31 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/10 15:11:52 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/17 09:30:16 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,7 @@ int	closed_map(t_data data)
 	while (coords.y > -1 && r_ff == 0)
 	{
 		r_ff = flood_fill_closed(map_expand, coords.y, coords.x);
-		print_arr(map_expand);
 		coords = sea_coords(map_expand);
-		printf("\ny:%d\n",coords.y);
-		printf("x:%d\n",coords.x);
-		printf("r_ff:%d\n",r_ff);
 	}
 	if (r_ff == 1)
 		return (0);

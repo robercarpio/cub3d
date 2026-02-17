@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:31:47 by rcarpio-          #+#    #+#             */
-/*   Updated: 2026/01/15 13:11:36 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/17 09:34:19 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,34 +91,3 @@ char	*ft_aux(char **stg)
 	*stg = tmp;
 	return (l);
 }
-
-// size_t	ft_strlen(char *str)
-// {
-// 	size_t	i;
-
-// 	if (!str)
-// 		return (0);
-// 	i = 0;
-// 	while (str[i] != '\0')
-// 		i++;
-// 	return (i);
-// }
-// int main(void)
-// {
-// 	int		fd;
-// 	char	*line;
-
-// 	fd = open("test.txt", O_RDONLY);
-// 	if (fd == -1)
-// 	{
-// 		perror("Error al abrir el archivo");
-// 		return (1);
-// 	}
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 		printf("%s", line);
-// 		free(line);  // Importante: liberar la memoria asignada por get_next_line
-// 	}
-// 	close(fd);
-// 	return (0);
-// }

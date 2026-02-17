@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/12 12:25:35 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/17 09:32:02 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	print_arr(char **arr)
 
 void	play (char *route)
 {
-	//char	**file;
 	t_data	data;
 	t_map	map;
 	
@@ -48,7 +47,6 @@ void	play (char *route)
 	{
 		ft_alloc_data(&data, &map);
 		ft_init(&data, route);
-		// *data.map = init_map(file);
 		parse(data);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/16 11:57:15 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/17 09:36:03 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@
 # include <fcntl.h>
 # include <sys/time.h>
 # include <math.h>
+
+
+#define COLOR_RESET   "\033[0m"
+#define COLOR_RED     "\033[1;31m"
+#define COLOR_GREEN   "\033[1;32m"
+#define COLOR_YELLOW  "\033[1;33m"
+#define COLOR_BLUE    "\033[1;34m"
+#define COLOR_MAGENTA "\033[1;35m"
+#define COLOR_CYAN    "\033[1;36m"
+#define COLOR_WHITE   "\033[1;37m"
+
 
 //COLORES
 #define RESET   "\033[0m"
@@ -31,12 +42,15 @@
 # define DEBUG_MODE 0
 # define SCREEN_WIDTH 1200
 # define SCREEN_HEIGHT 800
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 # define MINIMAP_SIZE 200
 # define MINIMAP_TILES 10
 # define MINIMAP_TILE_SIZE (MINIMAP_SIZE / MINIMAP_TILES)
 # define MINIMAP_X 20
 # define MINIMAP_Y 20
 # define TILE_SIZE 32
+# define TILE_SIZE 10
 # define MAX_KEYCODE 65536
 # define ESC 65307
 # define W 119
@@ -49,9 +63,21 @@
 # define DOWN -1
 # define LEFT -1
 # define RIGHT 1
-# define MOVE_SPEED 0.02
+# define MOVE_SPEED 0.01
 # define ROT_SPEED 0.01
-# define PLAYER_RADIUS 0.3
+
+typedef struct s_stripe
+{
+	unsigned int	*frame;
+	unsigned int	*tex_pixels;
+	int				tex_pitch;
+	double			wall_x;
+	int				tex_x;
+	int				tex_y;
+	double			step;
+	double			tex_pos;
+	int				y;
+}	t_stripe;
 
 typedef enum e_tex_id
 {
@@ -76,6 +102,9 @@ typedef struct s_dda_data
 	int		stepY;        // Dirección del salto en el mapa (-1 o 1) para el eje Y.
 	int		side;         // Indica si se chocó con un muro en X (0) o en Y (1).
 	double	perpWallDist; // Distancia final proyectada para evitar el efecto ojo de pez.
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 }	t_dda_data;
 
 typedef	struct	s_coords
@@ -83,9 +112,11 @@ typedef	struct	s_coords
 	int	x;
 	int	y;
 }	t_coords;
+
 typedef struct s_img
 {
 	void	*img;
+	void	*frame;
 	char	*addr;
 	int		width;
 	int		height;
@@ -98,7 +129,7 @@ typedef struct s_texture
 {
 	char	*paths[TEX_COUNT];
 	t_img	images[TEX_COUNT];
-	char	*ceiling;
+	char	*celling;
 	char	*floor;
 }	t_texture;
 
@@ -131,13 +162,9 @@ typedef struct s_data
 	t_map		*map;
 	t_player	player;
 	t_img		img;
+	t_img		bgnd;
 	t_texture	textures;
 	t_dda_data	dda;
 }	t_data;
-
-
-// int	ft_exit(t_data *data);
-// int	key_press(int key, t_data *data);
-// int	key_release(int key, t_data *data);
 
 #endif
