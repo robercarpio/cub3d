@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/16 15:29:34 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/17 15:57:49 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,42 +53,6 @@ void	draw_texture_debug(t_data *data, t_img *tex, int off_x, int off_y)
 		y++;
 	}
 }
-
-// int	game_loop(t_data *data)
-// {
-// 	if (data->keys[W])
-// 		move_forward(data, UP);
-// 	if (data->keys[S])
-// 		move_forward(data, DOWN);
-// 	if (data->keys[A])
-// 		move_strafe(data, LEFT);
-// 	if (data->keys[D])
-// 		move_strafe(data, RIGHT);
-// 	if (data->keys[KEY_LEFT])
-// 		rotate_player(data, -ROT_SPEED);
-// 	if (data->keys[KEY_RIGHT])
-// 		rotate_player(data, ROT_SPEED);
-
-// 	clear_image(data);
-	
-// 	draw_texture_debug(data, &data->textures.images[TEX_NORTH], 0, 0);
-// 	draw_texture_debug(data, &data->textures.images[TEX_SOUTH], 300, 0);
-// 	draw_texture_debug(data, &data->textures.images[TEX_EAST], 500, 0);
-// 	draw_texture_debug(data, &data->textures.images[TEX_WEST], 700, 0);
-	
-// 	// printf("1 in call game loop\n");
-// 	draw_map(data);
-// 	// printf("2 in call game loop\n");
-// 	draw_player(data);
-// 	// printf("3 in call game loop\n");
-// 	draw_ray(data);
-// 	printf("4 in call game loop\n");
-// 	ft_render_frame(data);
-// 	printf("5 in call game loop\n");
-// 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-// 	printf("6 in call game loop\n");
-// 	return (0);
-// }
 
 int	game_loop(t_data *data)
 {
@@ -200,43 +164,6 @@ static void	start_window(t_data *data)  // <-- Cambiar a puntero
 	mlx_loop(data->mlx);
 	printf("9 in call start window\n");
 }
-
-// int	ft_init(t_data *data, char *route)
-// {
-// 	char	**file;
-
-// 	data->mlx = mlx_init();
-// 	if (!data->mlx)
-// 		return (0);
-// 	data->keys = ft_calloc(MAX_KEYCODE, sizeof(int));
-// 	if (!data->keys)
-// 		return (0);
-// 	file = file_to_arr(route);
-// 	// printf("pre call init textures\n");
-// 	init_textures(&data->textures);
-// 	// printf("post call init textures\n");
-// 	// printf("pre call parse textures\n");
-// 	parse_textures(file, &data->textures);
-// 	// printf("post call init textures\n");a
-// 	// printf("pre call load textures\n");
-// 	load_textures(data, &data->textures);
-// 	// printf("post call load textures\n");
-// 	//MAP
-// 	// printf("pre call init map\n");
-// 	*data->map = init_map(file);
-// 	// printf("post call init map\n");
-// 	//PLAYER
-// 	// printf("pre call init player\n");
-// 	init_player(data);
-// 	// printf("post call init player\n");
-// 	//DDA
-// 	raycast_dda(data);
-// 	// printf("pre call start window\n");
-// 	start_window(*data);
-// 	// printf("post call start window\n");
-// 	//MLX
-// 	return (1);
-// }
 
 int	ft_init(t_data *data, char *route)
 {
