@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/17 09:36:03 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/17 10:43:48 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 #define RED     "\033[31m"
 #define CYAN    "\033[36m"
 
-# define DEBUG_MODE 0
+# define DEBUG_MODE 1
 # define SCREEN_WIDTH 1200
 # define SCREEN_HEIGHT 800
 # define TEX_WIDTH 64
@@ -50,7 +50,6 @@
 # define MINIMAP_X 20
 # define MINIMAP_Y 20
 # define TILE_SIZE 32
-# define TILE_SIZE 10
 # define MAX_KEYCODE 65536
 # define ESC 65307
 # define W 119
@@ -65,6 +64,7 @@
 # define RIGHT 1
 # define MOVE_SPEED 0.01
 # define ROT_SPEED 0.01
+# define PLAYER_RADIUS 0.01
 
 typedef struct s_stripe
 {

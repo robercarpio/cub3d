@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:23:18 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/16 16:48:23 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/17 10:42:23 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,6 @@
 // 		ray->draw_end = height - 1;
 // }
 
-// static void	draw_stripe_loop(t_stripe s, t_data *data, int x, t_dda_data *ray)
-// {
-// 	while (s.y <= ray->draw_end)
-// 	{
-// 		s.tex_y = (int)s.tex_pos & (TEX_HEIGHT - 1);
-// 		s.tex_pos += s.step;
-// 		s.frame[s.y * data->width + x]
-// 			= s.tex_pixels[s.tex_y * s.tex_pitch + s.tex_x];
-// 		s.y++;
-// 	}
-// }
 static void	draw_stripe_loop(t_stripe s, t_data *data, int x, t_dda_data *ray)
 {
 	while (s.y <= ray->draw_end)
@@ -89,7 +78,6 @@ static void	draw_stripe(t_data *data, int x, t_dda_data *ray, t_img *tex)
 	draw_stripe_loop(s, data, x, ray);
 }
 
-
 static t_img	*choose_texture(t_data *data, t_dda_data *ray)
 {
 	if (ray->side == 0)
@@ -108,40 +96,38 @@ static t_img	*choose_texture(t_data *data, t_dda_data *ray)
 	}
 }
 
-static void	clear_frame(t_data *data)
-{
-	int				x;
-	int				y;
-	unsigned int	*frame;
-	unsigned int	*bg;
+// static void	clear_frame(t_data *data)
+// {
+// 	int				x;
+// 	int				y;
+// 	unsigned int	*frame;
+// 	unsigned int	*bg;
 
-	y = 0;
-	frame = (unsigned int *)data->img.addr;
-	bg = (unsigned int *)data->bgnd.addr;
-	while (y < data->height)
-	{
-		x = 0;
-		while (x < data->width)
-		{
-			frame[y * data->width + x] = bg[y * data->width + x];
-			x++;
-		}
-		y++;
-	}
-}
-
-
+// 	y = 0;
+// 	frame = (unsigned int *)data->img.addr;
+// 	bg = (unsigned int *)data->bgnd.addr;
+// 	while (y < data->height)
+// 	{
+// 		x = 0;
+// 		while (x < data->width)
+// 		{
+// 			frame[y * data->width + x] = bg[y * data->width + x];
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 // int	ft_render_frame(t_data *data)
 // {
 // 	int		x;
 // 	t_img	*tex;
-
+//
 // 	if (!data)
 // 		return (-1);
-	
+//
 // 	clear_frame(data);
-	
+//
 // 	x = 0;
 // 	while (x < data->width)  // <-- Usar data->width en lugar de data->map->m_width
 // 	{
@@ -150,22 +136,22 @@ static void	clear_frame(t_data *data)
 // 		draw_stripe(data, x, &data->dda, tex);
 // 		x++;
 // 	}
-	
+//
 // 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	
+//
 // 	return (0);
 // }
-
+//
 // int	ft_render_frame(t_data *data)
 // {
 // 	int		x;
 // 	t_img	*tex;
-
+//
 // 	if (!data)
 // 		return (-1);
-	
+//
 // 	clear_frame(data);
-	
+//
 // 	x = 0;
 // 	printf("DEBUG: data->width = %d, data->height = %d\n", data->width, data->height);
 // 	while (x < data->width)  // Para cada columna de píxeles de la pantalla
@@ -184,11 +170,12 @@ static void	clear_frame(t_data *data)
 //        data->player.x, data->player.y, 
 //        data->player.dir_x, data->player.dir_y);
 // 	}
-	
+//
 // 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	
+//
 // 	return (0);
 // }
+
 int	ft_render_frame(t_data *data)
 {
 	int		x;
@@ -197,32 +184,35 @@ int	ft_render_frame(t_data *data)
 	if (!data)
 		return (-1);
 	
-	clear_frame(data);
+	//clear_frame(data);
+
+	draw_floor_ceiling(data);
+	draw_minimap(data);
+	draw_minimap_border(data);
+	draw_minimap_player(data);
+	draw_ray(data);
 	
 	x = 0;
-	printf("DEBUG: data->width = %d, data->height = %d\n", data->width, data->height);
-	printf("Player: x=%.2f, y=%.2f, dir_x=%.2f, dir_y=%.2f\n",
-	       data->player.x, data->player.y, 
-	       data->player.dir_x, data->player.dir_y);
+	// printf("DEBUG: data->width = %d, data->height = %d\n", data->width, data->height);
+	// printf("Player: x=%.2f, y=%.2f, dir_x=%.2f, dir_y=%.2f\n",
+	// 		data->player.x, data->player.y, 
+	// 		data->player.dir_x, data->player.dir_y);
 	
 	while (x < data->width)
 	{
 		raycast_single_column(data, x);  // ← Primero calcular
 		
 		// Ahora sí, los valores son correctos
-		if (x == 0 || x == 600 || x == 1199)
-		{
-			printf("Column %d: perpWallDist=%.2f, line_height=%d, draw_start=%d, draw_end=%d\n",
-			       x, data->dda.perpWallDist, data->dda.line_height, 
-			       data->dda.draw_start, data->dda.draw_end);
-		}
-		
+		// if (x == 0 || x == 600 || x == 1199)
+		// {
+		// 	printf("Column %d: perpWallDist=%.2f, line_height=%d, draw_start=%d, draw_end=%d\n",
+		// 			x, data->dda.perpWallDist, data->dda.line_height, 
+		// 			data->dda.draw_start, data->dda.draw_end);
+		// }
 		tex = choose_texture(data, &data->dda);
 		draw_stripe(data, x, &data->dda, tex);
 		x++;
 	}
-	
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	
 	return (0);
 }
