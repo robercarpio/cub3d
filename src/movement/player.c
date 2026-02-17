@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/17 09:30:39 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/17 16:23:07 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	init_player(t_data *data)
 				data->player.y = y + 0.5;
 				data->player.dir_x = 0.0;
 				data->player.dir_y = -1.0;
-				data->player.plane_x = 0.0;
-				data->player.plane_y = 0.66;
+				data->player.plane_x = 0.66;
+				data->player.plane_y = 0.0;
 				data->map->map[y][x] = '0';
 				return ;
 			}
