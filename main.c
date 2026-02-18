@@ -6,11 +6,27 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/17 16:56:22 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/18 16:48:20 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+static int    mouse_move(int x, int y, t_data *data)
+{
+    int     delta_x;
+    int     center_x;
+
+	(void)y;
+    center_x = SCREEN_WIDTH / 2;
+    // Evita recursión infinita cuando recentramos el cursor
+    if (x == center_x)
+        return (0);
+    delta_x = x - center_x;
+    rotate_player(data, delta_x * 0.0001);
+    mlx_mouse_move(data->mlx, data->win, center_x, SCREEN_HEIGHT / 2);
+    return (0);
+}
 
 int	ft_exit(t_data *data)
 {
@@ -50,17 +66,32 @@ int	game_loop(t_data *data)
 	return (0);
 }
 
-static void	start_window(t_data *data)
+// static void	start_window(t_data *data)
+// {
+// 	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
+// 	data->img.img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+// 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
+// 			&data->img.line_length, &data->img.endian);
+// 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
+// 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
+// 	mlx_hook(data->win, 17, 0, ft_exit, data);
+// 	mlx_loop_hook(data->mlx, game_loop, data);
+// 	mlx_loop(data->mlx);
+// }
+
+static void    start_window(t_data *data)
 {
-	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
-	data->img.img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
-			&data->img.line_length, &data->img.endian);
-	mlx_hook(data->win, 2, 1L << 0, key_press, data);
-	mlx_hook(data->win, 3, 1L << 1, key_release, data);
-	mlx_hook(data->win, 17, 0, ft_exit, data);
-	mlx_loop_hook(data->mlx, game_loop, data);
-	mlx_loop(data->mlx);
+    data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
+    data->img.img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+    data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
+            &data->img.line_length, &data->img.endian);
+    mlx_hook(data->win, 2, 1L << 0, key_press, data);
+    mlx_hook(data->win, 3, 1L << 1, key_release, data);
+    mlx_hook(data->win, 6, 1L << 6, mouse_move, data);   // <- nuevo
+    mlx_hook(data->win, 17, 0, ft_exit, data);
+    mlx_loop_hook(data->mlx, game_loop, data);
+    mlx_mouse_move(data->mlx, data->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+    mlx_loop(data->mlx);
 }
 
 int	ft_init(t_data *data, char *route)
