@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/18 16:48:20 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/17 15:57:49 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,29 @@ int	ft_alloc_data(t_data *data, t_map *map)
 	ft_bzero(map, sizeof(t_map));
 	data->map = map;
 	return (1);
+}
+
+
+void	draw_texture_debug(t_data *data, t_img *tex, int off_x, int off_y)
+{
+	int	x;
+	int	y;
+	int	color;
+
+	y = 0;
+	while (y < tex->height && y + off_y < SCREEN_HEIGHT)
+	{
+		x = 0;
+		while (x < tex->width && x + off_x < SCREEN_WIDTH)
+		{
+			color = *(unsigned int *)(tex->addr
+				+ (y * tex->line_length)
+				+ (x * (tex->bpp / 8)));
+			my_mlx_pixel_put(&data->img, x + off_x, y + off_y, color);
+			x++;
+		}
+		y++;
+	}
 }
 
 int	game_loop(t_data *data)
