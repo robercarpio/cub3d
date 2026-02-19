@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   closed_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:03:31 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/12 15:44:54 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/17 09:30:16 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

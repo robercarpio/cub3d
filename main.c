@@ -12,6 +12,22 @@
 
 #include "cub.h"
 
+static int    mouse_move(int x, int y, t_data *data)
+{
+    int     delta_x;
+    int     center_x;
+
+	(void)y;
+    center_x = SCREEN_WIDTH / 2;
+    // Evita recursión infinita cuando recentramos el cursor
+    if (x == center_x)
+        return (0);
+    delta_x = x - center_x;
+    rotate_player(data, delta_x * 0.0001);
+    mlx_mouse_move(data->mlx, data->win, center_x, SCREEN_HEIGHT / 2);
+    return (0);
+}
+
 int	ft_exit(t_data *data)
 {
 	if (data)
@@ -68,101 +84,37 @@ int	game_loop(t_data *data)
 		rotate_player(data, -ROT_SPEED);
 	if (data->keys[KEY_RIGHT])
 		rotate_player(data, ROT_SPEED);
-
 	clear_image(data);
-	
-	draw_texture_debug(data, &data->textures.images[TEX_NORTH], 0, 0);
-	draw_texture_debug(data, &data->textures.images[TEX_SOUTH], 300, 0);
-	draw_texture_debug(data, &data->textures.images[TEX_EAST], 500, 0);
-	draw_texture_debug(data, &data->textures.images[TEX_WEST], 700, 0);
-	
-	draw_map(data);
-	draw_player(data);
-	draw_ray(data);
-	
-	printf("4 in call game loop\n");
-	ft_render_frame(data);  // Ya llama a mlx_put_image_to_window internamente
-	printf("5 in call game loop\n");
-	
-	// ELIMINAR ESTA LÍNEA - duplicada
-	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	
-	printf("6 in call game loop\n");
+	ft_render_frame(data);
 	return (0);
 }
 
-// static void	start_window(t_data data)
+// static void	start_window(t_data *data)
 // {
-// 	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
-// 	data.img.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-// 	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bpp,
-// 			&data.img.line_length, &data.img.endian);
-// 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
-// 	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
-// 	mlx_hook(data.win, 17, 0, ft_exit, &data);
-// 	mlx_loop_hook(data.mlx, game_loop, &data);
-// 	printf("8 in call start window\n");
-// 	mlx_loop(data.mlx);
-// 	printf("9 in call start window\n");
+// 	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
+// 	data->img.img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+// 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
+// 			&data->img.line_length, &data->img.endian);
+// 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
+// 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
+// 	mlx_hook(data->win, 17, 0, ft_exit, data);
+// 	mlx_loop_hook(data->mlx, game_loop, data);
+// 	mlx_loop(data->mlx);
 // }
 
-static void	fill_background(t_data *data)
+static void    start_window(t_data *data)
 {
-	int				x;
-	int				y;
-	unsigned int	*bg;
-	unsigned int	ceiling_color;
-	unsigned int	floor_color;
-
-	// TODO: Obtener estos colores de tu parser (data->textures.ceiling_color, etc.)
-	ceiling_color = 0x87CEEB;  // Azul cielo (ejemplo)
-	floor_color = 0x8B7355;    // Marrón suelo (ejemplo)
-	
-	bg = (unsigned int *)data->bgnd.addr;
-	y = 0;
-	while (y < data->height)
-	{
-		x = 0;
-		while (x < data->width)
-		{
-			if (y < data->height / 2)
-				bg[y * data->width + x] = ceiling_color;
-			else
-				bg[y * data->width + x] = floor_color;
-			x++;
-		}
-		y++;
-	}
-}
-
-static void	start_window(t_data *data)  // <-- Cambiar a puntero
-{
-	// Crear ventana
-	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
-	
-	// Inicializar imagen principal
-	data->img.img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
-			&data->img.line_length, &data->img.endian);
-	
-	// AÑADIR: Inicializar background (cielo/suelo)
-	data->bgnd.img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	data->bgnd.addr = mlx_get_data_addr(data->bgnd.img, &data->bgnd.bpp,
-			&data->bgnd.line_length, &data->bgnd.endian);
-	
-	// TODO: Aquí deberías rellenar data->bgnd.addr con los colores de cielo/suelo
-	// Por ejemplo, mitad superior con color de cielo, mitad inferior con color de suelo
-	fill_background(data);  // <-- Necesitarás crear esta función
-	
-	// Hooks
-	mlx_hook(data->win, 2, 1L << 0, key_press, data);  // <-- Cambiar &data a data
-	mlx_hook(data->win, 3, 1L << 1, key_release, data);  // <-- Cambiar &data a data
-	mlx_hook(data->win, 17, 0, ft_exit, data);  // <-- Cambiar &data a data
-	mlx_loop_hook(data->mlx, game_loop, data);  // <-- Cambiar &data a data
-	
-	printf("8 in call start window\n");
-	mlx_loop(data->mlx);
-	printf("9 in call start window\n");
+    data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
+    data->img.img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+    data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
+            &data->img.line_length, &data->img.endian);
+    mlx_hook(data->win, 2, 1L << 0, key_press, data);
+    mlx_hook(data->win, 3, 1L << 1, key_release, data);
+    mlx_hook(data->win, 6, 1L << 6, mouse_move, data);   // <- nuevo
+    mlx_hook(data->win, 17, 0, ft_exit, data);
+    mlx_loop_hook(data->mlx, game_loop, data);
+    mlx_mouse_move(data->mlx, data->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+    mlx_loop(data->mlx);
 }
 
 int	ft_init(t_data *data, char *route)
@@ -178,16 +130,15 @@ int	ft_init(t_data *data, char *route)
 	if (!data->keys)
 		return (0);
 	file = file_to_arr(route);
-	init_textures(&data->textures);
-	parse_textures(file, &data->textures);
-	load_textures(data, &data->textures);
+	init_textures(file, data);
+	parse_textures(file, data);
+	load_textures(data);
+	data->map = malloc(sizeof(t_map));
+	if (!data->map)
+		return (0);
 	*data->map = init_map(file);
 	init_player(data);
-	// raycast_dda(data);
-	
-	// CAMBIO: Pasar por PUNTERO, no por valor
-	start_window(data);  // <-- Quitar el asterisco
-	
+	start_window(data);
 	return (1);
 }
 

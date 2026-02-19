@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:05:12 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/16 15:28:06 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/17 16:40:14 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

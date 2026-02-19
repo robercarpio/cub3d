@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   allocate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:30:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/12 15:35:56 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/17 09:33:24 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/16 15:06:34 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/18 16:10:14 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,17 @@
 #define RED     "\033[31m"
 #define CYAN    "\033[36m"
 
-# define DEBUG_MODE 0
-# define SCREEN_WIDTH 1200
-# define SCREEN_HEIGHT 800
+# define DEBUG_MODE 1
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-# define TILE_SIZE 10
+# define MINIMAP_SIZE 200
+# define MINIMAP_TILES 10
+# define MINIMAP_TILE_SIZE (MINIMAP_SIZE / MINIMAP_TILES)
+# define MINIMAP_X 20
+# define MINIMAP_Y 20
+# define TILE_SIZE 32
 # define MAX_KEYCODE 65536
 # define ESC 65307
 # define W 119
@@ -57,8 +62,9 @@
 # define DOWN -1
 # define LEFT -1
 # define RIGHT 1
-# define MOVE_SPEED 0.01
-# define ROT_SPEED 0.01
+# define MOVE_SPEED 0.08
+# define ROT_SPEED 0.06
+# define PLAYER_RADIUS 0.01
 
 typedef struct s_stripe
 {
@@ -153,6 +159,7 @@ typedef struct s_data
 	int			*keys;
 	int			width;
 	int			height;
+	int			mouse_x;
 	t_map		*map;
 	t_player	player;
 	t_img		img;

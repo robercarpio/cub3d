@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:31:47 by rcarpio-          #+#    #+#             */
-/*   Updated: 2026/02/12 15:36:05 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/17 09:34:19 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
