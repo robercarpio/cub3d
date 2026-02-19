@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:23:18 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/17 16:51:12 by rcarpio-cye      ###   ########.fr       */
+/*   Updated: 2026/02/19 14:05:45 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

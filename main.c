@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/17 15:57:49 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/19 13:42:50 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,6 @@ int	game_loop(t_data *data)
 	ft_render_frame(data);
 	return (0);
 }
-
-// static void	start_window(t_data *data)
-// {
-// 	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
-// 	data->img.img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-// 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
-// 			&data->img.line_length, &data->img.endian);
-// 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
-// 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
-// 	mlx_hook(data->win, 17, 0, ft_exit, data);
-// 	mlx_loop_hook(data->mlx, game_loop, data);
-// 	mlx_loop(data->mlx);
-// }
 
 static void    start_window(t_data *data)
 {
