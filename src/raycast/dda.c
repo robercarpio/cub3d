@@ -6,7 +6,7 @@
 /*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:05:12 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/17 16:40:14 by rcarpio-cye      ###   ########.fr       */
+/*   Updated: 2026/02/20 13:31:55 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ void	raycast_single_column(t_data *data, int x)
 		if (data->map->map[data->dda.mapY][data->dda.mapX] > '0')
 			hit = 1;
 	}
+	data->dda.hit_type = data->map->map[data->dda.mapY][data->dda.mapX];
 
 	// Calcular distancia perpendicular
 	if (data->dda.side == 0)

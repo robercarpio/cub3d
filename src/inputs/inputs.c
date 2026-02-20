@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:49:21 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/11 13:18:44 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/20 16:43:04 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ int	key_press(int key, t_data *data)
 {
 	if (key == ESC)
 		ft_exit(data);
+	if (key == TAB_KEY)
+		data->show_bigmap = !data->show_bigmap;
+	if (key == KEY_E)
+		try_open_door(data);
 	if (key >= 0 && key < MAX_KEYCODE)
 	{
 		raycast_dda(data);

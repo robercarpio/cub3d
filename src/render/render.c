@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:23:18 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/19 14:05:45 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/20 14:16:24 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	draw_stripe(t_data *data, int x, t_dda_data *ray, t_img *tex)
 
 static t_img	*choose_texture(t_data *data, t_dda_data *ray)
 {
+	if (ray->hit_type == 'D')
+		return (&data->textures.images[TEX_DOOR]);
 	if (ray->side == 0)
 	{
 		if (ray->rayDirX > 0)
@@ -86,6 +88,8 @@ int	ft_render_frame(t_data *data)
 	draw_minimap(data);
 	draw_minimap_border(data);
 	draw_minimap_player(data);
+	if (data->show_bigmap)
+		draw_bigmap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	return (0);
 }

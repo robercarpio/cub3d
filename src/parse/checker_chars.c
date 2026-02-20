@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_chars.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:58:54 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/11 11:39:32 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/20 13:32:39 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int check_chars(char **map)
 	i = 0;
 	while (map[i] != NULL)
 	{
-		if (!only_chars_allow(map[i], "01NSEW "))
+		if (!only_chars_allow(map[i], "01NSEW D"))
 			return (0);
 		i++;
 	}

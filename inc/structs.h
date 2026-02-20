@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/18 16:10:14 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/20 16:45:36 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@
 # define D 100
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
+# define TAB_KEY 65289
+# define KEY_E 101
 # define UP 1
 # define DOWN -1
 # define LEFT -1
@@ -85,6 +87,7 @@ typedef enum e_tex_id
 	TEX_SOUTH,
 	TEX_WEST,
 	TEX_EAST,
+	TEX_DOOR,
 	TEX_COUNT
 }	t_tex_id;
 
@@ -105,6 +108,7 @@ typedef struct s_dda_data
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	char		hit_type;     // Tipo de celda golpeada ('1'=muro, 'D'=puerta, etc.).
 }	t_dda_data;
 
 typedef	struct	s_coords
@@ -160,6 +164,7 @@ typedef struct s_data
 	int			width;
 	int			height;
 	int			mouse_x;
+	int			show_bigmap;
 	t_map		*map;
 	t_player	player;
 	t_img		img;

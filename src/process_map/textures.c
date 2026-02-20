@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 15:47:00 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/17 09:28:56 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/20 13:32:02 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_textures(char **file, t_data *data)
 		i++;
 	}
 	parse_textures(file, data);
+	data->textures.paths[TEX_DOOR] = "img/door_close.xpm";
 	load_textures(data);
 }
 

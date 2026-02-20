@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:27:53 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/17 09:55:55 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/20 14:16:23 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,4 +169,78 @@ void	clear_image(t_data *data)
 		}
 		y++;
 	}
+}
+
+static void	bigmap_draw_overlay(t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < SCREEN_HEIGHT)
+	{
+		x = 0;
+		while (x < SCREEN_WIDTH)
+		{
+			unsigned int *px = (unsigned int *)(data->img.addr
+				+ (y * data->img.line_length + x * (data->img.bpp / 8)));
+			*px = (*px >> 1 & 0x7F7F7F);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_bigmap(t_data *data)
+{
+	int		map_w;
+	int		map_h;
+	int		tile;
+	int		total_w;
+	int		total_h;
+	int		off_x;
+	int		off_y;
+	int		mx;
+	int		my;
+	int		color;
+	int		px;
+	int		py;
+
+	map_w = data->map->m_width;
+	map_h = data->map->m_height;
+	tile = (SCREEN_HEIGHT * 70 / 100) / map_h;
+	if (tile < 4)
+		tile = 4;
+	total_w = map_w * tile;
+	total_h = map_h * tile;
+	off_x = (SCREEN_WIDTH - total_w) / 2;
+	off_y = (SCREEN_HEIGHT - total_h) / 2;
+
+	bigmap_draw_overlay(data);
+
+	my = 0;
+	while (my < map_h)
+	{
+		mx = 0;
+		while (mx < map_w && data->map->map[my]
+			&& mx < (int)ft_strlen(data->map->map[my]))
+		{
+			if (data->map->map[my][mx] == '1')
+				color = 0xDDDDDD;
+			else if (data->map->map[my][mx] == 'D')
+				color = 0xFF8800;
+			else
+				color = 0x222222;
+			draw_square(data,
+				off_x + mx * tile,
+				off_y + my * tile,
+				tile - 1,
+				color);
+			mx++;
+		}
+		my++;
+	}
+	px = off_x + (int)(data->player.x * tile) - 4;
+	py = off_y + (int)(data->player.y * tile) - 4;
+	draw_square(data, px, py, 8, 0xFF2222);
 }

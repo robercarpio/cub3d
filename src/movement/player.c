@@ -6,7 +6,7 @@
 /*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/17 16:23:07 by rcarpio-cye      ###   ########.fr       */
+/*   Updated: 2026/02/20 16:34:14 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,44 @@ static int is_walkable(t_data *data, double x, double y)
 		return (0);
 	if (data->map->map[map_y][map_x] == '1')
 		return (0);
+	if (data->map->map[map_y][map_x] == 'D')
+		return (0);
 	return (1);
+}
+
+void	try_open_door(t_data *data)
+{
+	int	px;
+	int	py;
+	int	dx;
+	int	dy;
+
+	px = (int)data->player.x;
+	py = (int)data->player.y;
+	dy = -1;
+	while (dy <= 1)
+	{
+		dx = -1;
+		while (dx <= 1)
+		{
+			if (dx == 0 && dy == 0)
+			{
+				dx++;
+				continue ;
+			}
+			if (py + dy >= 0 && py + dy < data->map->m_height
+				&& data->map->map[py + dy]
+				&& px + dx >= 0
+				&& px + dx < (int)ft_strlen(data->map->map[py + dy])
+				&& data->map->map[py + dy][px + dx] == 'D')
+			{
+				data->map->map[py + dy][px + dx] = '0';
+				return ;
+			}
+			dx++;
+		}
+		dy++;
+	}
 }
 
 static void move_player(t_data *data, double move_x, double move_y)
