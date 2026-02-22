@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/20 16:34:14 by rcarpio-cye      ###   ########.fr       */
+/*   Updated: 2026/02/20 23:02:53 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
