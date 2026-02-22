@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 12:14:35 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/22 09:52:47 by mamaratr         ###   ########.fr       */
+/*   Created: 2026/02/22 08:58:17 by mamaratr          #+#    #+#             */
+/*   Updated: 2026/02/22 09:01:50 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub.h"
 
-int	ft_strcmp(char *str1, char *str2)
+static void	run_dda_pipeline(t_data *data, int x)
 {
-	while (*str1 && *str2)
-	{
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
-	}
-	return (*str1 - *str2);
+	reset_dda_data(&data->dda);
+	init_ray(data, x);
+	init_step_and_side(data);
+	perform_dda(data);
+	compute_projection(data);
+}
+
+void	raycast_single_column(t_data *data, int x)
+{
+	run_dda_pipeline(data, x);
+}
+
+void	raycast_dda(t_data *data)
+{
+	int	x;
+
+	x = -1;
+	while (++x < data->map->m_width)
+		run_dda_pipeline(data, x);
 }

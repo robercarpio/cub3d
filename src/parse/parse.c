@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:30:46 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/18 14:30:01 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/22 09:47:30 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static int 	count_players(char **map)
+static int	count_players(char **map)
 {
-	int 	i;
-	int 	j;
-	int		count;
+	int	i;
+	int	j;
+	int	count;
 
 	count = 0;
 	i = -1;
@@ -25,7 +25,7 @@ static int 	count_players(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if(map[i][j] == 'P')
+			if (map[i][j] == 'P')
 				count++;
 			j++;
 		}
@@ -37,7 +37,7 @@ int	parse(t_data data)
 {
 	if (!check_chars(data.map->map))
 	{
-		printf("Error: Invalid characters in the map.\n");	
+		printf("Error: Invalid characters in the map.\n");
 		return (0);
 	}
 	if (count_players(data.map->map) != 1)

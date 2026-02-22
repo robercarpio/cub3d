@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:45:57 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/17 09:29:28 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/22 09:51:50 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,33 +34,29 @@ unsigned int	get_color(char *str)
 	split = ft_split(str + 1, ',');
 	if (!split || !split[0] || !split[1] || !split[2])
 		return (0);
-
 	color = 0;
 	color |= ((unsigned char)ft_atoi(split[0])) << 16;
 	color |= ((unsigned char)ft_atoi(split[1])) << 8;
 	color |= ((unsigned char)ft_atoi(split[2]));
-
 	i = 0;
 	while (split[i])
 		free(split[i++]);
 	free(split);
-
 	return (color);
 }
-
 
 void	skip_textures(char	***file, t_map *map)
 {
 	while (**file)
 	{
-		if(get_texture_id(**file) != -1)
+		if (get_texture_id(**file) != -1)
 			(*file)++;
-		else if((**file)[0] == 'F')
+		else if ((**file)[0] == 'F')
 		{
 			map->floor_color = get_color(**file);
 			(*file)++;
 		}
-		else if((**file)[0] == 'C')
+		else if ((**file)[0] == 'C')
 		{
 			map->ceiling_color = get_color(**file);
 			(*file)++;
@@ -68,7 +64,7 @@ void	skip_textures(char	***file, t_map *map)
 		else if (**file[0] == '\n')
 			(*file)++;
 		else
-			break;
+			break ;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:03:31 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/17 09:30:16 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/22 09:44:35 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,26 @@ static int	flood_fill_closed(char **map, int y, int x)
 
 	width = line_len(map[0]);
 	height = map_height(map);
-	if (x < 0 || y < 0 || x >= width || y >= height
-		|| map[y][x] == '1' || map[y][x] == 'V' || map[y][x] == '\n' || map[y][x] == '\t' )
-		return (0);	
+	if (x < 0 || y < 0 || x >= width || y >= height || map[y][x] == '1'
+		|| map[y][x] == 'V' || map[y][x] == '\n' || map[y][x] == '\t' )
+		return (0);
 	if (map[y][x] == '0')
 		return (1);
 	map[y][x] = 'V';
-	return (flood_fill_closed(map, y, x + 1) 
+	return (flood_fill_closed(map, y, x + 1)
 		|| flood_fill_closed(map, y, x - 1)
 		|| flood_fill_closed(map, y + 1, x)
 		|| flood_fill_closed(map, y - 1, x));
 }
 
-static t_coords sea_coords(char **map)
+static t_coords	sea_coords(char **map)
 {
 	int			x;
 	int			y;
 	t_coords	coords;
 
 	y = -1;
-	while(map[++y])
+	while (map[++y])
 	{
 		x = -1;
 		while (map[y][++x])
@@ -52,7 +52,6 @@ static t_coords sea_coords(char **map)
 		}
 	}
 	coords.y = -1;
-	// coords.x = -1;
 	return (coords);
 }
 
@@ -61,6 +60,7 @@ int	closed_map(t_data data)
 	t_coords	coords;
 	char		**map_expand;
 	int			r_ff;
+
 	map_expand = expand_map(*data.map);
 	coords = sea_coords(map_expand);
 	r_ff = 0;

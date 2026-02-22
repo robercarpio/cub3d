@@ -20,16 +20,17 @@ SRCS =		main.c  \
 			./src/aux/map_dimmenssions.c \
 			./src/aux/file_to_arr.c \
 			./src/aux/allocate_map.c \
-			./src/process_map/process_map.c \
 			./src/process_map/init_map.c \
-			./src/process_map/textures.c \
-			./src/movement/minimap.c \
+			./src/process_map/background.c \
+			./src/textures/textures.c \
+			./src/minimap/minimap.c \
 			./src/movement/player.c \
+			./src/movement/moves.c \
 			./src/parse/expand_map.c \
 			./src/raycast/dda.c \
+			./src/raycast/raycast.c \
 			./src/parse/closed_map.c \
-			./src/render/render.c \
-			./src/process_map/background.c
+			./src/render/render.c
 
 # ================= DIRECTORIES ================= #
 OBJ_DIR = objects

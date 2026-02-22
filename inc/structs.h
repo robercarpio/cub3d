@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/18 16:10:14 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/22 10:24:57 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,23 @@
 # include <sys/time.h>
 # include <math.h>
 
-
-#define COLOR_RESET   "\033[0m"
-#define COLOR_RED     "\033[1;31m"
-#define COLOR_GREEN   "\033[1;32m"
-#define COLOR_YELLOW  "\033[1;33m"
-#define COLOR_BLUE    "\033[1;34m"
-#define COLOR_MAGENTA "\033[1;35m"
-#define COLOR_CYAN    "\033[1;36m"
-#define COLOR_WHITE   "\033[1;37m"
-
+# define COLOR_RESET   "\033[0m"
+# define COLOR_RED     "\033[1;31m"
+# define COLOR_GREEN   "\033[1;32m"
+# define COLOR_YELLOW  "\033[1;33m"
+# define COLOR_BLUE    "\033[1;34m"
+# define COLOR_MAGENTA "\033[1;35m"
+# define COLOR_CYAN    "\033[1;36m"
+# define COLOR_WHITE   "\033[1;37m"
 
 //COLORES
-#define RESET   "\033[0m"
-#define BLUE    "\033[34m"
-#define GREEN   "\033[32m"
-#define YELLOW  "\033[33m"
-#define MAGENTA "\033[35m"
-#define RED     "\033[31m"
-#define CYAN    "\033[36m"
+# define RESET   "\033[0m"
+# define BLUE    "\033[34m"
+# define GREEN   "\033[32m"
+# define YELLOW  "\033[33m"
+# define MAGENTA "\033[35m"
+# define RED     "\033[31m"
+# define CYAN    "\033[36m"
 
 # define DEBUG_MODE 1
 # define SCREEN_WIDTH 1920
@@ -88,26 +86,39 @@ typedef enum e_tex_id
 	TEX_COUNT
 }	t_tex_id;
 
+// double	rayDirX;      Dirección X del rayo indiv (dir + plano * cameraX).
+// double	rayDirY;      Dirección Y del rayo indiv.
+// int		mapX;         Coordenada X entera de la celda actual en el mapa.
+// int		mapY;         Coordenada Y entera de la celda actual en el mapa.
+// double	sideDistX;    Dist acumulada hasta el próximo borde vertical (X).
+// double	sideDistY;    Dist acumulada hasta el próximo borde horizontal (Y).
+// double	deltaDistX;   Dist que rayo debe recorrer para cruzar 1 celda en X.
+// double	deltaDistY;   Dist que rayo debe recorrer para cruzar 1 celda en Y.
+// int		stepX;        Direc del salto en el mapa (-1 o 1) para el eje X.
+// int		stepY;        Direc del salto en el mapa (-1 o 1) para el eje Y.
+// int		side;         Indica si se chocó con un muro en X (0) o en Y (1).
+// double	perpWallDist; Dist final proyectada para evitar efecto ojo de pez.
+
 typedef struct s_dda_data
 {
-	double	rayDirX;      // Dirección X del rayo individual (dir + plano * cameraX).
-	double	rayDirY;      // Dirección Y del rayo individual.
-	int		mapX;         // Coordenada X entera de la celda actual en el mapa.
-	int		mapY;         // Coordenada Y entera de la celda actual en el mapa.
-	double	sideDistX;    // Distancia acumulada hasta el próximo borde vertical (X).
-	double	sideDistY;    // Distancia acumulada hasta el próximo borde horizontal (Y).
-	double	deltaDistX;   // Distancia que el rayo debe recorrer para cruzar una celda en X.
-	double	deltaDistY;   // Distancia que el rayo debe recorrer para cruzar una celda en Y.
-	int		stepX;        // Dirección del salto en el mapa (-1 o 1) para el eje X.
-	int		stepY;        // Dirección del salto en el mapa (-1 o 1) para el eje Y.
-	int		side;         // Indica si se chocó con un muro en X (0) o en Y (1).
-	double	perpWallDist; // Distancia final proyectada para evitar el efecto ojo de pez.
+	double	raydir_x;
+	double	raydir_y;
+	int		map_x;
+	int		map_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+	double	perp_wall_dist;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
 }	t_dda_data;
 
-typedef	struct	s_coords
+typedef struct s_coords
 {
 	int	x;
 	int	y;

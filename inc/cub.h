@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/17 09:54:57 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/22 10:15:59 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-
-int		ft_init(t_data *data , char *route);
-void	play (char *route);
-void	print_arr(char **arr);
-void	print_map(t_map map);
+int		ft_init(t_data *data, char *route);
+void	play(char *route);
+// void	print_arr(char **arr);
+// void	print_map(t_map map);
 
 //GNL
 char	*get_next_line(int fd);
@@ -49,7 +48,7 @@ t_map	init_map(char **file);
 
 //AUX
 int		map_height(char **map);
-int		map_width (char **map);
+int		map_width(char **map);
 int		file_height(char *route);
 char	**file_to_arr(char *route);
 char	**allocate_map(char **map);
@@ -60,6 +59,7 @@ int		line_len(char *str);
 int		ft_exit(t_data *data);
 int		key_press(int key, t_data *data);
 int		key_release(int key, t_data *data);
+int		mouse_move(int x, int y, t_data *data);
 
 //MOVEMENT
 void	init_player(t_data *data);
@@ -68,7 +68,7 @@ void	move_strafe(t_data *data, int dir);
 void	rotate_player(t_data *data, double angle);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color);
-void	draw_square(t_data *data, int start_x, int start_y, int size,  int color);
+void	draw_square(t_data *data, int start_x, int start_y, int size, int color);
 void	draw_minimap_player(t_data *data);
 void	draw_minimap_border(t_data *data);
 void	draw_floor_ceiling(t_data *data);
@@ -76,9 +76,16 @@ void	draw_ray(t_data *data);
 void	draw_minimap(t_data *data);
 void	clear_image(t_data *data);
 
+//DDA
+void	reset_dda_data(t_dda_data *dda);
+void	init_ray(t_data *data, int x);
+void	init_step_and_side(t_data *data);
+void	perform_dda(t_data *data);
+void	compute_projection(t_data *data);
+
 //RAYCASTING
+//void	show_dda_data(t_dda_data *d);
 void	raycast_dda(t_data *data);
-void	show_dda_data(t_dda_data *d);
 void	raycast_single_column(t_data *data, int x);
 
 //TEXTURES
