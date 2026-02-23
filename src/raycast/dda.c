@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:05:12 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/22 10:32:19 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/23 11:25:06 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	perform_dda(t_data *data)
 		if (data->map->map[data->dda.map_y][data->dda.map_x] > '0')
 			hit = 1;
 	}
+	data->dda.hit_type = data->map->map[data->dda.map_y][data->dda.map_x];
 }
 
 void	compute_projection(t_data *data)

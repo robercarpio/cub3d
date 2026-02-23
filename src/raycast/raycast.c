@@ -6,13 +6,13 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 08:58:17 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/22 09:01:50 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/23 10:30:24 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void	run_dda_pipeline(t_data *data, int x)
+void	raycast_single_column(t_data *data, int x)
 {
 	reset_dda_data(&data->dda);
 	init_ray(data, x);
@@ -21,16 +21,11 @@ static void	run_dda_pipeline(t_data *data, int x)
 	compute_projection(data);
 }
 
-void	raycast_single_column(t_data *data, int x)
-{
-	run_dda_pipeline(data, x);
-}
-
 void	raycast_dda(t_data *data)
 {
 	int	x;
 
 	x = -1;
 	while (++x < data->map->m_width)
-		run_dda_pipeline(data, x);
+		raycast_single_column(data, x);
 }

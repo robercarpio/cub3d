@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/22 10:15:59 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/23 11:10:34 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	init_player(t_data *data);
 void	move_forward(t_data *data, int dir);
 void	move_strafe(t_data *data, int dir);
 void	rotate_player(t_data *data, double angle);
+void	try_open_door(t_data *data);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color);
 void	draw_square(t_data *data, int start_x, int start_y, int size, int color);
@@ -74,6 +75,7 @@ void	draw_minimap_border(t_data *data);
 void	draw_floor_ceiling(t_data *data);
 void	draw_ray(t_data *data);
 void	draw_minimap(t_data *data);
+void	draw_bigmap(t_data *data);
 void	clear_image(t_data *data);
 
 //DDA

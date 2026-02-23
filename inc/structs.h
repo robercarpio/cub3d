@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/22 10:24:57 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/23 11:09:54 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@
 # define D 100
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
+# define TAB_KEY 65289
+# define KEY_E 101
 # define UP 1
 # define DOWN -1
 # define LEFT -1
@@ -83,6 +85,7 @@ typedef enum e_tex_id
 	TEX_SOUTH,
 	TEX_WEST,
 	TEX_EAST,
+	TEX_DOOR,
 	TEX_COUNT
 }	t_tex_id;
 
@@ -116,6 +119,7 @@ typedef struct s_dda_data
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	char	hit_type;
 }	t_dda_data;
 
 typedef struct s_coords
@@ -171,6 +175,7 @@ typedef struct s_data
 	int			width;
 	int			height;
 	int			mouse_x;
+	int			show_bigmap;
 	t_map		*map;
 	t_player	player;
 	t_img		img;

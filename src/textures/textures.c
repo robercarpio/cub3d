@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 15:47:00 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/22 09:49:36 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/23 11:22:43 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_textures(char **file, t_data *data)
 		i++;
 	}
 	parse_textures(file, data);
+	data->textures.paths[TEX_DOOR] = "img/door_close.xpm";
 	load_textures(data);
 }
 

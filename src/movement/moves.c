@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 09:54:08 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/22 09:56:02 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/23 11:14:15 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	is_walkable(t_data *data, double x, double y)
 	if (map_x < 0 || map_x >= (int)ft_strlen(data->map->map[map_y]))
 		return (0);
 	if (data->map->map[map_y][map_x] == '1')
+		return (0);
+	if (data->map->map[map_y][map_x] == 'D')
 		return (0);
 	return (1);
 }

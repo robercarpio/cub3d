@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:58:54 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/22 09:47:44 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/23 11:21:56 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_chars(char **map)
 	i = 0;
 	while (map[i] != NULL)
 	{
-		if (!only_chars_allow(map[i], "01NSEW "))
+		if (!only_chars_allow(map[i], "01NSEW D"))
 			return (0);
 		i++;
 	}
