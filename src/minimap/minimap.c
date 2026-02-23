@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:27:53 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/23 11:29:34 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/23 12:36:08 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,28 +131,80 @@ int	minimap_player_pos_y(t_data *data)
 	return (player_y);
 }
 
-void	draw_minimap_player(t_data *data)
+static void	draw_minimap_triangle(t_data *data, int cx, int cy, int size)
 {
-	int	player_x;
-	int	player_y;
-	int	r;
+	int	px[3];
+	int	py[3];
+	float	perp_x;
+	float	perp_y;
+	int	min_x;
+	int	max_x;
+	int	min_y;
+	int	max_y;
 	int	x;
 	int	y;
+	int	i;
 
-	player_x = minimap_player_pos_x(data);
-	player_y = minimap_player_pos_y(data);
-	r = 5;
-	y = -r;
-	while (y <= r)
+	perp_x = -data->player.dir_y;
+	perp_y = data->player.dir_x;
+
+	px[0] = cx + data->player.dir_x * size;
+	py[0] = cy + data->player.dir_y * size;
+
+	px[1] = cx + perp_x * size / 2;
+	py[1] = cy + perp_y * size / 2;
+
+	px[2] = cx - perp_x * size / 2;
+	py[2] = cy - perp_y * size / 2;
+
+	min_x = px[0];
+	max_x = px[0];
+	min_y = py[0];
+	max_y = py[0];
+
+	i = 1;
+	while (i < 3)
 	{
-		x = -r;
-		while (x <= r)
+		if (px[i] < min_x) min_x = px[i];
+		if (px[i] > max_x) max_x = px[i];
+		if (py[i] < min_y) min_y = py[i];
+		if (py[i] > max_y) max_y = py[i];
+		i++;
+	}
+
+	y = min_y;
+	while (y <= max_y)
+	{
+		x = min_x;
+		while (x <= max_x)
 		{
-			my_mlx_pixel_put(&data->img, player_x + x, player_y + y, 0xFF0000);
+			int d1 = (x - px[1]) * (py[0] - py[1])
+				- (y - py[1]) * (px[0] - px[1]);
+
+			int d2 = (x - px[2]) * (py[1] - py[2])
+				- (y - py[2]) * (px[1] - px[2]);
+
+			int d3 = (x - px[0]) * (py[2] - py[0])
+				- (y - py[0]) * (px[2] - px[0]);
+
+			if ((d1 >= 0 && d2 >= 0 && d3 >= 0) ||
+				(d1 <= 0 && d2 <= 0 && d3 <= 0))
+				my_mlx_pixel_put(&data->img, x, y, 0xFF0000);
+
 			x++;
 		}
 		y++;
 	}
+}
+
+void	draw_minimap_player(t_data *data)
+{
+	int	player_x;
+	int	player_y;
+
+	player_x = minimap_player_pos_x(data);
+	player_y = minimap_player_pos_y(data);
+	draw_minimap_triangle(data, player_x, player_y, 12);
 }
 
 void	draw_ray(t_data *data)

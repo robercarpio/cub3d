@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/23 11:16:10 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/23 12:15:32 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ void	init_player(t_data *data)
 	}
 }
 
+static int	is_door_at(t_data *data, int x, int y)
+{
+	if (y < 0 || y >= data->map->m_height)
+		return (0);
+	if (!data->map->map[y])
+		return (0);
+	if (x < 0 || x >= (int)ft_strlen(data->map->map[y]))
+		return (0);
+	if (data->map->map[y][x] != 'D')
+		return (0);
+	return (1);
+}
+
 void	try_open_door(t_data *data)
 {
 	int	px;
@@ -56,15 +69,8 @@ void	try_open_door(t_data *data)
 		while (dx <= 1)
 		{
 			if (dx == 0 && dy == 0)
-			{
 				dx++;
-				continue ;
-			}
-			if (py + dy >= 0 && py + dy < data->map->m_height
-				&& data->map->map[py + dy]
-				&& px + dx >= 0
-				&& px + dx < (int)ft_strlen(data->map->map[py + dy])
-				&& data->map->map[py + dy][px + dx] == 'D')
+			if (is_door_at(data, px + dx, py + dy))
 			{
 				data->map->map[py + dy][px + dx] = '0';
 				return ;
