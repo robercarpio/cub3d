@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/23 11:10:34 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/24 11:08:00 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ void	compute_projection(t_data *data);
 //void	show_dda_data(t_dda_data *d);
 void	raycast_dda(t_data *data);
 void	raycast_single_column(t_data *data, int x);
+
+//FREE
+void	free_data (t_data **data);
+void	free_arr(char **arr);
 
 //TEXTURES
 void	init_textures(char **file, t_data *data);

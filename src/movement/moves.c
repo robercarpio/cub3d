@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 09:54:08 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/23 11:14:15 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/24 13:20:29 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,4 @@ void	rotate_player(t_data *data, double angle)
 		- data->player.plane_y * sin_angle;
 	data->player.plane_y = old_plane_x * sin_angle
 		+ data->player.plane_y * cos_angle;
-	if (DEBUG_MODE)
-	{
-		printf("PLAYER DIR X :%f \n", data->player.dir_x);
-		printf("PLAYER DIR Y :%f \n", data->player.dir_y);
-		printf("-----------------------------------------\n");
-	}
 }

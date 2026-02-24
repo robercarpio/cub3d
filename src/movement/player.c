@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/23 13:58:14 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/24 13:15:44 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	try_open_door(t_data *data)
 			if (is_door_at(data, px + dx, py + dy))
 			{
 				data->map->map[py + dy][px + dx] = '0';
+				printf("PUERTA \n");
 				return ;
 			}
 			dx++;
