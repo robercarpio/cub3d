@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:27:53 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/20 14:16:23 by rcarpio-cye      ###   ########.fr       */
+/*   Updated: 2026/02/24 10:00:31 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_square(t_data *data, int start_x, int start_y, int size,  int color)
+void	draw_square(t_data *data, int start_x, int start_y, int size, int color)
 {
 	int	x;
 	int	y;
@@ -44,32 +44,47 @@ void	draw_minimap_border(t_data *data)
 {
 	int	layer;
 	int	border_width;
+	int	i;
 
 	layer = 0;
 	border_width = 4;
 	while (layer < border_width)
 	{
-		int i = 0;
+		i = 0;
 		while (i < MINIMAP_SIZE + 2 * layer)
 		{
-			my_mlx_pixel_put(&data->img, MINIMAP_X - layer + i, MINIMAP_Y - layer, 0xAAAAAA);
-			my_mlx_pixel_put(&data->img, MINIMAP_X - layer + i, MINIMAP_Y + MINIMAP_SIZE + layer, 0xAAAAAA);
-			my_mlx_pixel_put(&data->img, MINIMAP_X - layer, MINIMAP_Y - layer + i, 0xAAAAAA);
-			my_mlx_pixel_put(&data->img, MINIMAP_X + MINIMAP_SIZE + layer, MINIMAP_Y - layer + i, 0xAAAAAA);
+			my_mlx_pixel_put(&data->img, MINIMAP_X - layer + i,
+				MINIMAP_Y - layer, 0xAAAAAA);
+			my_mlx_pixel_put(&data->img, MINIMAP_X - layer + i,
+				MINIMAP_Y + MINIMAP_SIZE + layer, 0xAAAAAA);
+			my_mlx_pixel_put(&data->img, MINIMAP_X - layer,
+				MINIMAP_Y - layer + i, 0xAAAAAA);
+			my_mlx_pixel_put(&data->img, MINIMAP_X + MINIMAP_SIZE + layer,
+				MINIMAP_Y - layer + i, 0xAAAAAA);
 			i++;
 		}
 		layer++;
 	}
 }
 
+static void	check_if_wall(t_data *data, int map_x, int map_y, int *color)
+{
+	if (map_y >= 0 && map_y < data->map->m_height
+		&& map_x >= 0 && data->map->map[map_y]
+		&& map_x < (int)ft_strlen(data->map->map[map_y]))
+	{
+		if (data->map->map[map_y][map_x] == '1')
+			*color = 0xFFFFFF;
+	}
+}
+
 void	draw_minimap(t_data *data)
 {
-	int mini_x, mini_y;
-	int map_x, map_y;
-
-	int player_tile_x = (int)(data->player.x);
-	int player_tile_y = (int)(data->player.y);
-	int half = MINIMAP_TILES / 2;
+	int	mini_x;
+	int	mini_y;
+	int	map_x;
+	int	map_y;
+	int	color;
 
 	mini_y = 0;
 	while (mini_y < MINIMAP_TILES)
@@ -77,56 +92,119 @@ void	draw_minimap(t_data *data)
 		mini_x = 0;
 		while (mini_x < MINIMAP_TILES)
 		{
-			map_x = player_tile_x - half + mini_x;
-			map_y = player_tile_y - half + mini_y;
-
-			int color = 0x000000; // default: empty space
-
-			if (map_y >= 0 && map_y < data->map->m_height && // check bounds
-				map_x >= 0 &&
-				data->map->map[map_y] &&
-				map_x < (int)ft_strlen(data->map->map[map_y]))
-			{
-				if (data->map->map[map_y][map_x] == '1')
-					color = 0xFFFFFF;
-			}
+			color = 0x000000;
+			map_x = (int)(data->player.x) - (MINIMAP_TILES / 2) + mini_x;
+			map_y = (int)(data->player.y) - (MINIMAP_TILES / 2) + mini_y;
+			check_if_wall(data, map_x, map_y, &color);
 			draw_square(data,
 				MINIMAP_X + mini_x * MINIMAP_TILE_SIZE,
 				MINIMAP_Y + mini_y * MINIMAP_TILE_SIZE,
 				MINIMAP_TILE_SIZE,
 				color);
-
 			mini_x++;
 		}
 		mini_y++;
 	}
 }
 
-void draw_minimap_player(t_data *data)
+int	minimap_player_pos_x(t_data *data)
 {
-	int center_tile_x = MINIMAP_X + (MINIMAP_TILES / 2) * MINIMAP_TILE_SIZE;
-	int center_tile_y = MINIMAP_Y + (MINIMAP_TILES / 2) * MINIMAP_TILE_SIZE;
+	int		center_tile_x;
+	float	offset_x;
+	int		player_x;
 
-	float offset_x = (data->player.x - (int)data->player.x) * MINIMAP_TILE_SIZE;
-	float offset_y = (data->player.y - (int)data->player.y) * MINIMAP_TILE_SIZE;
+	center_tile_x = MINIMAP_X + (MINIMAP_TILES / 2) * MINIMAP_TILE_SIZE;
+	offset_x = (data->player.x - (int)data->player.x) * MINIMAP_TILE_SIZE;
+	player_x = center_tile_x + (int)offset_x;
+	return (player_x);
+}
 
-	int player_x = center_tile_x + (int)offset_x;
-	int player_y = center_tile_y + (int)offset_y;
+int	minimap_player_pos_y(t_data *data)
+{
+	int		center_tile_y;
+	float	offset_y;
+	int		player_y;
 
-	int r = 5;
-	int y = -r;
-	int x;
+	center_tile_y = MINIMAP_Y + (MINIMAP_TILES / 2) * MINIMAP_TILE_SIZE;
+	offset_y = (data->player.y - (int)data->player.y) * MINIMAP_TILE_SIZE;
+	player_y = center_tile_y + (int)offset_y;
+	return (player_y);
+}
 
-	while (y <= r)
+static void	draw_minimap_triangle(t_data *data, int cx, int cy, int size)
+{
+	int	px[3];
+	int	py[3];
+	float	perp_x;
+	float	perp_y;
+	int	min_x;
+	int	max_x;
+	int	min_y;
+	int	max_y;
+	int	x;
+	int	y;
+	int	i;
+
+	perp_x = -data->player.dir_y;
+	perp_y = data->player.dir_x;
+
+	px[0] = cx + data->player.dir_x * size;
+	py[0] = cy + data->player.dir_y * size;
+
+	px[1] = cx + perp_x * size / 2;
+	py[1] = cy + perp_y * size / 2;
+
+	px[2] = cx - perp_x * size / 2;
+	py[2] = cy - perp_y * size / 2;
+
+	min_x = px[0];
+	max_x = px[0];
+	min_y = py[0];
+	max_y = py[0];
+
+	i = 1;
+	while (i < 3)
 	{
-		x = -r;
-		while (x <= r)
+		if (px[i] < min_x) min_x = px[i];
+		if (px[i] > max_x) max_x = px[i];
+		if (py[i] < min_y) min_y = py[i];
+		if (py[i] > max_y) max_y = py[i];
+		i++;
+	}
+
+	y = min_y;
+	while (y <= max_y)
+	{
+		x = min_x;
+		while (x <= max_x)
 		{
-			my_mlx_pixel_put(&data->img, player_x + x, player_y + y, 0xFF0000);
+			int d1 = (x - px[1]) * (py[0] - py[1])
+				- (y - py[1]) * (px[0] - px[1]);
+
+			int d2 = (x - px[2]) * (py[1] - py[2])
+				- (y - py[2]) * (px[1] - px[2]);
+
+			int d3 = (x - px[0]) * (py[2] - py[0])
+				- (y - py[0]) * (px[2] - px[0]);
+
+			if ((d1 >= 0 && d2 >= 0 && d3 >= 0) ||
+				(d1 <= 0 && d2 <= 0 && d3 <= 0))
+				my_mlx_pixel_put(&data->img, x, y, 0xFF0000);
+
 			x++;
 		}
 		y++;
 	}
+}
+
+void	draw_minimap_player(t_data *data)
+{
+	int	player_x;
+	int	player_y;
+
+	player_x = minimap_player_pos_x(data);
+	player_y = minimap_player_pos_y(data);
+	draw_minimap_triangle(data, player_x, player_y, 12);
 }
 
 void	draw_ray(t_data *data)
@@ -137,9 +215,9 @@ void	draw_ray(t_data *data)
 	int	x;
 	int	y;
 
+	player_x = data->dda.map_x * TILE_SIZE;
+	player_y = data->dda.map_y * TILE_SIZE;
 	r = 5;
-	player_x = data->dda.mapX * TILE_SIZE;
-	player_y = data->dda.mapY * TILE_SIZE;
 	y = -r;
 	while (y <= r)
 	{

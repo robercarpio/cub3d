@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   checker_chars.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:58:54 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/20 13:32:39 by rcarpio-cye      ###   ########.fr       */
+/*   Updated: 2026/02/23 11:21:56 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int only_chars_allow(char *str, char *allow)
+int	only_chars_allow(char *str, char *allow)
 {
 	int	i;
 	int	b;
@@ -34,7 +34,7 @@ int only_chars_allow(char *str, char *allow)
 	return (b);
 }
 
-int check_chars(char **map)
+int	check_chars(char **map)
 {
 	int	i;
 

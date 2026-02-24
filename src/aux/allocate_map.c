@@ -6,13 +6,13 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:30:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/17 09:33:24 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/22 09:42:04 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-char *fill_str(char c, int width)
+char	*fill_str(char c, int width)
 {
 	int		i;
 	char	*str;
@@ -27,13 +27,12 @@ char *fill_str(char c, int width)
 	return (str);
 }
 
-
 // char    **allocate_map(char **map)
 // {
 //     char    **arr;
 //     int     height;
 //     int     i;
-
+//
 //     height = map_height(map) + 1;
 //     arr = (char **)malloc((height+1)*sizeof(char *));
 //     i = 0;
@@ -44,7 +43,7 @@ char *fill_str(char c, int width)
 //     return (arr);
 // }
 
-char **allocate_map(char **map)
+char	**allocate_map(char **map)
 {
 	char	**arr;
 	int		height;
@@ -54,11 +53,9 @@ char **allocate_map(char **map)
 	arr = malloc((height + 2) * sizeof(char *));
 	if (!arr)
 		return (NULL);
-
 	arr[0] = fill_str(' ', map_width(map));
 	if (!arr[0])
 		return (NULL);
-
 	i = 0;
 	while (i < height)
 	{

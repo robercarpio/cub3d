@@ -3,40 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   map_dimmenssions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:02:43 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/10 13:01:41 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/22 09:43:09 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
-int line_len(char *str)
+int	line_len(char *str)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
-	return(i);
+	return (i);
 }
+
 int	map_height(char **map)
 {
 	int	i;
 
 	i = -1;
-	while(map[++i])
-	;
+	while (map[++i])
+		;
 	return (i);
 }
 
-int	map_width (char **map)
+int	map_width(char **map)
 {
 	int	i;
 	int	max_len;
-	
+
 	i = -1;
 	max_len = 0;
 	while (map[++i])
@@ -46,4 +46,3 @@ int	map_width (char **map)
 	}
 	return (max_len);
 }
-

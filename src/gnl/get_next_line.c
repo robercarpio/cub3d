@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:31:47 by rcarpio-          #+#    #+#             */
-/*   Updated: 2026/02/17 09:34:19 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/22 09:40:00 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*fbreturn(char *buffer, int rd, char **stg)
 // 	char	*ptr;
 // 	char	*p;
 // 	size_t	r_len;
-
+//
 // 	if (!s1 || !s2)
 // 		return (NULL);
 // 	r_len = ft_strlen(s1) + ft_strlen(s2) + 1;
@@ -76,7 +76,6 @@ char	*ft_aux(char **stg)
 	char	*tmp;
 	int		len;
 
-	//if (!*stg || !(ft_strchr(*stg, '\n')) || (**stg == '\n' && !(**stg++)))
 	if (!*stg || !(ft_strchr(*stg, '\n')))
 	{
 		l = ft_strdup(*stg);
