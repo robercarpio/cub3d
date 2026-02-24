@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:05:12 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/23 11:25:06 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:05:53 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,8 @@ void	perform_dda(t_data *data)
 			data->dda.map_y += data->dda.step_y;
 			data->dda.side = 1;
 		}
-		if (data->map->map[data->dda.map_y][data->dda.map_x] > '0')
+		if (data->map->map[data->dda.map_y][data->dda.map_x] == '1' ||
+			data->map->map[data->dda.map_y][data->dda.map_x] == 'D')
 			hit = 1;
 	}
 	data->dda.hit_type = data->map->map[data->dda.map_y][data->dda.map_x];
@@ -145,168 +146,3 @@ void	compute_projection(t_data *data)
 	if (data->dda.draw_end >= data->height)
 		data->dda.draw_end = data->height - 1;
 }
-
-// void	raycast_dda(t_data *data)
-// {
-// 	int		i;
-// 	double	camera_x;
-// 	int		hit;
-//
-// 	i = -1;
-// 	while (++i < data->map->m_width)
-// 	{
-// 		reset_dda_data(&data->dda);
-// 		hit = 0;
-// 		camera_x = 2 * i / (double)data->map->m_width - 1;
-// 		data->dda.raydir_x = data->player.dir_x + data->player.plane_x
-// 			* camera_x;
-// 		data->dda.raydir_y = data->player.dir_y + data->player.plane_y
-// 			* camera_x;
-// 		data->dda.mapX = (int)data->player.x;
-// 		data->dda.mapY = (int)data->player.y;
-// 		data->dda.deltaDistX = (data->dda.raydir_x == 0) ? 1e30: 
-//fabs(1 / data->dda.raydir_x);
-// 		data->dda.deltaDistY = (data->dda.raydir_y == 0) ? 1e30 : 
-//fabs(1 / data->dda.raydir_y);
-// 		if (data->dda.raydir_x < 0)
-// 		{
-// 			data->dda.step_x = -1;
-// 			data->dda.sideDistX = (data->player.x - data->dda.mapX)
-// 				* data->dda.deltaDistX;
-// 		}
-// 		else
-// 		{
-// 			data->dda.step_x = 1;
-// 			data->dda.sideDistX = (data->dda.mapX + 1.0 - data->player.x)
-// 				* data->dda.deltaDistX;
-// 		}
-// 		if (data->dda.raydir_y < 0)
-// 		{
-// 			data->dda.stepY = -1;
-// 			data->dda.sideDistY = (data->player.y - data->dda.mapY)
-// 				* data->dda.deltaDistY;
-// 		}
-// 		else
-// 		{
-// 			data->dda.stepY = 1;
-// 			data->dda.sideDistY = (data->dda.mapY + 1.0 - data->player.y)
-// 				* data->dda.deltaDistY;
-// 		}
-// 		while (hit == 0)
-// 		{
-// 			if (data->dda.sideDistX < data->dda.sideDistY)
-// 			{
-// 				data->dda.sideDistX += data->dda.deltaDistX;
-// 				data->dda.mapX += data->dda.step_x;
-// 				data->dda.side = 0;
-// 			}
-// 			else
-// 			{
-// 				data->dda.sideDistY += data->dda.deltaDistY;
-// 				data->dda.mapY += data->dda.stepY;
-// 				data->dda.side = 1;
-// 			}
-// 			if (data->map->map[data->dda.mapY][data->dda.mapX] > '0')
-// 				hit = 1;
-// 		}
-// 		if (data->dda.side == 0)
-// 		{
-// 			data->dda.perpWallDist = data->dda.sideDistX - data->dda.deltaDistX;
-// 		}
-// 		else
-// 		{
-// 			data->dda.perpWallDist = data->dda.sideDistY - data->dda.deltaDistY;
-// 		}
-// 		// if (DEBUG_MODE)
-// 		// 	show_dda_data(&data->dda);
-// 		data->dda.line_height = (int)(data->height / data->dda.perpWallDist);
-// 		data->dda.draw_start = -data->dda.line_height / 2 + data->height / 2;
-// 		data->dda.draw_end = data->dda.line_height / 2 + data->height / 2;
-// 	}
-// }
-
-// void	dda_loop(int hit, t_data *data)
-// {
-// 	while (hit == 0)
-// 	{
-// 		if (data->dda.sideDistX < data->dda.sideDistY)
-// 		{
-// 			data->dda.sideDistX += data->dda.deltaDistX;
-// 			data->dda.mapX += data->dda.step_x;
-// 			data->dda.side = 0;
-// 		}
-// 		else
-// 		{
-// 			data->dda.sideDistY += data->dda.deltaDistY;
-// 			data->dda.mapY += data->dda.stepY;
-// 			data->dda.side = 1;
-// 		}
-// 		if (data->map->map[data->dda.mapY][data->dda.mapX] > '0')
-// 			hit = 1;
-// 	}
-// }
-
-// void	calc_ray_column_x(t_data *data, int x)
-// {
-// 	double	camera_x;
-//
-// 	camera_x = 2 * x / (double)data->width - 1;
-// 	data->dda.raydir_x = data->player.dir_x + data->player.plane_x 
-//* camera_x;
-// 	data->dda.raydir_y = data->player.dir_y + data->player.plane_y 
-//* camera_x;
-// 	data->dda.mapX = (int)data->player.x;
-// 	data->dda.mapY = (int)data->player.y;
-// 	data->dda.deltaDistX = (data->dda.raydir_x == 0) ? 1e30 : 
-//fabs(1 / data->dda.raydir_x);
-// 	data->dda.deltaDistY = (data->dda.raydir_y == 0) ? 1e30 : 
-//fabs(1 / data->dda.raydir_y);
-// 	if (data->dda.raydir_x < 0)
-// 	{
-// 		data->dda.step_x = -1;
-// 		data->dda.sideDistX = (data->player.x - data->dda.mapX)
-// 			* data->dda.deltaDistX;
-// 	}
-// 	else
-// 	{
-// 		data->dda.step_x = 1;
-// 		data->dda.sideDistX = (data->dda.mapX + 1.0 - data->player.x)
-// 			* data->dda.deltaDistX;
-// 	}
-// 	if (data->dda.raydir_y < 0)
-// 	{
-// 		data->dda.stepY = -1;
-// 		data->dda.sideDistY = (data->player.y - data->dda.mapY)
-// 			* data->dda.deltaDistY;
-// 	}
-// 	else
-// 	{
-// 		data->dda.stepY = 1;
-// 		data->dda.sideDistY = (data->dda.mapY + 1.0 - data->player.y)
-// 			* data->dda.deltaDistY;
-// 	}
-// }
-
-// void	raycast_single_column(t_data *data, int x)
-// {
-// 	int		hit;
-//
-// 	reset_dda_data(&data->dda);
-// 	hit = 0;
-// 	calc_ray_column_x(data, x);
-// 	dda_loop(hit, data);
-// 	// Calcular distancia perpendicular
-// 	if (data->dda.side == 0)
-// 		data->dda.perpWallDist = data->dda.sideDistX - data->dda.deltaDistX;
-// 	else
-// 		data->dda.perpWallDist = data->dda.sideDistY - data->dda.deltaDistY;
-// 	// Calcular altura de línea y límites de dibujo
-// 	data->dda.line_height = (int)(data->height / data->dda.perpWallDist);
-// 	data->dda.draw_start = -data->dda.line_height / 2 + data->height / 2;
-// 	data->dda.draw_end = data->dda.line_height / 2 + data->height / 2;
-// 	// Clipping
-// 	if (data->dda.draw_start < 0)
-// 		data->dda.draw_start = 0;
-// 	if (data->dda.draw_end >= data->height)
-// 		data->dda.draw_end = data->height - 1;
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/24 13:15:44 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/24 15:18:31 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	is_door_at(t_data *data, int x, int y)
 		return (0);
 	if (x < 0 || x >= (int)ft_strlen(data->map->map[y]))
 		return (0);
-	if (data->map->map[y][x] != 'D')
+	if (data->map->map[y][x] != 'D' && data->map->map[y][x] != 'd')
 		return (0);
 	return (1);
 }
@@ -73,8 +73,42 @@ void	try_open_door(t_data *data)
 				dx++;
 			if (is_door_at(data, px + dx, py + dy))
 			{
-				data->map->map[py + dy][px + dx] = '0';
-				printf("PUERTA \n");
+				if (data->map->map[py + dy][px + dx] == 'D')
+					data->map->map[py + dy][px + dx] = 'd';
+				else
+					data->map->map[py + dy][px + dx] = 'D';
+				return ;
+			}
+			dx++;
+		}
+		dy++;
+	}
+}
+
+void	check_door_proximity(t_data *data)
+{
+	int	px;
+	int	py;
+	int	dx;
+	int	dy;
+
+	data->can_open_door = 0;
+	px = (int)data->player.x;
+	py = (int)data->player.y;
+	dy = -1;
+	while (dy <= 1)
+	{
+		dx = -1;
+		while (dx <= 1)
+		{
+			if (dx == 0 && dy == 0)
+			{
+				dx++;
+				continue;
+			}
+			if (is_door_at(data, px + dx, py + dy))
+			{
+				data->can_open_door = 1;
 				return ;
 			}
 			dx++;

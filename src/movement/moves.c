@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 09:54:08 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/24 13:20:29 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/24 14:50:17 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ static int	is_walkable(t_data *data, double x, double y)
 		return (0);
 	if (map_x < 0 || map_x >= (int)ft_strlen(data->map->map[map_y]))
 		return (0);
-	if (data->map->map[map_y][map_x] == '1')
-		return (0);
-	if (data->map->map[map_y][map_x] == 'D')
+	if (data->map->map[map_y][map_x] == '1' || data->map->map[map_y][map_x] == 'D')
 		return (0);
 	return (1);
 }

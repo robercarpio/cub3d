@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/24 11:08:00 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/24 14:58:18 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	move_forward(t_data *data, int dir);
 void	move_strafe(t_data *data, int dir);
 void	rotate_player(t_data *data, double angle);
 void	try_open_door(t_data *data);
+void	check_door_proximity(t_data *data);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color);
 void	draw_square(t_data *data, int start_x, int start_y, int size, int color);

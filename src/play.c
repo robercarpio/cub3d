@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: rcarpio-cyepes <rcarpio-cyepes@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/24 11:10:02 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/02/24 15:31:52 by rcarpio-cye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	game_loop(t_data *data)
 		rotate_player(data, -ROT_SPEED);
 	if (data->keys[KEY_RIGHT])
 		rotate_player(data, ROT_SPEED);
+	check_door_proximity(data);
 	clear_image(data);
 	ft_render_frame(data);
 	return (0);
@@ -66,7 +67,7 @@ static void	start_window(t_data *data)
 	mlx_hook(data->win, 6, 1L << 6, mouse_move, data);
 	mlx_hook(data->win, 17, 0, ft_exit, data);
 	mlx_loop_hook(data->mlx, game_loop, data);
-	mlx_mouse_move(data->mlx, data->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	mlx_mouse_hide(data->mlx, data->win);
 	mlx_loop(data->mlx);
 }
 
@@ -91,6 +92,11 @@ int	ft_init(t_data *data, char *route)
 		return (0);
 	*data->map = init_map(file);
 	init_player(data);
+	data->msg_e.img = mlx_xpm_file_to_image(data->mlx, "img/pressE.xpm",
+			&data->msg_e.width, &data->msg_e.height);
+	if (data->msg_e.img)
+		data->msg_e.addr = mlx_get_data_addr(data->msg_e.img, &data->msg_e.bpp,
+				&data->msg_e.line_length, &data->msg_e.endian);
 	return (1);
 }
 
