@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 11:21:27 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/26 11:32:07 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 13:22:14 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ void	check_if_wall(t_data *data, int map_x, int map_y, int *color)
 	{
 		if (data->map->map[map_y][map_x] == '1')
 			*color = 0xFFFFFF;
+		if (data->map->map[map_y][map_x] == 'D')
+			*color = 0xFF8800;
 	}
 }
