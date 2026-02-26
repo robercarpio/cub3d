@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   closed_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:03:31 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/22 09:44:35 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:25:46 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	flood_fill_closed(char **map, int y, int x)
 	width = line_len(map[0]);
 	height = map_height(map);
 	if (x < 0 || y < 0 || x >= width || y >= height || map[y][x] == '1'
-		|| map[y][x] == 'V' || map[y][x] == '\n' || map[y][x] == '\t' )
+		|| map[y][x] == 'V' || map[y][x] == '\n' || map[y][x] == '\t')
 		return (0);
 	if (map[y][x] == '0')
 		return (1);

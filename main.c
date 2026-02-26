@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/22 10:35:11 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:21:16 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_exit(t_data *data)
 		if (data->mlx && data->win)
 			mlx_destroy_window(data->mlx, data->win);
 	}
+	// free_data(&data);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

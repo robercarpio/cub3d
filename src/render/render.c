@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:23:18 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/23 11:23:20 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:25:13 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,34 @@ static t_img	*choose_texture(t_data *data, t_dda_data *ray)
 	}
 }
 
+static void	draw_door_msg(t_data *data)
+{
+	int	x;
+	int	y;
+	int	start_x;
+	int	start_y;
+	unsigned int	color;
+
+	if (!data->msg_e.img)
+		return ;
+	start_x = (data->width - data->msg_e.width) / 2;
+	start_y = (data->height - data->msg_e.height) / 2 + 100;
+	y = 0;
+	while (y < data->msg_e.height)
+	{
+		x = 0;
+		while (x < data->msg_e.width)
+		{
+			color = *(unsigned int *)(data->msg_e.addr + (y * data->msg_e.line_length
+						+ x * (data->msg_e.bpp / 8)));
+			if ((color & 0x00FFFFFF) != 0x00FFFFFF) // Skip white pixels (background)
+				my_mlx_pixel_put(&data->img, start_x + x, start_y + y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
 int	ft_render_frame(t_data *data)
 {
 	int		x;
@@ -91,6 +119,8 @@ int	ft_render_frame(t_data *data)
 	draw_minimap_player(data);
 	if (data->show_bigmap)
 		draw_bigmap(data);
+	if (data->can_open_door)
+		draw_door_msg(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	return (0);
 }

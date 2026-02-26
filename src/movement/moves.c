@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 09:54:08 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/23 11:14:15 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:26:45 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ static int	is_walkable(t_data *data, double x, double y)
 		return (0);
 	if (map_x < 0 || map_x >= (int)ft_strlen(data->map->map[map_y]))
 		return (0);
-	if (data->map->map[map_y][map_x] == '1')
-		return (0);
-	if (data->map->map[map_y][map_x] == 'D')
+	if (data->map->map[map_y][map_x] == '1' || data->map->map[map_y][map_x] == 'D')
 		return (0);
 	return (1);
 }
@@ -95,10 +93,4 @@ void	rotate_player(t_data *data, double angle)
 		- data->player.plane_y * sin_angle;
 	data->player.plane_y = old_plane_x * sin_angle
 		+ data->player.plane_y * cos_angle;
-	if (DEBUG_MODE)
-	{
-		printf("PLAYER DIR X :%f \n", data->player.dir_x);
-		printf("PLAYER DIR Y :%f \n", data->player.dir_y);
-		printf("-----------------------------------------\n");
-	}
 }

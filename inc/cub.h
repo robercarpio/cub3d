@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/26 12:06:53 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:20:41 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	move_forward(t_data *data, int dir);
 void	move_strafe(t_data *data, int dir);
 void	rotate_player(t_data *data, double angle);
 void	try_open_door(t_data *data);
+void	check_door_proximity(t_data *data);
 
 //MINIMAP
 void	my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color);
@@ -91,6 +92,10 @@ void	compute_projection(t_data *data);
 //void	show_dda_data(t_dda_data *d);
 void	raycast_dda(t_data *data);
 void	raycast_single_column(t_data *data, int x);
+
+//FREE
+void	free_data (t_data **data);
+void	free_arr(char **arr);
 
 //TEXTURES
 void	init_textures(char **file, t_data *data);

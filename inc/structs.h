@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/26 12:04:53 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:22:07 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,8 @@ typedef struct s_data
 	t_player	player;
 	t_img		img;
 	t_img		bgnd;
+	t_img		msg_e;
+	int			can_open_door;
 	t_texture	textures;
 	t_dda_data	dda;
 }	t_data;

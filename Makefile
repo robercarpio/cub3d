@@ -33,7 +33,8 @@ SRCS =		main.c  \
 			./src/raycast/dda.c \
 			./src/raycast/raycast.c \
 			./src/parse/closed_map.c \
-			./src/render/render.c
+			./src/render/render.c \
+			./src/aux/free.c 
 
 # ================= DIRECTORIES ================= #
 OBJ_DIR = objects
