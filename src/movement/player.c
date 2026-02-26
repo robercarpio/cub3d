@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/26 12:25:01 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 13:06:22 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,21 @@ static int	is_door_at(t_data *data, int x, int y)
 	return (1);
 }
 
+static void	toggle_door(char *row, int x)
+{
+	if (row[x] == 'D')
+		row[x] = 'd';
+	else
+		row[x] = 'D';
+}
+
 void	try_open_door(t_data *data)
 {
-	int	px;
-	int	py;
-	int	dx;
-	int	dy;
+	int		px;
+	int		py;
+	int		dx;
+	int		dy;
+	char	*row;
 
 	px = (int)data->player.x;
 	py = (int)data->player.y;
@@ -69,16 +78,9 @@ void	try_open_door(t_data *data)
 		dx = -1;
 		while (dx <= 1)
 		{
-			if (dx == 0 && dy == 0)
-				dx++;
-			if (is_door_at(data, px + dx, py + dy))
-			{
-				if (data->map->map[py + dy][px + dx] == 'D')
-					data->map->map[py + dy][px + dx] = 'd';
-				else
-					data->map->map[py + dy][px + dx] = 'D';
-				return ;
-			}
+			row = data->map->map[py + dy];
+			if ((dx || dy) && row && is_door_at(data, px + dx, py + dy))
+				return (toggle_door(row, px + dx));
 			dx++;
 		}
 		dy++;

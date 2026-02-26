@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:23:18 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/26 12:25:13 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:54:16 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ static t_img	*choose_texture(t_data *data, t_dda_data *ray)
 
 static void	draw_door_msg(t_data *data)
 {
-	int	x;
-	int	y;
-	int	start_x;
-	int	start_y;
+	int				x;
+	int				y;
+	int				start_x;
+	int				start_y;
 	unsigned int	color;
 
 	if (!data->msg_e.img)
@@ -88,9 +88,10 @@ static void	draw_door_msg(t_data *data)
 		x = 0;
 		while (x < data->msg_e.width)
 		{
-			color = *(unsigned int *)(data->msg_e.addr + (y * data->msg_e.line_length
+			color = *(unsigned int *)(data->msg_e.addr
+					+ (y * data->msg_e.line_length
 						+ x * (data->msg_e.bpp / 8)));
-			if ((color & 0x00FFFFFF) != 0x00FFFFFF) // Skip white pixels (background)
+			if ((color & 0x00FFFFFF) != 0x00FFFFFF)
 				my_mlx_pixel_put(&data->img, start_x + x, start_y + y, color);
 			x++;
 		}
