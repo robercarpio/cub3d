@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/26 13:06:22 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 13:38:46 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,7 @@ void	check_door_proximity(t_data *data)
 		while (dx <= 1)
 		{
 			if (dx == 0 && dy == 0)
-			{
 				dx++;
-				continue;
-			}
 			if (is_door_at(data, px + dx, py + dy))
 			{
 				data->can_open_door = 1;

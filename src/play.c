@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/26 13:36:57 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 13:38:00 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,7 @@ void	play(char *route)
 	{
 		ft_alloc_data(&data, &map);
 		ft_init(&data, route);
-		if(parse(data))
+		if (parse(data))
 			start_window(&data);
 	}
 }
-
