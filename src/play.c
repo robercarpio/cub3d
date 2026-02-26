@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/19 10:08:24 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 11:22:47 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,24 @@
 // 		i++;
 // 	}
 // }
+
+void	clear_image(t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < SCREEN_HEIGHT)
+	{
+		x = 0;
+		while (x < SCREEN_WIDTH)
+		{
+			my_mlx_pixel_put(&data->img, x, y, 0x000000);
+			x++;
+		}
+		y++;
+	}
+}
 
 int	game_loop(t_data *data)
 {

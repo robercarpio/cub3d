@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/23 11:09:54 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:04:53 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,44 @@
 # define MOVE_SPEED 0.08
 # define ROT_SPEED 0.06
 # define PLAYER_RADIUS 0.01
+
+typedef struct s_minimap_square
+{
+	int	start_x;
+	int	start_y;
+	int	tile_size;
+	int	color;
+}	t_minimap_square;
+
+typedef struct s_bigmap
+{
+	int	map_w;
+	int	map_h;
+	int	tile;
+	int	total_w;
+	int	total_h;
+	int	off_x;
+	int	off_y;
+	int	color;
+	int	px;
+	int	py;
+}	t_bigmap;
+
+typedef struct s_minimap_player
+{
+	int		px[3];
+	int		py[3];
+	float	perp_x;
+	float	perp_y;
+	int		min_x;
+	int		max_x;
+	int		min_y;
+	int		max_y;
+	int		size;
+	int		player_x;
+	int		player_y;
+}	t_minimap_player;
+
 
 typedef struct s_stripe
 {
