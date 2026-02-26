@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/26 12:22:31 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:31:49 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	start_window(t_data *data)
 	mlx_hook(data->win, 6, 1L << 6, mouse_move, data);
 	mlx_hook(data->win, 17, 0, ft_exit, data);
 	mlx_loop_hook(data->mlx, game_loop, data);
-	mlx_mouse_move(data->mlx, data->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	mlx_mouse_hide(data->mlx, data->win);
 	mlx_loop(data->mlx);
 }
 
