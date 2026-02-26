@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/26 13:21:34 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 13:36:57 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	game_loop(t_data *data)
 		rotate_player(data, -ROT_SPEED);
 	if (data->keys[KEY_RIGHT])
 		rotate_player(data, ROT_SPEED);
+	check_door_proximity(data);
 	clear_image(data);
 	ft_render_frame(data);
 	return (0);
