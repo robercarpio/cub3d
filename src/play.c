@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/26 12:31:49 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:34:26 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,11 @@ int	ft_init(t_data *data, char *route)
 		return (0);
 	*data->map = init_map(file);
 	init_player(data);
-	start_window(data);
+	data->msg_e.img = mlx_xpm_file_to_image(data->mlx, "img/pressE.xpm",
+			&data->msg_e.width, &data->msg_e.height);
+	if (data->msg_e.img)
+		data->msg_e.addr = mlx_get_data_addr(data->msg_e.img, &data->msg_e.bpp,
+				&data->msg_e.line_length, &data->msg_e.endian);
 	return (1);
 }
 
@@ -128,3 +132,4 @@ void	play(char *route)
 			start_window(&data);
 	}
 }
+
