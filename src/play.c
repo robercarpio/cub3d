@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/02/26 13:38:00 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/27 09:26:06 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-// void	print_map(t_map map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (map.map[i])
-// 	{
-// 		printf("%s", map.map[i]);
-// 		i++;
-// 	}
-// }
-
-// void	print_arr(char **arr)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (arr[i])
-// 	{
-// 		printf("%s", arr[i]);
-// 		i++;
-// 	}
-// }
 
 void	clear_image(t_data *data)
 {
