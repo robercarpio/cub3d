@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:49:21 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/23 11:12:28 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/27 11:05:17 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int	key_press(int key, t_data *data)
 	if (key == KEY_E)
 		try_open_door(data);
 	if (key >= 0 && key < MAX_KEYCODE)
-	{
-		raycast_dda(data);
 		data->keys[key] = 1;
-	}
 	return (0);
 }
 

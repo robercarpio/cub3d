@@ -1,10 +1,10 @@
-NO ./img/wall1.xpm
-SO ./img/wall2.xpm
-WE ./img/wall3.xpm
-EA ./img/wall4.xpm
+NO ./img/w1.xpm
+SO ./img/w2.xpm
+WE ./img/w3.xpm
+EA ./img/w4.xpm
 
-F 50,50,50
-C 255,255,255
+C 51,255,255
+F 51,102,0
 
 111111111111111111111111111111
 100000000000000000000000000001
