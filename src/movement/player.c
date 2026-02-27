@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/26 13:38:46 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/27 13:36:01 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,26 @@ static void	toggle_door(char *row, int x)
 		row[x] = 'D';
 }
 
+static int	is_facing_door(t_data *data)
+{
+	int	map_x;
+	int	map_y;
+	int	i;
+
+	i = 1;
+	while (i <= 2)
+	{
+		map_x = (int)(data->player.x + data->player.dir_x * i);
+		map_y = (int)(data->player.y + data->player.dir_y * i);
+		if (is_door_at(data, map_x, map_y))
+			return (1);
+		if (data->map->map[map_y][map_x] == '1')
+			return (0);
+		i++;
+	}
+	return (0);
+}
+
 void	try_open_door(t_data *data)
 {
 	int		px;
@@ -79,13 +99,15 @@ void	try_open_door(t_data *data)
 		while (dx <= 1)
 		{
 			row = data->map->map[py + dy];
-			if ((dx || dy) && row && is_door_at(data, px + dx, py + dy))
-				return (toggle_door(row, px + dx));
+			if ((dx || dy) && row && is_door_at(data, px + dx, py + dy)
+					&& is_facing_door(data))
+    			return (toggle_door(row, px + dx));
 			dx++;
 		}
 		dy++;
 	}
 }
+
 
 void	check_door_proximity(t_data *data)
 {
@@ -107,8 +129,11 @@ void	check_door_proximity(t_data *data)
 				dx++;
 			if (is_door_at(data, px + dx, py + dy))
 			{
-				data->can_open_door = 1;
-				return ;
+				if (is_facing_door(data))
+				{
+					data->can_open_door = 1;
+					return ;
+				}
 			}
 			dx++;
 		}
