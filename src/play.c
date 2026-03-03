@@ -84,7 +84,7 @@ int	ft_init(t_data *data, char *route)
 		return (0);
 	*data->map = init_map(file);
 	init_player(data);
-	data->msg_e.img = mlx_xpm_file_to_image(data->mlx, "img/pressE.xpm",
+	data->msg_e.img = mlx_xpm_file_to_image(data->mlx, "img/pressEInter.xpm",
 			&data->msg_e.width, &data->msg_e.height);
 	if (data->msg_e.img)
 		data->msg_e.addr = mlx_get_data_addr(data->msg_e.img, &data->msg_e.bpp,
