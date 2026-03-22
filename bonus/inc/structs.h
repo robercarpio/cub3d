@@ -1,0 +1,227 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
+/*   Updated: 2026/02/26 12:22:07 by mamaratr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef STRUCTS_H
+# define STRUCTS_H
+
+# include "libft.h"
+
+# include <fcntl.h>
+# include <sys/time.h>
+# include <math.h>
+
+# define COLOR_RESET   "\033[0m"
+# define COLOR_RED     "\033[1;31m"
+# define COLOR_GREEN   "\033[1;32m"
+# define COLOR_YELLOW  "\033[1;33m"
+# define COLOR_BLUE    "\033[1;34m"
+# define COLOR_MAGENTA "\033[1;35m"
+# define COLOR_CYAN    "\033[1;36m"
+# define COLOR_WHITE   "\033[1;37m"
+
+//COLORES
+# define RESET   "\033[0m"
+# define BLUE    "\033[34m"
+# define GREEN   "\033[32m"
+# define YELLOW  "\033[33m"
+# define MAGENTA "\033[35m"
+# define RED     "\033[31m"
+# define CYAN    "\033[36m"
+
+# define DEBUG_MODE 1
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
+# define MINIMAP_SIZE 200
+# define MINIMAP_TILES 10
+# define MINIMAP_TILE_SIZE (MINIMAP_SIZE / MINIMAP_TILES)
+# define MINIMAP_X 20
+# define MINIMAP_Y 20
+# define TILE_SIZE 32
+# define MAX_KEYCODE 65536
+# define ESC 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define TAB_KEY 65289
+# define KEY_E 101
+# define UP 1
+# define DOWN -1
+# define LEFT -1
+# define RIGHT 1
+# define MOVE_SPEED 0.08
+# define ROT_SPEED 0.06
+# define PLAYER_RADIUS 0.01
+
+typedef struct s_minimap_square
+{
+	int	start_x;
+	int	start_y;
+	int	tile_size;
+	int	color;
+}	t_minimap_square;
+
+typedef struct s_bigmap
+{
+	int	map_w;
+	int	map_h;
+	int	tile;
+	int	total_w;
+	int	total_h;
+	int	off_x;
+	int	off_y;
+	int	color;
+	int	px;
+	int	py;
+}	t_bigmap;
+
+typedef struct s_minimap_player
+{
+	int		px[3];
+	int		py[3];
+	float	perp_x;
+	float	perp_y;
+	int		min_x;
+	int		max_x;
+	int		min_y;
+	int		max_y;
+	int		size;
+	int		player_x;
+	int		player_y;
+}	t_minimap_player;
+
+
+typedef struct s_stripe
+{
+	unsigned int	*frame;
+	unsigned int	*tex_pixels;
+	int				tex_pitch;
+	double			wall_x;
+	int				tex_x;
+	int				tex_y;
+	double			step;
+	double			tex_pos;
+	int				y;
+}	t_stripe;
+
+typedef enum e_tex_id
+{
+	TEX_NORTH = 0,
+	TEX_SOUTH,
+	TEX_WEST,
+	TEX_EAST,
+	TEX_DOOR,
+	TEX_COUNT
+}	t_tex_id;
+
+// double	rayDirX;      Dirección X del rayo indiv (dir + plano * cameraX).
+// double	rayDirY;      Dirección Y del rayo indiv.
+// int		mapX;         Coordenada X entera de la celda actual en el mapa.
+// int		mapY;         Coordenada Y entera de la celda actual en el mapa.
+// double	sideDistX;    Dist acumulada hasta el próximo borde vertical (X).
+// double	sideDistY;    Dist acumulada hasta el próximo borde horizontal (Y).
+// double	deltaDistX;   Dist que rayo debe recorrer para cruzar 1 celda en X.
+// double	deltaDistY;   Dist que rayo debe recorrer para cruzar 1 celda en Y.
+// int		stepX;        Direc del salto en el mapa (-1 o 1) para el eje X.
+// int		stepY;        Direc del salto en el mapa (-1 o 1) para el eje Y.
+// int		side;         Indica si se chocó con un muro en X (0) o en Y (1).
+// double	perpWallDist; Dist final proyectada para evitar efecto ojo de pez.
+
+typedef struct s_dda_data
+{
+	double	raydir_x;
+	double	raydir_y;
+	int		map_x;
+	int		map_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+	double	perp_wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	char	hit_type;
+}	t_dda_data;
+
+typedef struct s_coords
+{
+	int	x;
+	int	y;
+}	t_coords;
+
+typedef struct s_img
+{
+	void	*img;
+	void	*frame;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_img;
+
+typedef struct s_texture
+{
+	char	*paths[TEX_COUNT];
+	t_img	images[TEX_COUNT];
+	char	*celling;
+	char	*floor;
+}	t_texture;
+
+typedef struct s_map
+{
+	char			**map;
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
+	int				m_width;
+	int				m_height;
+}	t_map;
+
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}	t_player;
+
+typedef struct s_data
+{
+	void		*mlx;
+	void		*win;
+	int			*keys;
+	int			width;
+	int			height;
+	int			mouse_x;
+	int			show_bigmap;
+	t_map		*map;
+	t_player	player;
+	t_img		img;
+	t_img		bgnd;
+	t_img		msg_e;
+	int			can_open_door;
+	t_texture	textures;
+	t_dda_data	dda;
+}	t_data;
+
+#endif
