@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:23:18 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/26 12:54:16 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/02/27 11:28:28 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	draw_stripe(t_data *data, int x, t_dda_data *ray, t_img *tex)
 		s.wall_x = data->player.x + ray->perp_wall_dist * ray->raydir_x;
 	s.wall_x -= floor(s.wall_x);
 	s.tex_x = (int)(s.wall_x * (double)TEX_WIDTH);
-	if ((ray->side == 0 && ray->raydir_x > 0) || (ray->side == 1
-			&& ray->raydir_y < 0))
+	if ((ray->side == 0 && ray->raydir_x < 0) || (ray->side == 1
+			&& ray->raydir_y > 0))
 		s.tex_x = TEX_WIDTH - s.tex_x - 1;
 	if (s.tex_x < 0)
 		s.tex_x = 0;
@@ -110,7 +110,7 @@ int	ft_render_frame(t_data *data)
 	x = 0;
 	while (x < data->width)
 	{
-		raycast_single_column(data, x);
+		raycast_dda(data, x);
 		tex = choose_texture(data, &data->dda);
 		draw_stripe(data, x, &data->dda, tex);
 		x++;
