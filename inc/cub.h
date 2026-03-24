@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/27 11:07:33 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:05:16 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,11 @@ void	load_textures(t_data *data);
 
 //RENDER
 int		ft_render_frame(t_data *data);
-
 int		ft_alloc_data(t_data *data, t_map *map);
+
+//DOOR
+int		is_door_at(t_data *data, int x, int y);
+void	toggle_door(char *row, int x);
+int	is_facing_door(t_data *data);
 
 #endif

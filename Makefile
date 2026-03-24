@@ -27,8 +27,9 @@ SRCS =		main.c  \
 			./src/minimap/bigmap.c \
 			./src/minimap/minimap_player.c \
 			./src/minimap/minimap_utils.c \
-			./src/movement/player.c \
-			./src/movement/moves.c \
+			./src/player/player.c \
+			./src/player/moves.c \
+			./src/player/door.c \
 			./src/parse/expand_map.c \
 			./src/raycast/dda.c \
 			./src/raycast/raycast.c \
