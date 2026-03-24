@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/27 11:31:18 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:15:07 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@
 # define D 100
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
-# define TAB_KEY 65289
 # define KEY_E 101
 # define UP 1
 # define DOWN -1
@@ -73,20 +72,6 @@ typedef struct s_minimap_square
 	int	tile_size;
 	int	color;
 }	t_minimap_square;
-
-typedef struct s_bigmap
-{
-	int	map_w;
-	int	map_h;
-	int	tile;
-	int	total_w;
-	int	total_h;
-	int	off_x;
-	int	off_y;
-	int	color;
-	int	px;
-	int	py;
-}	t_bigmap;
 
 typedef struct s_minimap_player
 {
@@ -213,7 +198,6 @@ typedef struct s_data
 	int			width;
 	int			height;
 	int			mouse_x;
-	int			show_bigmap;
 	t_map		*map;
 	t_player	player;
 	t_img		img;

@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/03/24 11:05:16 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:15:21 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	draw_minimap_border(t_data *data);
 void	draw_floor_ceiling(t_data *data);
 void	draw_ray(t_data *data);
 void	draw_minimap(t_data *data);
-void	draw_bigmap(t_data *data);
 void	clear_image(t_data *data);
 void	check_if_wall(t_data *data, int map_x, int map_y, int *color);
 

@@ -24,7 +24,6 @@ SRCS =		main.c  \
 			./src/process_map/background.c \
 			./src/textures/textures.c \
 			./src/minimap/minimap.c \
-			./src/minimap/bigmap.c \
 			./src/minimap/minimap_player.c \
 			./src/minimap/minimap_utils.c \
 			./src/player/player.c \

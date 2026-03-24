@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:23:18 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/27 11:28:28 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:14:34 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,6 @@ int	ft_render_frame(t_data *data)
 	draw_minimap(data);
 	draw_minimap_border(data);
 	draw_minimap_player(data);
-	if (data->show_bigmap)
-		draw_bigmap(data);
 	if (data->can_open_door)
 		draw_door_msg(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
