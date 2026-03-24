@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   allocate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:30:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/22 09:42:04 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:21:45 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*fill_str(char c, int width)
 	int		i;
 	char	*str;
 
-	str = malloc(width);
+	str = malloc(width + 1);
 	if (!str)
 		return (NULL);
 	i = -1;

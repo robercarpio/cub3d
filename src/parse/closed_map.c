@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:03:31 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/26 12:25:46 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:24:39 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@ static t_coords	sea_coords(char **map)
 	return (coords);
 }
 
+void	free_map(char **map)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
 int	closed_map(t_data data)
 {
 	t_coords	coords;
@@ -69,6 +82,7 @@ int	closed_map(t_data data)
 		r_ff = flood_fill_closed(map_expand, coords.y, coords.x);
 		coords = sea_coords(map_expand);
 	}
+	free_map(map_expand);
 	if (r_ff == 1)
 		return (0);
 	else

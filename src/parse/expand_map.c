@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:27:54 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/22 09:46:43 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:22:22 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**expand_map(t_map map)
 
 	if (map.m_height <= 0 || map.m_width <= 0)
 		return (NULL);
-	new_map = malloc((map.m_height + 1) * sizeof(char *));
+	new_map = malloc((map.m_height + 2) * sizeof(char *));
 	if (!new_map)
 		return (NULL);
 	i = 0;
