@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_to_arr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:27:41 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/22 09:41:17 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 12:27:29 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,9 @@ int	file_height(char *route)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (line[0] != '\0')
-		{
-			rows++;
-			free (line);
-			line = get_next_line(fd);
-		}
-		else
-			break ;
+		rows++;
+		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (rows);
@@ -49,20 +44,23 @@ char	**file_to_arr(char *route)
 	int		fd;
 
 	height = file_height(route);
+	if (height <= 0)
+		return (NULL);
 	arr = (char **)malloc((height + 1) * sizeof(char *));
 	if (!arr)
 		return (NULL);
-	i = -1;
 	fd = open(route, O_RDONLY);
 	if (fd == -1)
-	{
-		printf("Error: Failed to open the map file.\n");
-	}
-	while (++i < height)
+		return (free(arr), NULL);
+	i = 0;
+	while (i < height)
 	{
 		arr[i] = get_next_line(fd);
+		if (!arr[i])
+			break ;
+		i++;
 	}
-	arr[height] = NULL;
+	arr[i] = NULL;
 	close(fd);
 	return (arr);
 }
