@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/27 13:36:01 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/03/22 09:54:44 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,13 @@ void	try_open_door(t_data *data)
 		{
 			row = data->map->map[py + dy];
 			if ((dx || dy) && row && is_door_at(data, px + dx, py + dy)
-					&& is_facing_door(data))
-    			return (toggle_door(row, px + dx));
+				&& is_facing_door(data))
+				return (toggle_door(row, px + dx));
 			dx++;
 		}
 		dy++;
 	}
 }
-
 
 void	check_door_proximity(t_data *data)
 {
