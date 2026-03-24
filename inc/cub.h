@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/03/24 11:15:21 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 12:41:47 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,6 @@ void	compute_projection(t_data *data);
 //void	show_dda_data(t_dda_data *d);
 void	raycast_dda(t_data *data, int x);
 
-//FREE
-void	free_data (t_data **data);
-void	free_arr(char **arr);
-
 //TEXTURES
 void	init_textures(char **file, t_data *data);
 void	parse_textures(char **file, t_data *data);
@@ -107,6 +103,8 @@ int		ft_alloc_data(t_data *data, t_map *map);
 //DOOR
 int		is_door_at(t_data *data, int x, int y);
 void	toggle_door(char *row, int x);
-int	is_facing_door(t_data *data);
+int		is_facing_door(t_data *data);
+
+void	free_map(char **map);
 
 #endif

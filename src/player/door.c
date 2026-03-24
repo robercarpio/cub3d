@@ -6,12 +6,11 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:02:09 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/03/24 11:07:19 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 12:37:33 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
 
 int	is_door_at(t_data *data, int x, int y)
 {

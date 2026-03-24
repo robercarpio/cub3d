@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/24 11:15:07 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 12:47:30 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,6 @@ typedef struct s_minimap_square
 	int	tile_size;
 	int	color;
 }	t_minimap_square;
-
-typedef struct s_minimap_player
-{
-	int		px[3];
-	int		py[3];
-	float	perp_x;
-	float	perp_y;
-	int		min_x;
-	int		max_x;
-	int		min_y;
-	int		max_y;
-	int		size;
-	int		player_x;
-	int		player_y;
-}	t_minimap_player;
-
 
 typedef struct s_stripe
 {

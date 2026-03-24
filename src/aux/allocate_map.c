@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:30:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/24 11:21:45 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 12:35:21 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,18 @@ char	**allocate_map(char **map)
 		return (NULL);
 	arr[0] = fill_str(' ', map_width(map));
 	if (!arr[0])
-		return (NULL);
-	i = 0;
-	while (i < height)
+		return (free(arr), NULL);
+	i = -1;
+	while (++i < height)
 	{
-		arr[i + 1] = map[i];
-		i++;
+		arr[i + 1] = ft_strdup(map[i]);
+		if (!arr[i + 1])
+		{
+			while (--i >= 0)
+				free(arr[i + 1]);
+			free(arr[0]);
+			return (free(arr), NULL);
+		}
 	}
 	arr[i + 1] = NULL;
 	return (arr);
