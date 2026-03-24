@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:03:31 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/24 11:24:39 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:37:07 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_coords	sea_coords(char **map)
 	t_coords	coords;
 
 	y = -1;
-	while (map[++y])
+	while (map[++y] && map[y + 1])
 	{
 		x = -1;
 		while (map[y][++x])

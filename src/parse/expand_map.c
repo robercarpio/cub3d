@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:27:54 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/24 11:22:22 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:40:32 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,17 @@ static char	*expand_line(char *str, int max_len, char fill)
 	return (line);
 }
 
+static void	free_map_partial(char **map, int i)
+{
+	while (--i >= 0)
+		free(map[i]);
+	free(map);
+}
+
 char	**expand_map(t_map map)
 {
 	char	**new_map;
+	char	*tmp;
 	int		i;
 
 	if (map.m_height <= 0 || map.m_width <= 0)
@@ -51,14 +59,11 @@ char	**expand_map(t_map map)
 	i = 0;
 	while (i < map.m_height)
 	{
-		new_map[i] = ft_strjoin(" ", expand_line(map.map[i], map.m_width, ' '));
+		tmp = expand_line(map.map[i], map.m_width, ' ');
+		new_map[i] = ft_strjoin(" ", tmp);
+		free(tmp);
 		if (!new_map[i])
-		{
-			while (--i >= 0)
-				free(new_map[i]);
-			free(new_map);
-			return (NULL);
-		}
+			return (free_map_partial(new_map, i), NULL);
 		i++;
 	}
 	new_map[i] = fill_str(' ', map.m_width + 1);
