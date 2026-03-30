@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:11 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/26 12:21:16 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/30 01:43:27 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 		play(argv[1]);
 	else
-		printf("Error!\nInvalid map file\nUsage: ./cub3d <map.cub>\n");
+		printf("Error: Invalid map file\nUsage: ./cub3d <map.cub>\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 15:47:00 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/26 11:40:58 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/03/30 12:32:23 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,17 @@ void	init_textures(char **file, t_data *data)
 
 void	parse_textures(char **file, t_data *data)
 {
-	int	id;
+	int		id;
+	char	*route;
 
 	while (*file)
 	{
+		route = ft_strtrim(*file + 2, " \n");
 		id = get_texture_id(*file);
-		if (id != -1)
-			data->textures.paths[id] = ft_strtrim(*file + 2, " \n");
+		if (id != -1 && access(route, F_OK) == -1)
+			data->textures.paths[id] = route;
+		else
+			free(route);
 		file++;
 	}
 }
@@ -47,13 +51,21 @@ void	load_textures(t_data *data)
 	i = 0;
 	while (i < TEX_COUNT)
 	{
-		data->textures.images[i].img = mlx_xpm_file_to_image(data->mlx,
-				data->textures.paths[i], &data->textures.images[i].width,
-				&data->textures.images[i].height);
-		data->textures.images[i].addr = mlx_get_data_addr(
-				data->textures.images[i].img, &data->textures.images[i].bpp,
-				&data->textures.images[i].line_length,
-				&data->textures.images[i].endian);
+		if (data->textures.paths[i] == NULL)
+		{
+			printf("Error: invlid texture path\n");
+			exit(-1);
+		}
+		else
+		{
+			data->textures.images[i].img = mlx_xpm_file_to_image(data->mlx,
+					data->textures.paths[i], &data->textures.images[i].width,
+					&data->textures.images[i].height);
+			data->textures.images[i].addr = mlx_get_data_addr(
+					data->textures.images[i].img, &data->textures.images[i].bpp,
+					&data->textures.images[i].line_length,
+					&data->textures.images[i].endian);
+		}
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/03/26 11:39:47 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/03/30 01:43:45 by rcarpio-mam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,12 @@ void	play(char *route)
 	t_data	data;
 	t_map	map;
 
-	if (!cub_file(route))
-		printf("Error!\nInvalid map file\nUsage: ./cub3d <map.cub>\n");
+	if (access(route, F_OK) == -1)
+	{
+		printf("Error: Invalid route\n");
+	}
+	else if (!cub_file(route))
+		printf("Error: Invalid map file\nUsage: ./cub3d <map.cub>\n");
 	else
 	{
 		ft_alloc_data(&data, &map);
