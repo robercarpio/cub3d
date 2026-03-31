@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 15:47:00 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/30 12:32:23 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/03/30 19:01:54 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,24 @@ void	init_textures(char **file, t_data *data)
 	load_textures(data);
 }
 
-void	parse_textures(char **file, t_data *data)
+void parse_textures(char **file, t_data *data)
 {
 	int		id;
 	char	*route;
 
 	while (*file)
 	{
-		route = ft_strtrim(*file + 2, " \n");
+		if ((*file)[0] == '\n' || (*file)[0] == '\0' || (*file)[0] == 'F'
+			|| (*file)[0] == 'C')
+		{
+			file++;
+			continue;
+		}
+		if ((*file)[0] == '1' || (*file)[0] == '0')
+			break;
 		id = get_texture_id(*file);
-		if (id != -1 && access(route, F_OK) == -1)
+		route = ft_strtrim(*file + 3, " \n");
+		if (id != -1 && access(route, F_OK) != -1)
 			data->textures.paths[id] = route;
 		else
 			free(route);
@@ -53,7 +61,7 @@ void	load_textures(t_data *data)
 	{
 		if (data->textures.paths[i] == NULL)
 		{
-			printf("Error: invlid texture path\n");
+			printf("Error: invalid texture path\n");
 			exit(-1);
 		}
 		else
