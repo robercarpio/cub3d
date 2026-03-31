@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:27:54 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/24 11:40:32 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:09:34 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**expand_map(t_map map)
 			return (free_map_partial(new_map, i), NULL);
 		i++;
 	}
-	new_map[i] = fill_str(' ', map.m_width + 1);
+	new_map[i] = fill_str(' ', map.m_width + 2);
 	new_map[++i] = NULL;
 	return (new_map);
 }

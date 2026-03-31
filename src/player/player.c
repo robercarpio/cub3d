@@ -6,16 +6,61 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:23:35 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/03/24 11:02:54 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/31 13:54:17 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
+void	set_player_dir_ns(t_player *player, char dir)
+{
+	if (dir == 'N')
+	{
+		player->dir_x = 0.0;
+		player->dir_y = -1.0;
+		player->plane_x = 0.66;
+		player->plane_y = 0.0;
+	}
+	else
+	{
+		player->dir_x = 0.0;
+		player->dir_y = 1.0;
+		player->plane_x = -0.66;
+		player->plane_y = 0.0;
+	}
+}
+
+void	set_player_dir_we(t_player *player, char dir)
+{
+	if (dir == 'W')
+	{
+		player->dir_x = -1.0;
+		player->dir_y = 0.0;
+		player->plane_x = 0.0;
+		player->plane_y = -0.66;
+	}
+	else
+	{
+		player->dir_x = 1.0;
+		player->dir_y = 0.0;
+		player->plane_x = 0.0;
+		player->plane_y = 0.66;
+	}
+}
+
+void	set_player_dir(t_player *player, char dir)
+{
+	if (dir == 'N' || dir == 'S')
+		set_player_dir_ns(player, dir);
+	else
+		set_player_dir_we(player, dir);
+}
+
 void	init_player(t_data *data)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	char	dir;
 
 	y = 0;
 	while (data->map->map[y])
@@ -23,15 +68,12 @@ void	init_player(t_data *data)
 		x = 0;
 		while (data->map->map[y][x])
 		{
-			if (data->map->map[y][x] == 'N' || data->map->map[y][x] == 'S' ||
-				data->map->map[y][x] == 'W' || data->map->map[y][x] == 'E')
+			dir = data->map->map[y][x];
+			if (dir == 'N' || dir == 'S' || dir == 'W' || dir == 'E')
 			{
 				data->player.x = x + 0.5;
 				data->player.y = y + 0.5;
-				data->player.dir_x = 0.0;
-				data->player.dir_y = -1.0;
-				data->player.plane_x = 0.66;
-				data->player.plane_y = 0.0;
+				set_player_dir(&data->player, dir);
 				data->map->map[y][x] = '0';
 				return ;
 			}

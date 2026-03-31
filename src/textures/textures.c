@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 15:47:00 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/30 19:01:54 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/31 12:11:19 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_textures(char **file, t_data *data)
 	load_textures(data);
 }
 
-void parse_textures(char **file, t_data *data)
+void	parse_textures(char **file, t_data *data)
 {
 	int		id;
 	char	*route;
@@ -38,10 +38,10 @@ void parse_textures(char **file, t_data *data)
 			|| (*file)[0] == 'C')
 		{
 			file++;
-			continue;
+			continue ;
 		}
 		if ((*file)[0] == '1' || (*file)[0] == '0')
-			break;
+			break ;
 		id = get_texture_id(*file);
 		route = ft_strtrim(*file + 3, " \n");
 		if (id != -1 && access(route, F_OK) != -1)

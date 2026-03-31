@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcarpio-mamaratr <rcarpio-mamaratr@stud    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:03:07 by rcarpio-cye       #+#    #+#             */
-/*   Updated: 2026/03/30 01:43:45 by rcarpio-mam      ###   ########.fr       */
+/*   Updated: 2026/03/31 13:28:52 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	ft_init(t_data *data, char *route)
 		return (0);
 	*data->map = init_map(file);
 	free_map(file);
-	init_player(data);
 	data->msg_e.img = mlx_xpm_file_to_image(data->mlx, "img/pressEInter.xpm",
 			&data->msg_e.width, &data->msg_e.height);
 	if (data->msg_e.img)
@@ -108,7 +107,8 @@ void	play(char *route)
 	{
 		ft_alloc_data(&data, &map);
 		ft_init(&data, route);
-		if (parse(data))
+		if (parse(&data))
 			start_window(&data);
+		ft_free(&data);
 	}
 }

@@ -20,6 +20,7 @@ SRCS =		main.c  \
 			./src/aux/map_dimmenssions.c \
 			./src/aux/file_to_arr.c \
 			./src/aux/allocate_map.c \
+			./src/aux/free.c \
 			./src/process_map/init_map.c \
 			./src/process_map/background.c \
 			./src/textures/textures.c \

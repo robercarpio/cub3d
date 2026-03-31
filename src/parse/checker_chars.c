@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_chars.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamaratr <mamaratr@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:58:54 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/02/23 11:21:56 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/03/31 12:27:10 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
