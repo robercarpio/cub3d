@@ -6,23 +6,11 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 12:03:31 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/31 14:07:53 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/04/01 11:48:34 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-// void	print_map(char **map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		printf("line %d: %s\n", i, map[i]);
-// 		i++;
-// 	}
-// }
 
 static int	flood_fill_closed(char **map, int y, int x)
 {
@@ -50,7 +38,6 @@ static t_coords	sea_coords(char **map)
 	t_coords	coords;
 
 	y = -1;
-	//print_map(map);
 	while (map[++y] && map[y + 1])
 	{
 		x = -1;

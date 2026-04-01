@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:30:46 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/31 13:58:04 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/04/01 11:50:01 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,32 @@ static int	valid_neighbor(char c)
 		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
+static int	valid_pos(char **map, int x, int y, int height)
+{
+	return (y > 0 && y < height - 1 && x > 0
+		&& x + 1 < (int)ft_strlen(map[y])
+		&& x < (int)ft_strlen(map[y - 1])
+		&& x < (int)ft_strlen(map[y + 1])
+		&& valid_neighbor(map[y - 1][x])
+		&& valid_neighbor(map[y + 1][x])
+		&& valid_neighbor(map[y][x - 1])
+		&& valid_neighbor(map[y][x + 1]));
+}
+
 int	player_inside_map(char **map, int height)
 {
 	int	x;
 	int	y;
 
-	y = 0;
-	while (map[y])
+	y = -1;
+	while (map[++y])
 	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'N' || map[y][x] == 'S'
+		x = -1;
+		while (map[y][++x])
+			if ((map[y][x] == 'N' || map[y][x] == 'S'
 				|| map[y][x] == 'E' || map[y][x] == 'W')
-			{
-				if (y == 0 || y >= height - 1)
-					return (0);
-				if (x == 0 || x + 1 >= (int)ft_strlen(map[y]))
-					return (0);
-				if (x >= (int)ft_strlen(map[y - 1])
-					|| x >= (int)ft_strlen(map[y + 1]))
-					return (0);
-				if (!valid_neighbor(map[y - 1][x])
-					|| !valid_neighbor(map[y + 1][x])
-					|| !valid_neighbor(map[y][x - 1])
-					|| !valid_neighbor(map[y][x + 1]))
-					return (0);
-			}
-			x++;
-		}
-		y++;
+				&& !valid_pos(map, x, y, height))
+				return (0);
 	}
 	return (1);
 }
