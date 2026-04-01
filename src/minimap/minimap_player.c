@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 11:19:12 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/03/24 12:45:34 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/04/01 11:56:38 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static void	minimap_player_pos(t_data *data, int *px, int *py)
 	int	center_x;
 	int	center_y;
 
-	center_x = MINIMAP_X + (MINIMAP_TILES / 2) * MINIMAP_TILE_SIZE;
-	center_y = MINIMAP_Y + (MINIMAP_TILES / 2) * MINIMAP_TILE_SIZE;
+	center_x = MINIMAP_X + (MINIMAP_TILES / 2) * 20;
+	center_y = MINIMAP_Y + (MINIMAP_TILES / 2) * 20;
 	*px = center_x + (int)((data->player.x - (int)data->player.x)
-			* MINIMAP_TILE_SIZE);
+			* 20);
 	*py = center_y + (int)((data->player.y - (int)data->player.y)
-			* MINIMAP_TILE_SIZE);
+			* 20);
 }
 
 void	draw_minimap_player(t_data *data)

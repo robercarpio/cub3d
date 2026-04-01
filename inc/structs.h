@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 10:56:39 by rcarpio-mam       #+#    #+#             */
-/*   Updated: 2026/03/24 12:47:30 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/04/01 11:59:36 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@
 # define TEX_HEIGHT 64
 # define MINIMAP_SIZE 200
 # define MINIMAP_TILES 10
-# define MINIMAP_TILE_SIZE (MINIMAP_SIZE / MINIMAP_TILES)
 # define MINIMAP_X 20
 # define MINIMAP_Y 20
 # define TILE_SIZE 32
@@ -95,19 +94,6 @@ typedef enum e_tex_id
 	TEX_DOOR,
 	TEX_COUNT
 }	t_tex_id;
-
-// double	rayDirX;      Dirección X del rayo indiv (dir + plano * cameraX).
-// double	rayDirY;      Dirección Y del rayo indiv.
-// int		mapX;         Coordenada X entera de la celda actual en el mapa.
-// int		mapY;         Coordenada Y entera de la celda actual en el mapa.
-// double	sideDistX;    Dist acumulada hasta el próximo borde vertical (X).
-// double	sideDistY;    Dist acumulada hasta el próximo borde horizontal (Y).
-// double	deltaDistX;   Dist que rayo debe recorrer para cruzar 1 celda en X.
-// double	deltaDistY;   Dist que rayo debe recorrer para cruzar 1 celda en Y.
-// int		stepX;        Direc del salto en el mapa (-1 o 1) para el eje X.
-// int		stepY;        Direc del salto en el mapa (-1 o 1) para el eje Y.
-// int		side;         Indica si se chocó con un muro en X (0) o en Y (1).
-// double	perpWallDist; Dist final proyectada para evitar efecto ojo de pez.
 
 typedef struct s_dda_data
 {

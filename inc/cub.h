@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 10:44:59 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/03/31 13:30:05 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/04/01 11:55:26 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		cub_file(char *str);
 char	**expand_map(t_map map);
 int		closed_map(t_data data);
 int		check_player(char **map);
-
 
 //PROCESS MAP
 int		get_texture_id(char *str);

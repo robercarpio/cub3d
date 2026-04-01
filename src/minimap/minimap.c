@@ -6,7 +6,7 @@
 /*   By: mamaratr <mamaratr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:27:53 by mamaratr          #+#    #+#             */
-/*   Updated: 2026/02/26 12:27:36 by mamaratr         ###   ########.fr       */
+/*   Updated: 2026/04/01 11:56:23 by mamaratr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	draw_minimap(t_data *data)
 			map_x = (int)data->player.x - (MINIMAP_TILES / 2) + mini_x;
 			map_y = (int)data->player.y - (MINIMAP_TILES / 2) + mini_y;
 			check_if_wall(data, map_x, map_y, &sq.color);
-			sq.start_x = MINIMAP_X + mini_x * MINIMAP_TILE_SIZE;
-			sq.start_y = MINIMAP_Y + mini_y * MINIMAP_TILE_SIZE;
-			sq.tile_size = MINIMAP_TILE_SIZE;
+			sq.start_x = MINIMAP_X + mini_x * 20;
+			sq.start_y = MINIMAP_Y + mini_y * 20;
+			sq.tile_size = 20;
 			draw_square(data, sq);
 			mini_x++;
 		}
